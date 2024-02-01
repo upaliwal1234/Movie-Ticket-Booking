@@ -3,6 +3,7 @@ import React from 'react'
 function Home() {
   return (
     <div class="w-full">
+      
       <div class="relative w-full bg-white">
         <div class="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
           <div class="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
@@ -652,7 +653,6 @@ function Home() {
           </div>
         </div>
       </div>
-      
     </div>
 
   )
