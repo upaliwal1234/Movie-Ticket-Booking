@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link,NavLink } from 'react-router-dom';
 function Header() {
   return (
     <div class="relative w-full bg-white">
@@ -23,29 +23,29 @@ function Header() {
         </div>
         <div class="hidden lg:block">
           <ul class="ml-12 inline-flex space-x-8">
-            <a
-              href="#"
+            <NavLink
+              to="/"
               class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
             >
               Home
-            </a>
+            </NavLink>
 
-            <a
-              href="#"
+            <NavLink
+              to="/Movies"
               class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
             >
               Movies
 
-            </a>
+            </NavLink>
 
 
-            <a
-              href="#"
+            <NavLink
+              to="#"
               class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
             >
               Cinema
 
-            </a>
+            </NavLink>
           </ul>
         </div>
         <div class="flex grow justify-end">
