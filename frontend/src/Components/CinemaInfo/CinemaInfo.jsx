@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import { Link } from 'react-router-dom';
 
 export default function CinemaInfo() {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -12,6 +13,11 @@ export default function CinemaInfo() {
   const handlePriceChange = (priceRange) => {
     setSelectedPriceRange(priceRange);
   };
+  const users = [
+    { id: 1, name: 'John Doe', link: '#', buttonText: 'Action' },
+    { id: 2, name: 'Jane Smith', link: '#', buttonText: 'Action' },
+    { id: 3, name: 'Bob Johnson', link: '#', buttonText: 'Action' },
+  ];
 
   const priceRanges = [
     '0-100',
@@ -68,7 +74,20 @@ export default function CinemaInfo() {
     </div>
     </div>
       <div>
-        rtyjknm
+      <ul className="list-disc">
+      {users.map((user) => (
+        <li key={user.id} className="flex items-center border-2 p-3 space-x-4">
+            <div className='min-w-[26rem]'>
+          <Link to={user.link} className="text-stone-500 hover:underline">
+            {user.name}
+          </Link>
+          </div>
+          <button className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:border-green-700">
+            {user.buttonText}
+          </button>
+        </li>
+      ))}
+    </ul>
       </div>
     </div>
   )
