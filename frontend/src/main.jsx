@@ -5,6 +5,8 @@ import './index.css'
 import Layout from './Layout.jsx'
 import Home from './Components/Home/Home.jsx';
 import Movies from './Components/Movies/Movies.jsx'
+import Signup from './Components/Signup/Signup.jsx'
+import Login from './Components/Login/Login.jsx'
 import Cinemas from './Components/Cinemas/Cinemas.jsx'
 import CinemaInfo from './Components/CinemaInfo/CinemaInfo.jsx'
 
@@ -13,6 +15,8 @@ const router = createBrowserRouter(
     <Route path='/' element={<Layout />}>
       <Route path='/' element={< Home />} />
       <Route path='/movies' element={<Movies />} />
+      <Route path='/signup' element={<Signup />} />
+      <Route path='/login' element={<Login />} />
       <Route path='/cinema' element={<Cinemas />} />
       <Route path='/cinema/cname' element={<CinemaInfo/>} />
     </Route>
