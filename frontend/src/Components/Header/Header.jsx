@@ -2,8 +2,8 @@ import React from 'react'
 
 function Header() {
   return (
-    <header class="relative w-full border-b bg-white pb-4">
-      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
+    <div class="relative w-full bg-white">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div class="inline-flex items-center space-x-2">
           <span>
             <svg
@@ -22,50 +22,54 @@ function Header() {
           <span class="font-bold">DevUI</span>
         </div>
         <div class="hidden lg:block">
-          <ul class="inline-flex space-x-8">
-            <li>
-              <a
-                href="#"
-                class="text-sm font-semibold text-gray-800 hover:text-gray-900"
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="text-sm font-semibold text-gray-800 hover:text-gray-900"
-              >
-                About
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="text-sm font-semibold text-gray-800 hover:text-gray-900"
-              >
-                Contact
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="text-sm font-semibold text-gray-800 hover:text-gray-900"
-              >
-                Blogs
-              </a>
-            </li>
+          <ul class="ml-12 inline-flex space-x-8">
+            <a
+              href="#"
+              class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+            >
+              Home
+            </a>
+
+            <a
+              href="#"
+              class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+            >
+              Movies
+
+            </a>
+
+
+            <a
+              href="#"
+              class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+            >
+              Cinema
+
+            </a>
           </ul>
         </div>
-        <div class="hidden lg:block">
+        <div class="flex grow justify-end">
+          <input
+            class="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+            type="text"
+            placeholder="Search"
+          />
+        </div>
+        <div class="hidden space-x-2 lg:block">
           <button
             type="button"
-            class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            class="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
           >
-            Button text
+            Sign In
+          </button>
+          <button
+            type="button"
+            class="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+          >
+            Log In
           </button>
         </div>
-        <div class="lg:hidden">
+        <div class="ml-2 lg:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -84,7 +88,8 @@ function Header() {
           </svg>
         </div>
       </div>
-    </header>
+    </div>
+
   )
 }
 
