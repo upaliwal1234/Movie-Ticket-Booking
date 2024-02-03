@@ -5,6 +5,8 @@ import './index.css'
 import Layout from './Layout.jsx'
 import Home from './Components/Home/Home.jsx';
 import Movies from './Components/Movies/Movies.jsx'
+import Signup from './Components/Signup/Signup.jsx'
+import Login from './Components/Login/Login.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -12,6 +14,8 @@ const router = createBrowserRouter(
       <Route path='/' element={< Home />} />
       <Route path='/movies' element={<Movies />} />
       <Route path='/cinema' element={<Movies />} />
+      <Route path='/signup' element={<Signup />} />
+      <Route path='/login' element={<Login />} />
     </Route>
 
   )
