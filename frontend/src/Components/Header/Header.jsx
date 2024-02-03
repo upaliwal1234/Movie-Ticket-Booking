@@ -41,7 +41,7 @@ function Header() {
 
 
             <NavLink
-              to="#"
+              to="/cinema"
               class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
             >
               Cinema

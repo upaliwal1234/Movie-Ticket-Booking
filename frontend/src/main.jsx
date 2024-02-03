@@ -5,13 +5,14 @@ import './index.css'
 import Layout from './Layout.jsx'
 import Home from './Components/Home/Home.jsx';
 import Movies from './Components/Movies/Movies.jsx'
+import Cinemas from './Components/Cinemas/Cinemas.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
       <Route path='/' element={< Home />} />
       <Route path='/movies' element={<Movies />} />
-      <Route path='/cinema' element={<Movies />} />
+      <Route path='/cinema' element={<Cinemas />} />
     </Route>
 
   )
