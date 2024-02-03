@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link,NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 function Header() {
   return (
-    <div class="relative w-full bg-white">
-      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
-        <div class="inline-flex items-center space-x-2">
+    <div className="relative w-full bg-white">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
+        <div className="inline-flex items-center space-x-2">
           <span>
             <svg
               width="30"
@@ -19,7 +20,7 @@ function Header() {
               ></path>
             </svg>
           </span>
-          <span class="font-bold">DevUI</span>
+          <span className="font-bold">DevUI</span>
         </div>
         <div class="hidden lg:block">
           <ul class="ml-12 inline-flex space-x-8">
@@ -48,28 +49,28 @@ function Header() {
             </NavLink>
           </ul>
         </div>
-        <div class="flex grow justify-end">
+        <div className="flex grow justify-end">
           <input
-            class="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             type="text"
             placeholder="Search"
           />
         </div>
-        <div class="hidden space-x-2 lg:block">
+        <div className="hidden space-x-2 lg:block">
           <button
             type="button"
-            class="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
           >
             Sign In
           </button>
           <button
             type="button"
-            class="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
           >
             Log In
           </button>
         </div>
-        <div class="ml-2 lg:hidden">
+        <div className="ml-2 lg:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -77,10 +78,10 @@ function Header() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="h-6 w-6 cursor-pointer"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-6 w-6 cursor-pointer"
           >
             <line x1="4" y1="12" x2="20" y2="12"></line>
             <line x1="4" y1="6" x2="20" y2="6"></line>
