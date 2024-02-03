@@ -6,6 +6,7 @@ import Layout from './Layout.jsx'
 import Home from './Components/Home/Home.jsx';
 import Movies from './Components/Movies/Movies.jsx'
 import Cinemas from './Components/Cinemas/Cinemas.jsx'
+import CinemaInfo from './Components/CinemaInfo/CinemaInfo.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -13,6 +14,7 @@ const router = createBrowserRouter(
       <Route path='/' element={< Home />} />
       <Route path='/movies' element={<Movies />} />
       <Route path='/cinema' element={<Cinemas />} />
+      <Route path='/cinema/cname' element={<CinemaInfo/>} />
     </Route>
 
   )
