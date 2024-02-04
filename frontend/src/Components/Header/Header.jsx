@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom';
+
+
 function Header() {
   return (
     <div className="relative w-full bg-white">
@@ -21,34 +22,31 @@ function Header() {
           </span>
           <span className="font-bold">DevUI</span>
         </div>
-        <div className="hidden lg:block">
-          <ul className="ml-12 inline-flex space-x-8">
+        <div class="hidden lg:block">
+          <ul class="ml-12 inline-flex space-x-8">
             <NavLink
               to="/"
-              className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+              class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
             >
               Home
             </NavLink>
 
             <NavLink
-              to="/movies"
-              className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+              to="/Movies"
+              class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
             >
               Movies
-
             </NavLink>
-
-
             <NavLink
               to="/cinema"
-              className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+              class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
             >
               Cinema
 
             </NavLink>
           </ul>
         </div>
-        <div className="flex grow justify-end">
+        <div className="flex grow justify-end pr-1">
           <input
             className="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             type="text"
@@ -56,18 +54,20 @@ function Header() {
           />
         </div>
         <div className="hidden space-x-2 lg:block">
-          <button
-            type="button"
-            className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+          <NavLink
+            to="/signup"
           >
-            Sign In
-          </button>
-          <button
-            type="button"
-            className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            <button className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+              Sign Up
+            </button>
+          </NavLink>
+
+          <NavLink
+            to="/login"
+
           >
-            Log In
-          </button>
+            <button className="rounded-md border border-black bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">Login</button>
+          </NavLink>
         </div>
         <div className="ml-2 lg:hidden">
           <svg
