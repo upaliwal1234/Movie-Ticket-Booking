@@ -56,17 +56,17 @@ export default function CarouselCustomArrows() {
         )}
       >
         <img
-          src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+          src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TW92aWV8ZW58MHx8MHx8fDA%3D"
           alt="image 1"
           className="h-80 w-full object-cover"
         />
         <img
-          src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
+          src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2luZW1hfGVufDB8fDB8fHww"
           alt="image 2"
           className="h-80 w-full object-cover"
         />
         <img
-          src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi7_mbDgSeTEYj3_rFHYE8GFngQa3Uqe7GuQIUc9Rvre6IjfLpZ0GXOpdcvltik_lOGtU&usqp=CAU"
           alt="image 3"
           className="h-80 w-full object-cover"
         />
