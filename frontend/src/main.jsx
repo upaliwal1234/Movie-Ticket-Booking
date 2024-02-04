@@ -8,6 +8,7 @@ import Movies from './Components/Movies/Movies.jsx'
 import Signup from './Components/Signup/Signup.jsx'
 import Login from './Components/Login/Login.jsx'
 import Cinemas from './Components/Cinemas/Cinemas.jsx'
+import CinemaInfo from './Components/CinemaInfo/CinemaInfo.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
       <Route path='/signup' element={<Signup />} />
       <Route path='/login' element={<Login />} />
       <Route path='/cinema' element={<Cinemas />} />
+      <Route path='/cinema/cname' element={<CinemaInfo/>} />
     </Route>
 
   )
