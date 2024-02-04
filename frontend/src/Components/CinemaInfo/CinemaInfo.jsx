@@ -14,9 +14,9 @@ export default function CinemaInfo() {
     setSelectedPriceRange(priceRange);
   };
   const users = [
-    { id: 1, name: 'John Doe', link: '#', buttonText: 'Action' },
-    { id: 2, name: 'Jane Smith', link: '#', buttonText: 'Action' },
-    { id: 3, name: 'Bob Johnson', link: '#', buttonText: 'Action' },
+    { id: 1, name: 'John Doe', link: '#', buttonText: '11:00 AM' },
+    { id: 2, name: 'Jane Smith', link: '#', buttonText: '2:00 PM' },
+    { id: 3, name: 'Bob Johnson', link: '#', buttonText: '8:00 PM' },
   ];
 
   const priceRanges = [
@@ -82,7 +82,7 @@ export default function CinemaInfo() {
             {user.name}
           </Link>
           </div>
-          <button className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:border-green-700">
+          <button className="bg-white-500 min-w-[7rem] text-black py-2 border-slate-700 border-2 rounded-md hover:bg-gray-300 focus:outline-none   ">
             {user.buttonText}
           </button>
         </li>
