@@ -5,6 +5,7 @@ import './index.css'
 import Layout from './Layout.jsx'
 import Home from './Components/Home/Home.jsx';
 import Movies from './Components/Movies/Movies.jsx'
+import MovieCoverPage from './Components/MovieCover/MovieCoverPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -12,6 +13,7 @@ const router = createBrowserRouter(
       <Route path='/' element={< Home />} />
       <Route path='/movies' element={<Movies />} />
       <Route path='/cinema' element={<Movies />} />
+      <Route path='/movies/:movieName/movieCoverPage' element={<MovieCoverPage />} />
     </Route>
 
   )
