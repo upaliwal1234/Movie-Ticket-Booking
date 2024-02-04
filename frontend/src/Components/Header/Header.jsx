@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
-import { NavLink } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Header() {
   return (
@@ -22,8 +23,8 @@ function Header() {
           </span>
           <span className="font-bold">DevUI</span>
         </div>
-        <div class="hidden lg:block">
-          <ul class="ml-12 inline-flex space-x-8">
+        <div className="hidden lg:block">
+          <ul className="ml-12 inline-flex space-x-8">
             <NavLink
               to="/"
               class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
