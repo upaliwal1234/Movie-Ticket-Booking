@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const seedDb = require('./seed.js');
 const cinemaroutes=require('./routes/cinemaroutes');
+const movieroutes=require('./routes/movieroutes');
 
 // const PORT = process.env.PORT || 8080;
 const PORT = 8888
@@ -25,4 +26,5 @@ app.get('/', (req, res) => {
 
 
 app.use(cinemaroutes);
+app.use(movieroutes);
 // seedDb();
