@@ -6,58 +6,60 @@ let movieSchema = new mongoose.Schema({
         require: true,
         trim: true
     },
-    ratings:{
-        type:Number,
-        require:true
-     },
-    language:{
-        type:[],
-        require:true
+    ratings: {
+        type: Number,
+        require: true
     },
-    duration:{
-        type:String,
-        require:true
+    language: {
+        type: [],
+        require: true
     },
-    genre:{
-        type:String,
-        require:true
+    duration: {
+        type: String,
+        require: true
     },
-    certificate:{
-        type:String,
-        require:true
+    genre: {
+        type: String,
+        require: true
     },
-    releaseDate:{
-        type:String,
-        require:true
+    certificate: {
+        type: String,
+        require: true
     },
-    desc:{
-        type:String,
-        require:true
+    releaseDate: {
+        type: String,
+        require: true
     },
-    cast:[{
-        name:String,
-        role:String,
-        img:String,
-        require:true
+    desc: {
+        type: String,
+        require: true
+    },
+    cast: [{
+        name: String,
+        role: String,
+        img: String,
+        // require: true
     }],
-    crew:[{
-        name:String,
-        role:String,
-        img:String,
-        require:true
+    crew: [{
+        name: String,
+        role: String,
+        img: String,
+        // require: true
     }],
-    bgimage:{
-        type:String,
-        require:true
+    bgimage: {
+        type: String,
+        require: true
     },
-    poster:{
-        type:String,
-        require:true
+    poster: {
+        type: String,
+        require: true
     },
-    reviews:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Review'
-    },
+    reviews: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ],
     cinemas: [
         {
             type: mongoose.Schema.Types.ObjectId,
