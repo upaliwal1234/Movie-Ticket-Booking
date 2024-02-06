@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 const seedDb = require('./seed.js');
 const cinemaroutes = require('./routes/cinemaroutes');
 const movieroutes = require('./routes/movieroutes');
+const userroutes=require('./routes/userroutes.js')
 const cors = require('cors');
-
-app.use(cors());
+const bodyParser = require('body-parser');
 
 // const PORT = process.env.PORT || 8080;
 const PORT = 8888
@@ -28,6 +28,9 @@ app.get('/', (req, res) => {
 })
 
 
+app.use(bodyParser.json());
+app.use(cors());
+app.use(userroutes);
 app.use(cinemaroutes);
 app.use(movieroutes);
 // seedDb();
