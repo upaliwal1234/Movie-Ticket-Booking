@@ -1,67 +1,94 @@
-const express=require('express');
-const router=express.Router();
+const express = require('express');
+const router = express.Router();
 const User = require('../models/user');
-const secret=process.env.Secret || "hi";
+const jwt = require('jsonwebtoken')
+const secret = process.env.Secret || "hi";
+const bcrypt = require('bcryptjs')
+// const bodyParser = require('body-parser');
 
-const salt=bcryt.gensaltSync(10);
-
-router.post('/signup',async(req,res)=>{
-    const {username,useremail,password,confirmpassword}=req.body;
-    if(username && useremail && password && confirmpassword!=true){
-        return res.status(400).json("missing credential");
+router.post('/signup', async (req, res) => {
+    // console.log(req.body);
+    const { name, email, password, confirmPassword } = req.body;
+    if (!(name && email && password && confirmPassword)) {
+        console.log("All Fields Are Necessary")
+        return res.status(400).send("All Fields are necessary");
     }
-    const existingUser=await User.findOne(useremail);
-    if(existingUser){
-        return res.status(400).json("User already exist")
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+        console.log("Already exists")
+        return res.status(401).send("User With This Name Already Exists");
     }
-    else if(password==confirmpassword){
-        try{
-            const UserDoc=await User.create({
-                username,
-                useremail,
-                password: await bcryt.hash(password,salt)
+    else if (password == confirmPassword) {
+        try {
+            const myEncPassword = await bcrypt.hash(password, 10);//You are using the bcrypt.hash function to generate a hash of the password. The 10 you provided is the cost factor or the number of rounds for generating the salt. The bcrypt library internally generates a random salt and combines it with the password to produce a secure hash
+            const user = await User.create({
+                name: name,
+                email: email,
+                password: myEncPassword
             });
-            res.status(200).json("User Created")
-        }
-        catch{
+            res.status(200).json(user);
+        } catch (error) {
             console.log(error);
-            res.status(400).json("User not Created")
+            res.status(400).json("User not Created");
         }
     }
 })
 
-router.post('/login',async(req,res)=>{
-    const {useremail,password}=req.body;
-    const UserDoc=await User.findOne({useremail});
-    if(!UserDoc){
+router.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        if (!(email && password)) {
+            console.log("All Fields Are Necessary")
+            return res.status(400).send("All details are necessary")
+        }
+        const user = await User.findOne({ email: email })
+        if (!user) {
+            console.log("Not exists")
+            return res.status(401).send("User does not exists")
+        }
+        if (user && await bcrypt.compare(password, user.password)) {
+            const token = jwt.sign(
+                {
+                    id: user._id, email//payload
+                },
+                secret,//process.env.jwtsecret (secretKey) 
+                {
+                    expiresIn: "2h" //extra optional 
+                }
+            );
+            user.password = undefined;
+            return res.status(200).json({
+                success: true,
+                token,
+                user
+            });
+        }
+        else {
+            console.log("Password is incorrect");
+            return res.status(400).send("Password is incorrect");
+        }
+    }
+    catch (error) {
+        console.log(error);
         res.status(400).json("User not found");
     }
-    const pass=await bcrypt.compare(password,UserDoc.password);
-    const username=UserDoc.username;
-    if(pass){
-        jwt.sign({useremail,username,id:UserDoc._id},secret,{expiresIn:'1d'},(err,token)=>{
-            if(err) throw err;
-            res.cookie('token',token).json(`${userneme} is logged in`);
-        });
-    }
-    else{
-        res.status(400).json("Unable to login")
-    }
 })
 
-router.post('/profile',async(req,res)=>{
-    const {token}=req.body;
-    if(token){
-        jwt.verify(token,secret,{},(err,userinfo)=>{
-            if(err) throw err;
-            res.status(200).json(userinfo);
-        });
-    }
-    else{
-        res.status(400).json("Unable to fetch userinfo");
-    }
-})
+// router.post('/profile', async (req, res) => {
+//     const { token } = req.body;
+//     if (token) {
+//         jwt.verify(token, secret, {}, (err, userinfo) => {
+//             if (err) throw err;
+//             res.status(200).json(userinfo);
+//         });
+//     }
+//     else {
+//         res.status(400).json("Unable to fetch userinfo");
+//     }
+// })
 
-router.post('/logout',async(req,res)=>{
-    res.cookie('token','').json("OK");
-})
+// router.post('/logout', async (req, res) => {
+//     res.cookie('token', '').json("OK");
+// })
+
+module.exports = router;
