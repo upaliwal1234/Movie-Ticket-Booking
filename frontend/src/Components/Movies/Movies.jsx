@@ -1,6 +1,18 @@
 import MovieCard from "./MovieCard"
-
+import { useEffect } from "react";
+import { tokenCheck } from '../../../helperToken.js';
+import { useNavigate } from "react-router-dom";
 function Movies() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        let response = tokenCheck();
+        if (!response) {
+            navigate('/login');
+        }
+        else {
+            navigate('/movies');
+        }
+    }, [])
     return (
         <div className="flex flex-row flex-wrap gap-8 justify-center mt-10 my-6 sm:mx-10 md:mx-20">
             <MovieCard

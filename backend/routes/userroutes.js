@@ -74,21 +74,4 @@ router.post('/login', async (req, res) => {
     }
 })
 
-// router.post('/profile', async (req, res) => {
-//     const { token } = req.body;
-//     if (token) {
-//         jwt.verify(token, secret, {}, (err, userinfo) => {
-//             if (err) throw err;
-//             res.status(200).json(userinfo);
-//         });
-//     }
-//     else {
-//         res.status(400).json("Unable to fetch userinfo");
-//     }
-// })
-
-// router.post('/logout', async (req, res) => {
-//     res.cookie('token', '').json("OK");
-// })
-
 module.exports = router;
