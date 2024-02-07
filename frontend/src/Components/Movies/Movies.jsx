@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import MovieCard from "./MovieCard"
-import { useEffect } from "react";
 import { tokenCheck } from '../../../helperToken.js';
 import { useNavigate } from "react-router-dom"; import axios from "axios"
 import baseURL from "../../DB"
