@@ -12,21 +12,70 @@ let dummyData = [
         movieName: 'Fighter',
         price: 220,
         seating: [false, false, false]
-    },
-    {
+      },
+      {
         timing: '02:00 PM',
         date: new Date('2024-02-07'),
-        movieName: 'Fighter',
+        movieName: 'Avengers: Endgame',
         price: 220,
         seating: [false, false, false]
-    },
-    {
+      },
+      {
         timing: '04:00 PM',
         date: new Date('2024-02-07'),
-        movieName: 'Fighter',
+        movieName: 'Spider-Man: No Way Home',
         price: 220,
         seating: [false, false, false]
-    },
+      },
+      {
+        timing: '11:30 AM',
+        date: new Date('2024-02-08'),
+        movieName: 'The Dark Knight',
+        price: 220,
+        seating: [false, false, false]
+      },
+      {
+        timing: '01:30 PM',
+        date: new Date('2024-02-08'),
+        movieName: 'Inception',
+        price: 220,
+        seating: [false, false, false]
+      },
+      {
+        timing: '03:30 PM',
+        date: new Date('2024-02-08'),
+        movieName: 'Interstellar',
+        price: 220,
+        seating: [false, false, false]
+      },
+      {
+        timing: '12:00 PM',
+        date: new Date('2024-02-09'),
+        movieName: 'Jurassic Park',
+        price: 220,
+        seating: [false, false, false]
+      },
+      {
+        timing: '02:30 PM',
+        date: new Date('2024-02-09'),
+        movieName: 'Jaws',
+        price: 220,
+        seating: [false, false, false]
+      },
+      {
+        timing: '05:00 PM',
+        date: new Date('2024-02-09'),
+        movieName: 'Titanic',
+        price: 220,
+        seating: [false, false, false]
+      },
+      {
+        timing: '10:00 AM',
+        date: new Date('2024-02-10'),
+        movieName: 'The Shawshank Redemption',
+        price: 220,
+        seating: [false, false, false]
+      },
 ];
 
 async function seed() {
