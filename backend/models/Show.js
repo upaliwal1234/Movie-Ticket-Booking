@@ -21,6 +21,10 @@ const showSchema = new mongoose.Schema({
     type: [Boolean],
     required: true,
   },
+  cinema: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Cinama'
+  }
 });
 
 const Show = mongoose.model('Show', showSchema);
