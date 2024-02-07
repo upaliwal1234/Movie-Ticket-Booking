@@ -44,20 +44,20 @@ function Header() {
           <ul className="ml-12 inline-flex space-x-8">
             <NavLink
               to="/"
-              class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+              className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
             >
               Home
             </NavLink>
 
             <NavLink
               to="/Movies"
-              class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+              className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
             >
               Movies
             </NavLink>
             <NavLink
               to="/cinema"
-              class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+              className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
             >
               Cinema
 

@@ -4,7 +4,6 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken')
 const secret = process.env.Secret || "hi";
 const bcrypt = require('bcryptjs')
-// const bodyParser = require('body-parser');
 
 router.post('/signup', async (req, res) => {
     // console.log(req.body);
@@ -73,5 +72,21 @@ router.post('/login', async (req, res) => {
         res.status(400).json("User not found");
     }
 })
+
+router.get('/profile/:id', async (req, res) => {
+    try {
+        const  {id}  = req.params;
+        const response = await User.findById(id);
+        console.log(response);
+        if (!response) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        return res.json(response);
+    }
+    catch {
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+})
+
 
 module.exports = router;
