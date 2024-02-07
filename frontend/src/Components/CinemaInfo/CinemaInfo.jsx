@@ -1,10 +1,27 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
+import baseURL from '../../DB';
 
 export default function CinemaInfo() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const { id } = useParams();
+  const [cinemaData, setCinemaData] = useState({});
+
+  const fetchCinemaData = async () => {
+    try {
+      let response = await axios.get(`${baseURL}/cinema/${id}`);
+      setCinemaData(response.data);
+    } catch (err) {
+      console.error('Error in fetching data', err);
+    }
+  }
+  let date = new Date();
+  date.setHours(0, 0, 0, 0);
+  const [selectedDate, setSelectedDate] = useState(date);
   const handleDateChange = (daysToAdd) => {
     const newDate = new Date();
+    newDate.setHours(0, 0, 0, 0);
     newDate.setDate(selectedDate.getDate() + daysToAdd);
     setSelectedDate(newDate);
   };
@@ -19,6 +36,17 @@ export default function CinemaInfo() {
     { id: 3, name: 'Bob Johnson', link: '#', buttonText: '8:00 PM' },
   ];
 
+  const [shows, setShows] = useState([]);
+
+  const fetchParticularDateShow = async () => {
+    try {
+      let response = await axios.get(`${baseURL}/shows/${selectedDate}`);
+      setShows(response.data);
+    } catch (err) {
+      console.error('Error in fetching data: ', err);
+    }
+  }
+
   const priceRanges = [
     '0-100',
     '100-200',
@@ -28,6 +56,10 @@ export default function CinemaInfo() {
     '500-600',
     '600-700',
   ];
+
+  useEffect(() => {
+    // fetchCinemaData();
+  }, [])
   return (
     <div className='container justify-center mx-auto mt-3'>
       <div className="bg-white p-6 rounded-md border-2">
