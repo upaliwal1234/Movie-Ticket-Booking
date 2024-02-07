@@ -1,10 +1,22 @@
 import { useEffect, useState } from "react"
 import MovieCard from "./MovieCard"
-import axios from "axios"
+import { useEffect } from "react";
+import { tokenCheck } from '../../../helperToken.js';
+import { useNavigate } from "react-router-dom"; import axios from "axios"
 import baseURL from "../../DB"
 import { Link } from "react-router-dom";
 
 function Movies() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        let response = tokenCheck();
+        if (!response) {
+            navigate('/login');
+        }
+        else {
+            navigate('/movies');
+        }
+    }, [])
     const [data, setData] = useState([]);
     useEffect(() => {
         fetchData();

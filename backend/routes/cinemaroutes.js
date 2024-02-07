@@ -15,11 +15,11 @@ router.get('/cinemas', async (req, res) => {
 
 })
 
-router.get('/cinemas/:id', async (req, res) => {
+router.get('/cinema/:id', async (req, res) => {
     try {
 
         const { id } = req.params;
-        const response = await Cinema.findById(id);
+        const response = await Cinema.findById(id).populate('Show');
         if (!response) {
             return res.status(404).json({ message: "Cinema not found" });
         }

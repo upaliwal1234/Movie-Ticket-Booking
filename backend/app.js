@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const seedDb = require('./seed.js');
 const cinemaroutes = require('./routes/cinemaroutes');
 const movieroutes = require('./routes/movieroutes');
-const userroutes=require('./routes/userroutes.js')
+const userroutes = require('./routes/userroutes.js')
+const showroutes = require('./routes/showroutes.js');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
@@ -33,4 +34,5 @@ app.use(cors());
 app.use(userroutes);
 app.use(cinemaroutes);
 app.use(movieroutes);
+app.use(showroutes);
 // seedDb();

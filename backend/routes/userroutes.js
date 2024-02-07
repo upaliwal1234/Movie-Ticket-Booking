@@ -4,7 +4,6 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken')
 const secret = process.env.Secret || "hi";
 const bcrypt = require('bcryptjs')
-// const bodyParser = require('body-parser');
 
 router.post('/signup', async (req, res) => {
     // console.log(req.body);
@@ -74,21 +73,20 @@ router.post('/login', async (req, res) => {
     }
 })
 
-// router.post('/profile', async (req, res) => {
-//     const { token } = req.body;
-//     if (token) {
-//         jwt.verify(token, secret, {}, (err, userinfo) => {
-//             if (err) throw err;
-//             res.status(200).json(userinfo);
-//         });
-//     }
-//     else {
-//         res.status(400).json("Unable to fetch userinfo");
-//     }
-// })
+router.get('/profile/:id', async (req, res) => {
+    try {
+        const  {id}  = req.params;
+        const response = await User.findById(id);
+        console.log(response);
+        if (!response) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        return res.json(response);
+    }
+    catch {
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+})
 
-// router.post('/logout', async (req, res) => {
-//     res.cookie('token', '').json("OK");
-// })
 
 module.exports = router;

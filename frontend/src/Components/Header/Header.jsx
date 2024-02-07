@@ -1,8 +1,25 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const token = localStorage.getItem('myToken');
+    setIsLoggedIn(!!token);
+  }, [])
+
+  const handleLogout = () => {
+    localStorage.removeItem('myToken');
+    setIsLoggedIn(false);
+  }
+  const handleProfile = () => {
+    navigate('/profile');
+  }
   return (
     <div className="relative w-full bg-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
@@ -27,20 +44,20 @@ function Header() {
           <ul className="ml-12 inline-flex space-x-8">
             <NavLink
               to="/"
-              class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+              className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
             >
               Home
             </NavLink>
 
             <NavLink
               to="/Movies"
-              class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+              className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
             >
               Movies
             </NavLink>
             <NavLink
               to="/cinema"
-              class="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+              className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
             >
               Cinema
 
@@ -55,20 +72,30 @@ function Header() {
           />
         </div>
         <div className="hidden space-x-2 lg:block">
-          <NavLink
-            to="/signup"
-          >
-            <button className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
-              Sign Up
-            </button>
-          </NavLink>
+          {isLoggedIn ? (
+            <div className='flex'>
+              <button onClick={handleLogout} className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                Logout
+              </button>
+              <button onClick={handleProfile} >
+                <svg className='rounded-full w-[2rem] pl-1' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" /></svg>
+              </button>
 
-          <NavLink
-            to="/login"
-
-          >
-            <button className="rounded-md border border-black bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">Login</button>
-          </NavLink>
+            </div>
+          ) : (
+            <>
+              <NavLink to="/signup">
+                <button className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                  Sign Up
+                </button>
+              </NavLink>
+              <NavLink to="/login">
+                <button className="rounded-md border border-black bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                  Login
+                </button>
+              </NavLink>
+            </>
+          )}
         </div>
         <div className="ml-2 lg:hidden">
           <svg

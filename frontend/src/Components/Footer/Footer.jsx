@@ -2,9 +2,9 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div class="mx-auto mt-12 max-w-7xl">
-      <footer class="px-4 py-10">
-        <div class="flex flex-col md:flex-row md:items-center">
+    <div className="mx-auto mt-12 max-w-7xl">
+      <footer className="px-4 py-10">
+        <div className="flex flex-col md:flex-row md:items-center">
           <span>
             <svg
               width="40"
@@ -19,16 +19,16 @@ function Footer() {
               ></path>
             </svg>
           </span>
-          <div class="mt-4 grow md:ml-12 md:mt-0">
-            <p class="text-base font-semibold text-gray-700">
+          <div className="mt-4 grow md:ml-12 md:mt-0">
+            <p className="text-base font-semibold text-gray-700">
               © 2023 DevUI Component Library
             </p>
           </div>
         </div>
-        <div class="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-          <div class="mb-8 lg:mb-0">
-            <p class="mb-6 text-lg font-semibold text-gray-700">Company</p>
-            <ul class="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          <div className="mb-8 lg:mb-0">
+            <p className="mb-6 text-lg font-semibold text-gray-700">Company</p>
+            <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
               <li>About us</li>
               <li>Company History</li>
               <li>Our Team</li>
@@ -36,9 +36,9 @@ function Footer() {
               <li>Press Release</li>
             </ul>
           </div>
-          <div class="mb-8 lg:mb-0">
-            <p class="mb-6 text-lg font-semibold text-gray-700">Our Stores</p>
-            <ul class="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
+          <div className="mb-8 lg:mb-0">
+            <p className="mb-6 text-lg font-semibold text-gray-700">Our Stores</p>
+            <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
               <li>Washington</li>
               <li>New Hampshire</li>
               <li>Maine</li>
@@ -46,9 +46,9 @@ function Footer() {
               <li>Indiana</li>
             </ul>
           </div>
-          <div class="mb-8 lg:mb-0">
-            <p class="mb-6 text-lg font-semibold text-gray-700">Services</p>
-            <ul class="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
+          <div className="mb-8 lg:mb-0">
+            <p className="mb-6 text-lg font-semibold text-gray-700">Services</p>
+            <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
               <li>UI / UX Design</li>
               <li>App Development</li>
               <li>API reference</li>
@@ -56,9 +56,9 @@ function Footer() {
               <li>Documentation</li>
             </ul>
           </div>
-          <div class="mb-8 lg:mb-0">
-            <p class="mb-6 text-lg font-semibold text-gray-700">Legal</p>
-            <ul class="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
+          <div className="mb-8 lg:mb-0">
+            <p className="mb-6 text-lg font-semibold text-gray-700">Legal</p>
+            <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
               <li>Privacy Policy</li>
               <li>Terms of Service</li>
               <li>Cookie Policy</li>
@@ -66,9 +66,9 @@ function Footer() {
               <li>Media Policy</li>
             </ul>
           </div>
-          <div class="mb-8 lg:mb-0">
-            <p class="mb-6 text-lg font-semibold text-gray-700">Social Links</p>
-            <ul class="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
+          <div className="mb-8 lg:mb-0">
+            <p className="mb-6 text-lg font-semibold text-gray-700">Social Links</p>
+            <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
               <li>Facebook</li>
               <li>Twitter</li>
               <li>Instagram</li>
