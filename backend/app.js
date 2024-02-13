@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
-const seedDb = require('./seed.js');
 const cinemaroutes = require('./routes/cinemaroutes');
 const movieroutes = require('./routes/movieroutes');
 const userroutes = require('./routes/userroutes.js')
@@ -35,4 +34,3 @@ app.use(userroutes);
 app.use(cinemaroutes);
 app.use(movieroutes);
 app.use(showroutes);
-// seedDb();
