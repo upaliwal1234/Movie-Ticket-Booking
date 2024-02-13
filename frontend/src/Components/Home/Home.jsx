@@ -1,7 +1,25 @@
 import { Carousel, IconButton } from "@material-tailwind/react";
 import MovieCard from "../Movies/MovieCard";
+import CardSlider from "../CardSlider/CardSlider";
 
 export default function CarouselCustomArrows() {
+  // const cards = [
+  //   { title: 'Card 1', language: 'Hindi', image: "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OC43LzEwICA5My4zSyBWb3Rlcw%3D%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00304730-sqjdzkhcrh-portrait.jpg" },
+  //   { title: 'Card 2', language: 'Hindi', image: "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OC43LzEwICA5My4zSyBWb3Rlcw%3D%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00304730-sqjdzkhcrh-portrait.jpg" },
+  //   { title: 'Card 3', language: 'Hindi', image: "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OC43LzEwICA5My4zSyBWb3Rlcw%3D%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00304730-sqjdzkhcrh-portrait.jpg" },
+  //   { title: 'Card 4', language: 'Hindi', image: "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OC43LzEwICA5My4zSyBWb3Rlcw%3D%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00304730-sqjdzkhcrh-portrait.jpg" },
+  //   { title: 'Card 5', language: 'Hindi', image: "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OC43LzEwICA5My4zSyBWb3Rlcw%3D%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00304730-sqjdzkhcrh-portrait.jpg" },
+  //   { title: 'Card 6', language: 'Hindi', image: "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OC43LzEwICA5My4zSyBWb3Rlcw%3D%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00304730-sqjdzkhcrh-portrait.jpg" },
+  //   // Add more card objects as needed
+  // ];
+  const items = [
+    { title: 'Item 1', description: 'Description for Item 1' },
+    { title: 'Item 2', description: 'Description for Item 2' },
+    { title: 'Item 3', description: 'Description for Item 3' },
+    { title: 'Item 4', description: 'Description for Item 4' },
+    { title: 'Item 5', description: 'Description for Item 5' },
+    // Add more items as needed
+  ];
   return (
     <>
       <Carousel
@@ -95,15 +113,22 @@ export default function CarouselCustomArrows() {
           image="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OC43LzEwICA5My4zSyBWb3Rlcw%3D%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00304730-sqjdzkhcrh-portrait.jpg"
           title="Fighter"
           language="Hindi" />
-        <MovieCard
+        {/* <MovieCard
           image="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OC43LzEwICA5My4zSyBWb3Rlcw%3D%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00304730-sqjdzkhcrh-portrait.jpg"
           title="Fighter"
           language="Hindi" />
         <MovieCard
           image="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OC43LzEwICA5My4zSyBWb3Rlcw%3D%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00304730-sqjdzkhcrh-portrait.jpg"
           title="Fighter"
-          language="Hindi" />
+          language="Hindi" /> */}
+
       </div>
+      {/* <div className="flex justify-center items-center mx-10">
+       <CardSlider cards={cards}/>
+    </div> */}
+    {/* <div className="flex mx-[7rem] justify-center items-center h-screen">
+      <CardSlider items={items} />
+    </div> */}
     </>
 
   );
