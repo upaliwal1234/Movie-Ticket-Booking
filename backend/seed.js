@@ -75,4 +75,4 @@ async function seedDb() {
 }
 // module.exports = seedDb;
 
-seedDb();
+// seedDb();

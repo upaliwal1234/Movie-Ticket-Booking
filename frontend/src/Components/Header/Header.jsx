@@ -20,6 +20,30 @@ function Header() {
   const handleProfile = () => {
     navigate('/profile');
   }
+  // const [open, setOpen] = useState(false);
+
+  // useEffect(() => {
+  //   function handleClickOutside(event) {
+  //     const clickedInside = document.getElementById('yourElementId').contains(event.target);
+  //     if (!clickedInside) {
+  //       setOpen(false);
+  //       console.log("false")
+  //     }
+      
+  //   }
+
+  //   document.addEventListener('click', handleClickOutside);
+
+  //   return () => {
+  //     document.removeEventListener('click', handleClickOutside);
+  //   };
+  // }, []);
+  // function handleOpen() {
+  //   setOpen(true);
+  //   console.log("true");
+  // }
+ 
+
   return (
     <div className="relative w-full bg-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
@@ -80,7 +104,14 @@ function Header() {
               <button onClick={handleProfile} >
                 <svg className='rounded-full w-[2rem] pl-1' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" /></svg>
               </button>
-
+              {/* <button onClick={handleOpen}>open me</button>
+                {open ? (
+                  <div id="yourElementId" className="bot">
+                    hiii
+                  </div>
+                ) : (
+                  <h1>hi</h1>
+                )} */}
             </div>
           ) : (
             <>
