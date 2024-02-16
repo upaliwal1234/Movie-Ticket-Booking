@@ -75,7 +75,7 @@ export default function CinemaInfo() {
           >
             &lt;
           </button>
-          <div className="ml-4 w-64">
+          <div className="ml-4 w-72">
             <h1 className="text-lg font-bold mb-2 text-black">
               {selectedDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
             </h1>

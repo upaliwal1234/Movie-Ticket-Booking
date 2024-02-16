@@ -19,11 +19,11 @@ const movieData = [
   // Add more movie data objects as needed
 ];
 
-export default function CardSlider({items}) {
-  
+export default function CardSlider({ items }) {
+
   return (
     <>
-     {/* <Swiper
+      {/* <Swiper
       slidesPerView={3}
       spaceBetween={30}
       loop={true}

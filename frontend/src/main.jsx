@@ -11,6 +11,7 @@ import Cinemas from './Components/Cinemas/Cinemas.jsx'
 import CinemaInfo from './Components/CinemaInfo/CinemaInfo.jsx'
 import MovieCoverPage from './Components/MovieCover/MovieCoverPage.jsx'
 import Profile from './Components/Profile/Profile.jsx'
+import MovieShows from './Components/MovieShows/MovieShows.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path='/cinema' element={<Cinemas />} />
       <Route path='/cinema/:id' element={<CinemaInfo />} />
       <Route path='/movies/:movieName/:id' element={<MovieCoverPage />} />
+      <Route path='/buytickets/:movieName/:date' element={<MovieShows />} />
       <Route path='/profile' element={<Profile />} />
     </Route>
 

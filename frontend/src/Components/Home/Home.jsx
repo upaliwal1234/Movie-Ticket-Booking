@@ -1,6 +1,6 @@
 import { Carousel, IconButton } from "@material-tailwind/react";
 import MovieCard from "../Movies/MovieCard";
-import CardSlider from "../CardSlider/CardSlider";
+// import CardSlider from "../CardSlider/CardSlider";
 
 export default function CarouselCustomArrows() {
   // const cards = [
@@ -126,7 +126,7 @@ export default function CarouselCustomArrows() {
       {/* <div className="flex justify-center items-center mx-10">
        <CardSlider cards={cards}/>
     </div> */}
-    {/* <div className="flex mx-[7rem] justify-center items-center h-screen">
+      {/* <div className="flex mx-[7rem] justify-center items-center h-screen">
       <CardSlider items={items} />
     </div> */}
     </>
