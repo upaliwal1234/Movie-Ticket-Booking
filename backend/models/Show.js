@@ -23,7 +23,7 @@ const showSchema = new mongoose.Schema({
   },
   cinema: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Cinama'
+    ref: 'Cinema'
   }
 });
 
