@@ -1,48 +1,43 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
-import { NavLink } from 'react-router-dom';
+import React, { useRef } from 'react'
+import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import profilepic from '../../profile.jpg'
 
 function Header() {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef();
+
+ console.log(open);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     const token = localStorage.getItem('myToken');
     setIsLoggedIn(!!token);
+    const handler = (e) => {
+      if (!menuRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
   }, [])
 
   const handleLogout = () => {
+    setOpen(prevOpen => !prevOpen);
     localStorage.removeItem('myToken');
     setIsLoggedIn(false);
   }
   const handleProfile = () => {
     navigate('/profile');
   }
-  // const [open, setOpen] = useState(false);
-
-  // useEffect(() => {
-  //   function handleClickOutside(event) {
-  //     const clickedInside = document.getElementById('yourElementId').contains(event.target);
-  //     if (!clickedInside) {
-  //       setOpen(false);
-  //       console.log("false")
-  //     }
-      
-  //   }
-
-  //   document.addEventListener('click', handleClickOutside);
-
-  //   return () => {
-  //     document.removeEventListener('click', handleClickOutside);
-  //   };
-  // }, []);
-  // function handleOpen() {
-  //   setOpen(true);
-  //   console.log("true");
-  // }
- 
+  
 
   return (
     <div className="relative w-full bg-white">
@@ -95,23 +90,26 @@ function Header() {
             placeholder="Search"
           />
         </div>
-        <div className="hidden space-x-2 lg:block">
+        <div className="hidden space-x-2 mt-1 ml-3 lg:block">
           {isLoggedIn ? (
             <div className='flex'>
-              <button onClick={handleLogout} className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
-                Logout
+              <div className='relative' ref={menuRef}>
+              <button onClick={() => setOpen(prevOpen => !prevOpen)} >
+                <img className='rounded-full w-[2.5rem] h-[2.5rem] ' src={profilepic} alt="Profile" srcset="" />
               </button>
-              <button onClick={handleProfile} >
-                <svg className='rounded-full w-[2rem] pl-1' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" /></svg>
-              </button>
-              {/* <button onClick={handleOpen}>open me</button>
-                {open ? (
-                  <div id="yourElementId" className="bot">
-                    hiii
-                  </div>
-                ) : (
-                  <h1>hi</h1>
-                )} */}
+              {open && 
+              <div className='shadow-md z-30 rounded-md bg-white absolute top-[3rem] -right-[4rem] p-2 w-[10rem]'>
+                <ul>
+                  <Link to='/profile'>
+                  <li  onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Profile</li>
+                  </Link>
+                  <li  onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Setting</li>
+                  <li  onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Booking History</li>
+                  <li  onClick={handleLogout} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer border-t-2'>Logout</li>
+                </ul>
+              </div>
+              }
+            </div>
             </div>
           ) : (
             <>
