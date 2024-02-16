@@ -42,7 +42,7 @@ router.get('/movie/:id', async (req, res) => {
     }
 })
 
-router.get('/bookTickets/movie/:id', async (req, res) => {
+router.get('/movie/banner/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const response = await Movie.findById(id);

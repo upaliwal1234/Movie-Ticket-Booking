@@ -1,11 +1,13 @@
 import React from 'react'
 import CinemaCard from './CinemaCard'
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { tokenCheck } from '../../../helperToken';
+import axios from 'axios';
 
 export default function Cinemas() {
   const navigate = useNavigate();
+  const [cinemasData, setCinemasData] = useState([]);
   useEffect(() => {
     let response = tokenCheck();
     if (!response) {
@@ -15,24 +17,27 @@ export default function Cinemas() {
       navigate('/cinema');
     }
   }, [])
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:8888/cinemas');
+      if (response.status == 200) {
+        setCinemasData(response.data);
+      }
+    }
+    catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <div className="flex flex-row flex-wrap gap-8 justify-center mt-10 my-6 sm:mx-10 md:mx-20">
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
-      <CinemaCard cinemaname="MLX" movie="hello brother" />
+      {cinemasData.map((cinema, index) => (
+        <CinemaCard key={index} cinemaid={cinema._id} cinemaname={cinema.name} movie={cinema.movie} />
+      ))}
     </div>
   )
 }

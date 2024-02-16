@@ -1,6 +1,6 @@
 import { Carousel, IconButton } from "@material-tailwind/react";
 import MovieCard from "../Movies/MovieCard";
-import CardSlider from "../CardSlider/CardSlider";
+// import CardSlider from "../CardSlider/CardSlider";
 
 export default function CarouselCustomArrows() {
   // const cards = [

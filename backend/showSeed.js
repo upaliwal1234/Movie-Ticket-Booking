@@ -14,7 +14,28 @@ let dummyData = [
         seating: [false, false, false]
       },
       {
+        timing: '2:00 PM',
+        date: new Date('2024-02-07'),
+        movieName: 'Fighter',
+        price: 220,
+        seating: [false, false, false]
+      },
+      {
+        timing: '5:00 PM',
+        date: new Date('2024-02-07'),
+        movieName: 'Fighter',
+        price: 220,
+        seating: [false, false, false]
+      },
+      {
         timing: '02:00 PM',
+        date: new Date('2024-02-07'),
+        movieName: 'Avengers: Endgame',
+        price: 220,
+        seating: [false, false, false]
+      },
+      {
+        timing: '5:00 PM',
         date: new Date('2024-02-07'),
         movieName: 'Avengers: Endgame',
         price: 220,
