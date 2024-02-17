@@ -7,9 +7,9 @@ function MovieShows() {
 
     const { movieName, date } = useParams();
 
-    const [data, setDate] = useState(null);
+    const [data, setData] = useState(null);
 
-    const [map, setMap] = useState({});
+    const [map2, setMap2] = useState([]);
     const [map1, setMap1] = useState([]);
 
     const fetchDate = async () => {
@@ -26,16 +26,13 @@ function MovieShows() {
                 map1.set(x.cinema._id, x.cinema)
 
             }
-            setDate(response.data);
-            setMap(Object.fromEntries(map));
+            setData(response.data);
+            setMap2([...map.values()]);
             setMap1([...map1.values()]);
         } catch (err) {
             console.error(err);
         }
     }
-
-    // console.log(map);
-    console.log(map);
 
     useEffect(() => {
         fetchDate();
@@ -63,14 +60,22 @@ function MovieShows() {
 
                     <div>
                         {map1.map((item, index) => {
-                            let data = 
+                            let shows = map2[index]
+                            console.log(shows);
                             return (
-                                <div key={index} className="border-b min-h-24 py-5 px-12 flex gap-8">
+                                <div key={index} className="border-b min-h-24 py-5 px-12 flex gap-20">
                                     <div>
                                         <h1 className="text-sm font-bold">{item.name}</h1>
                                         <h2 className="text-sm">{item.address}</h2>
                                     </div>
-                                    <div className="border">
+                                    <div className="flex gap-4">
+                                        {shows.map((itm, idx) => {
+                                            return (
+                                                <button key={idx} className="border border-gray-500 rounded my-1 px-10 py-1 flex justify-center items-center text-sm font-light text-green-500">
+                                                    {itm.timing}
+                                                </button>
+                                            )
+                                        })}
                                     </div>
                                 </div>
                             )
