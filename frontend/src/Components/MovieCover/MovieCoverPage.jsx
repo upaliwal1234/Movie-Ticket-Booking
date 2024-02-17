@@ -26,7 +26,7 @@ function MovieCoverPage() {
 
     useEffect(() => {
         fetchMovieData();
-    }, [])
+    }, [movieName, id])
 
     const fetchMovieData = async () => {
         try {
