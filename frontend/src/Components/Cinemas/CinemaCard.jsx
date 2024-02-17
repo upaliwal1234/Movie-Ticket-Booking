@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 
 
-function CinemaCard({ cinemaname, movie }) {
+function CinemaCard({ cinemaid,cinemaname, movie }) {
     return (
         <div>
-            <Link to="/cinema/cname">
+            <Link to={`/cinema/${cinemaid}`}>
             <div className="relative flex w-full min-w-[20rem] max-w-[26rem] hover:bg-gray-200 flex-col rounded-xl bg-transparent bg-clip-border border-2 text-gray-700 shadow-none">
             <div className="relative flex items-center gap-4 p-3 overflow-hidden text-gray-700 bg-transparent shadow-none rounded-xl bg-clip-border">
                 <div className="flex w-full flex-col gap-0.5">

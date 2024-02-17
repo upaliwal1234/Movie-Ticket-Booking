@@ -11,6 +11,9 @@ import Cinemas from './Components/Cinemas/Cinemas.jsx'
 import CinemaInfo from './Components/CinemaInfo/CinemaInfo.jsx'
 import MovieCoverPage from './Components/MovieCover/MovieCoverPage.jsx'
 import Profile from './Components/Profile/Profile.jsx'
+import MovieCinema from './components/Cinemas/MovieCinema.jsx'
+import SeatingChart from './Components/CinemaInfo/SeatingChart';
+import MovieShows from './Components/MovieShows/MovieShows.jsx'
 import BookingChart from './Components/BookingChart/BookingChart.jsx'
 
 const router = createBrowserRouter(
@@ -23,7 +26,10 @@ const router = createBrowserRouter(
       <Route path='/cinema' element={<Cinemas />} />
       <Route path='/cinema/:id' element={<CinemaInfo />} />
       <Route path='/movies/:movieName/:id' element={<MovieCoverPage />} />
+      <Route path='/buytickets/:movieName/:date' element={<MovieShows />} />
       <Route path='/profile' element={<Profile />} />
+      <Route path='/MovieCinema' element={<MovieCinema />} />
+      <Route path='/SeatingChart' element={<SeatingChart />} />
       <Route path='/bookingchart' element={<BookingChart/>}/>
     </Route>
 

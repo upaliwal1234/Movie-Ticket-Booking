@@ -1,7 +1,23 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from 'react-router-dom';
 import MovieCard from '../Movies/MovieCard'
 
+
 function Banner({ name, bgImg, language, certificate, releaseDate, genre, duration, ratings, poster }) {
+
+    const handleClick = () => {
+        navigate('/MovieCinema');
+    }
+
+    const navigate = useNavigate()
+    let date = new Date().toLocaleDateString();
+    date = date.split('/').join('-');
+    console.log(date);
+    const handleBookTicket = (e) => {
+        e.preventDefault();
+        navigate(`/buytickets/${name}/${date}`)
+    }
+
     return (
         <div>
             {/* <div className={`bg-[url(${bgImg})]  h-[350px] md:h-[500px] bg-no-repeat bg-cover bg-center relative w-full`} > */}
@@ -36,7 +52,7 @@ function Banner({ name, bgImg, language, certificate, releaseDate, genre, durati
                             </div>
                         </div>
                         <div className='my-4'>
-                            <button className='text-gray-200 text-md bg-orange-600 py-1 px-7 sm:py-2 sm:px-10 md:py-3 md:px-14 rounded'> Book tickets</button>
+                            <button onClick={handleBookTicket} className='text-gray-200 text-md bg-orange-600 py-1 px-7 sm:py-2 sm:px-10 md:py-3 md:px-14 rounded'> Book tickets</button>
                         </div>
 
                     </div>

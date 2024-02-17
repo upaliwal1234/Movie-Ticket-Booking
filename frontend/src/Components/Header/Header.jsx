@@ -5,13 +5,16 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import profilepic from '../../profile.jpg'
+import axios from 'axios';
+import baseURL from '../../DB';
 
 function Header() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
+  const [movieName, setMovieName] = useState('');
 
- console.log(open);
+  // console.log(open);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     const token = localStorage.getItem('myToken');
@@ -37,7 +40,17 @@ function Header() {
   const handleProfile = () => {
     navigate('/profile');
   }
-  
+  const handleChange = (e) => {
+    setMovieName(e.target.value);
+  }
+  const handleClick = async () => {
+    try {
+      let response = await axios.get(`${baseURL}/search/movie/${movieName}`);
+      navigate(`/movies/${response.data.name}/${response.data._id}`);
+    } catch (err) {
+      console.error('Error in fetching data', err);
+    }
+  }
 
   return (
     <div className="relative w-full bg-white">
@@ -83,34 +96,42 @@ function Header() {
             </NavLink>
           </ul>
         </div>
-        <div className="flex grow justify-end pr-1">
-          <input
-            className="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-            type="text"
-            placeholder="Search"
-          />
+        <div className="flex grow justify-end pr-1 ">
+          <div className='rounded-md bg-gray-100 px-1 py-1 flex gap-2'>
+            <input
+              className="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+              type="text"
+              value={movieName}
+              onChange={handleChange}
+              placeholder="Search For Movies, Shows.."
+            />
+            <button className='m-1' onClick={handleClick}>
+              <svg className='w-5 fill-gray-500 mr-1 hover:fill-black' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
+            </button>
+          </div>
         </div>
         <div className="hidden space-x-2 mt-1 ml-3 lg:block">
           {isLoggedIn ? (
             <div className='flex'>
               <div className='relative' ref={menuRef}>
-              <button onClick={() => setOpen(prevOpen => !prevOpen)} >
-                <img className='rounded-full w-[2.5rem] h-[2.5rem] ' src={profilepic} alt="Profile" srcset="" />
-              </button>
-              {open && 
-              <div className='shadow-md z-30 rounded-md bg-white absolute top-[3rem] -right-[4rem] p-2 w-[10rem]'>
-                <ul>
-                  <Link to='/profile'>
-                  <li  onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Profile</li>
-                  </Link>
-                  <li  onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Setting</li>
-                  <li  onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Booking History</li>
-                  <li  onClick={handleLogout} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer border-t-2'>Logout</li>
-                </ul>
+                <button onClick={() => setOpen(prevOpen => !prevOpen)} >
+                  <img className='rounded-full w-[2.5rem] h-[2.5rem] ' src={profilepic} alt="Profile" />
+                </button>
+                {open &&
+                  <div className='shadow-md z-30 rounded-md bg-white absolute top-[3rem] -right-[4rem] p-2 w-[10rem]'>
+                    <ul>
+                      <Link to='/profile'>
+                        <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Profile</li>
+                      </Link>
+                      <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Setting</li>
+                      <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Booking History</li>
+                      <li onClick={handleLogout} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer border-t-2'>Logout</li>
+                    </ul>
+                  </div>
+                }
               </div>
-              }
             </div>
-            </div>
+
           ) : (
             <>
               <NavLink to="/signup">

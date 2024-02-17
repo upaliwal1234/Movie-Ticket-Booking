@@ -3,12 +3,12 @@ const mongoose = require('mongoose')
 let cinemaSchema = mongoose.Schema({
     name: {
         type: String,
-        require: true,
+        required: true,
         trim: true
     },
     address: {
         type: String,
-        require: true,
+        required: true,
         trim: true
     },
     shows: [
