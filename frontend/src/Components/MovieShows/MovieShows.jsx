@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import baseURL from "../../DB";
 
 function MovieShows() {
@@ -34,16 +34,52 @@ function MovieShows() {
         }
     }
 
+    let arr = date.split('-');
+    arr.reverse().join('-');
+    let dt = new Date(arr);
+    const [selectedDate, setSelectedDate] = useState(dt);
+    const navigate = useNavigate();
+    const handleDateChange = (daysToAdd) => {
+        const newDate = new Date();
+        newDate.setHours(0, 0, 0, 0);
+        newDate.setDate(selectedDate.getDate() + daysToAdd);
+        setSelectedDate(newDate);
+        let nD = newDate.toLocaleDateString().split('/').join('-');
+        navigate(`/buytickets/${movieName}/${nD}`)
+    };
+
     useEffect(() => {
         fetchDate();
-    }, [])
+    }, [movieName, date])
     return (
         <div>
             <div className="py-8 px-28 border ">
                 <h1 className="text-4xl">{movieName}</h1>
             </div>
             <div className="border-bottom py-4 px-28">
-                <h2>Date and all</h2>
+                <div className="flex items-center">
+
+                    <button
+                        className={`text-blue-500 p-4 border-gray-400 shadow-md border rounded-md hover:text-blue-700 focus:outline-none ${selectedDate.getDate() == (new Date()).getDate() ? 'bg-blue-gray-300 hover:none' : ''}`}
+                        onClick={() => handleDateChange(-1)} disabled={selectedDate.getDate() == (new Date()).getDate() ? true : false}
+                    >
+                        &lt;
+                    </button>
+                    <div className="ml-4 w-72">
+                        <h1 className="text-lg font-bold mb-2 text-black">
+                            {selectedDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                        </h1>
+                        <p className="text-black">
+                            {selectedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
+                        </p>
+                    </div>
+                    <button
+                        className={`ml-4 border-gray-400 border p-4 shadow-md rounded-md text-blue-500 hover:text-blue-700 focus:outline-none ${selectedDate.getDate() > (new Date()).getDate() + 6 ? 'bg-blue-gray-300 hover:none' : ''}`}
+                        onClick={() => handleDateChange(1)} disabled={selectedDate.getDate() > (new Date()).getDate() + 6 ? true : false}
+                    >
+                        &gt;
+                    </button>
+                </div>
             </div>
             <div className=" py-2 px-20 bg-gray-200 h-[400px]">
                 <div className="bg-white">
@@ -61,7 +97,6 @@ function MovieShows() {
                     <div>
                         {map1.map((item, index) => {
                             let shows = map2[index]
-                            console.log(shows);
                             return (
                                 <div key={index} className="border-b min-h-24 py-5 px-12 flex gap-20">
                                     <div>
