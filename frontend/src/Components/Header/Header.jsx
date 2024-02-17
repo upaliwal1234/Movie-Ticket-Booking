@@ -45,8 +45,8 @@ function Header() {
   }
   const handleClick = async () => {
     try {
-      let response = await axios.get(`${baseURL}/movie/${movieName}`);
-      navigate('/MovieCoverPage');
+      let response = await axios.get(`${baseURL}/search/movie/${movieName}`);
+      navigate(`/movies/${response.data.name}/${response.data._id}`);
     } catch (err) {
       console.error('Error in fetching data', err);
     }
@@ -110,39 +110,24 @@ function Header() {
           {isLoggedIn ? (
             <div className='flex'>
               <div className='relative' ref={menuRef}>
-                <button onClick={() => setOpen(prevOpen => !prevOpen)} >
-                  <img className='rounded-full w-[2.5rem] h-[2.5rem] ' src={profilepic} alt="Profile" />
-                </button>
-                {open &&
-                  <div className='shadow-md z-30 rounded-md bg-white absolute top-[3rem] -right-[4rem] p-2 w-[10rem]'>
-                    <ul>
-                      <Link to='/profile'>
-                        <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Profile</li>
-                      </Link>
-                      <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Setting</li>
-                      <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Booking History</li>
-                      <li onClick={handleLogout} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer border-t-2'>Logout</li>
-                    </ul>
-                  </div>
-                }
               </div>
-                <button onClick={() => setOpen(prevOpen => !prevOpen)} >
-                  <img className='rounded-full w-[2.5rem] h-[2.5rem] ' src={profilepic} alt="Profile" srcSet="" />
-                </button>
-                {open &&
-                  <div className='shadow-md z-30 rounded-md bg-white absolute top-[3rem] -right-[4rem] p-2 w-[10rem]'>
-                    <ul>
-                      <Link to='/profile'>
-                        <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Profile</li>
-                      </Link>
-                      <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Setting</li>
-                      <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Booking History</li>
-                      <li onClick={handleLogout} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer border-t-2'>Logout</li>
-                    </ul>
-                  </div>
-                }
-              </div>
+              {open &&
+                <div className='shadow-md z-30 rounded-md bg-white absolute top-[3rem] -right-[4rem] p-2 w-[10rem]'>
+                  <ul>
+                    <Link to='/profile'>
+                      <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Profile</li>
+                    </Link>
+                    <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Setting</li>
+                    <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Booking History</li>
+                    <li onClick={handleLogout} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer border-t-2'>Logout</li>
+                  </ul>
+                </div>
+              }
+              <button onClick={() => setOpen(prevOpen => !prevOpen)} >
+                <img className='rounded-full w-[2.5rem] h-[2.5rem] ' src={profilepic} alt="Profile" srcSet="" />
+              </button>
             </div>
+
           ) : (
             <>
               <NavLink to="/signup">

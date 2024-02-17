@@ -8,7 +8,7 @@ const userroutes = require('./routes/userroutes.js')
 const showroutes = require('./routes/showroutes.js');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
+const searchroutes = require('./routes/searchroutes.js');
 
 // const PORT = process.env.PORT || 8080;
 const PORT = 8888
@@ -35,3 +35,4 @@ app.use(userroutes);
 app.use(cinemaroutes);
 app.use(movieroutes);
 app.use(showroutes);
+app.use(searchroutes);
