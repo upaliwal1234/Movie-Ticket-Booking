@@ -5,16 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 function MovieCard({ image, title, language, id, certificate }) {
 
-    const handleClick = async () => {
-        try {
-            const response = await axios.get(`http://localhost:5500/movie/${id}`);
-            if (response.status == 200) {
-                navigate(`/MovieDisplay/${id}`)
-            }
-        } catch (error) {
-            toast.error("Not Available");
-        }
-    };
+
     return (
         <div>
             <div className="relative h-[380px] w-[220px] flex justify-center rounded-md">

@@ -4,12 +4,14 @@ import axios from 'axios';
 import baseURL from '../../DB';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function CinemaInfo() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [cinemaData, setCinemaData] = useState({});
   const [shows, setShows] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(new Date()); // Initialize selectedDate here
+  const [selectedPriceRange, setSelectedPriceRange] = useState(0);
+  let [date, setDate] = useState(selectedDate.toLocaleDateString());
 
   const fetchCinemaData = async () => {
     try {
@@ -20,39 +22,32 @@ export default function CinemaInfo() {
       console.error('Error in fetching data', err);
     }
   }
+
   const hashMap = new Map();
   for (let i = 0; i < shows.length; i++) {
-    if (!hashMap.has(shows[i].movieName)) {
-      hashMap.set(shows[i].movieName, []);
+    date = date.split('/').join('-');
+    if (shows[i].date === date) {
+      if (!hashMap.has(shows[i].movieName)) {
+        hashMap.set(shows[i].movieName, []);
+      }
+      hashMap.get(shows[i].movieName).push(shows[i].timing);
     }
-    hashMap.get(shows[i].movieName).push(shows[i].timing);
   }
   const handleClick = () => {
     navigate('/SeatingChart')
   }
-  let date = new Date();
-  date.setHours(0, 0, 0, 0);
-  const [selectedDate, setSelectedDate] = useState(date);
+
   const handleDateChange = (daysToAdd) => {
-    const newDate = new Date();
+    const newDate = new Date(selectedDate);
     newDate.setHours(0, 0, 0, 0);
     newDate.setDate(selectedDate.getDate() + daysToAdd);
     setSelectedDate(newDate);
+    setDate(newDate.toLocaleDateString());
   };
 
-  const [selectedPriceRange, setSelectedPriceRange] = useState('');
   const handlePriceChange = (priceRange) => {
     setSelectedPriceRange(priceRange);
   };
-
-  const fetchParticularDateShow = async () => {
-    try {
-      let response = await axios.get(`${baseURL}/shows/${selectedDate}`);
-      setShows(response.data);
-    } catch (err) {
-      console.error('Error in fetching data: ', err);
-    }
-  }
 
   const priceRanges = [
     '0-100',
@@ -66,7 +61,8 @@ export default function CinemaInfo() {
 
   useEffect(() => {
     fetchCinemaData();
-  }, [])
+  }, []);
+
   return (
     <div className='container justify-center mx-auto mt-3'>
       <div className="bg-white p-6 rounded-md border-2">
@@ -82,7 +78,7 @@ export default function CinemaInfo() {
           >
             &lt;
           </button>
-          <div className="ml-4 w-64">
+          <div className="ml-4 w-72">
             <h1 className="text-lg font-bold mb-2 text-black">
               {selectedDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
             </h1>

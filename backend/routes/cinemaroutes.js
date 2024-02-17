@@ -13,22 +13,22 @@ router.get('/cinemas', async (req, res) => {
     }
 
 })
-
-router.get('/cinema/:id', async (req, res) => {
+router.get('/cinema/:id/', async (req, res) => {
     try {
-
         const { id } = req.params;
         const response = await Cinema.findById(id).populate('shows');
-        // console.log(response);
-        if (!response) {
+        // console.log("Response:", response);
+
+        if (!response || response.length === 0) {
             return res.status(404).json({ message: "Cinema not found" });
         }
         return res.json(response);
     }
-    catch {
-        // console.log(response);
+    catch (error) {
+        console.error("Error:", error);
         return res.status(500).json({ message: "Internal Server Error" });
     }
 })
+
 
 module.exports = router;
