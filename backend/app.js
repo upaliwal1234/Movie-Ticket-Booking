@@ -9,10 +9,13 @@ const showroutes = require('./routes/showroutes.js');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const searchroutes = require('./routes/searchroutes.js');
+const dotenv = require('dotenv');
 
-// const PORT = process.env.PORT || 8080;
-const PORT = 8888
-mongoose.connect('mongodb://127.0.0.1:27017/Movie-Booking-Site')
+dotenv.config();
+
+const PORT = process.env.PORT || 8888;
+
+mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("DB Connected");
     })
