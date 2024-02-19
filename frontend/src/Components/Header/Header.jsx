@@ -72,26 +72,26 @@ function Header() {
               ></path>
             </svg>
           </span>
-          <span className="font-bold">DevUI</span>
+          <span className="font-bold">Mo-Bo</span>
         </div>
         <div className="hidden lg:block">
           <ul className="ml-12 inline-flex space-x-8">
             <NavLink
               to="/"
-              className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+              className={({ isActive }) => `inline-flex items-center text-sm font-semibold ${isActive ? 'text-black' : 'text-gray-600'}  hover:text-gray-900`}
             >
               Home
             </NavLink>
 
             <NavLink
-              to="/Movies"
-              className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+              to="/movies"
+              className={({ isActive }) => `inline-flex items-center text-sm font-semibold ${isActive ? 'text-black' : 'text-gray-600'} hover:text-gray-900`}
             >
               Movies
             </NavLink>
             <NavLink
               to="/cinema"
-              className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+              className={({ isActive }) => `inline-flex items-center text-sm font-semibold ${isActive ? 'text-black' : 'text-gray-600'}  hover:text-gray-900`}
             >
               Cinema
 
@@ -168,7 +168,7 @@ function Header() {
           </svg>
         </div>
       </div>
-    </div>
+    </div >
 
   )
 }
