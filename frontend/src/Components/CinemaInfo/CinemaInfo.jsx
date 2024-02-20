@@ -34,7 +34,7 @@ export default function CinemaInfo() {
     }
   }
   const handleClick = () => {
-    navigate('/SeatingChart')
+    navigate('/bookingchart')
   }
 
   const handleDateChange = (daysToAdd) => {
