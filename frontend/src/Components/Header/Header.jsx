@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import profilepic from '../../profile.jpg'
 import axios from 'axios';
 import baseURL from '../../DB';
-import Logo from '../../Logo.png';
+import Logo from '/Logo.svg';
 
 function Header() {
   const navigate = useNavigate();
