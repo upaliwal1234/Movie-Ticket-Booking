@@ -27,10 +27,10 @@ const router = createBrowserRouter(
       <Route path='/cinema/:id' element={<CinemaInfo />} />
       <Route path='/movies/:movieName/:id' element={<MovieCoverPage />} />
       <Route path='/buytickets/:movieName/:date' element={<MovieShows />} />
+      {/* <Route path='/buytickets/:movieName/:date/show/:id' element={<BookingChart />} /> */}
       <Route path='/profile' element={<Profile />} />
       <Route path='/MovieCinema' element={<MovieCinema />} />
       <Route path='/SeatingChart' element={<SeatingChart />} />
-      <Route path='/bookingchart' element={<BookingChart/>}/>
     </Route>
 
   )

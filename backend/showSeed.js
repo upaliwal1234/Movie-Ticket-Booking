@@ -8,7 +8,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/Movie-Booking-Site')
 let dummyData = [
   {
     timing: '11:00 AM',
-    date: '17-02-2024',
+    date: '20-02-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
@@ -16,7 +16,7 @@ let dummyData = [
   },
   {
     timing: '03:00 PM',
-    date: '17-02-2024',
+    date: '20-02-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
@@ -24,7 +24,7 @@ let dummyData = [
   },
   {
     timing: '02:00 PM',
-    date: '14-02-2024',
+    date: '21-02-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
@@ -32,7 +32,7 @@ let dummyData = [
   },
   {
     timing: '04:00 PM',
-    date: '14-02-2024',
+    date: '21-02-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
@@ -40,7 +40,7 @@ let dummyData = [
   },
   {
     timing: '11:30 AM',
-    date: '14-02-2024',
+    date: '21-02-2024',
     movieName: 'The Dark Knight',
     price: 220,
     seating: [false, false, false],
@@ -48,7 +48,7 @@ let dummyData = [
   },
   {
     timing: '06:00 PM',
-    date: '19-02-2024',
+    date: '20-02-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
