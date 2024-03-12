@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/user');
 const jwt = require('jsonwebtoken')
 const secret = process.env.Secret || "hi";
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcrypt')
 
 router.post('/signup', async (req, res) => {
     // console.log(req.body);
@@ -19,7 +19,8 @@ router.post('/signup', async (req, res) => {
     }
     else if (password == confirmPassword) {
         try {
-            const myEncPassword = await bcrypt.hash(password, 10);//You are using the bcrypt.hash function to generate a hash of the password. The 10 you provided is the cost factor or the number of rounds for generating the salt. The bcrypt library internally generates a random salt and combines it with the password to produce a secure hash
+            const salt = bcrypt.genSaltSync(10);
+            const myEncPassword = bcrypt.hashSync(password, salt);//You are using the bcrypt.hash function to generate a hash of the password. The 10 you provided is the cost factor or the number of rounds for generating the salt. The bcrypt library internally generates a random salt and combines it with the password to produce a secure hash
             const user = await User.create({
                 name: name,
                 email: email,
@@ -75,7 +76,7 @@ router.post('/login', async (req, res) => {
 
 router.get('/profile/:id', async (req, res) => {
     try {
-        const  {id}  = req.params;
+        const { id } = req.params;
         const response = await User.findById(id);
         console.log(response);
         if (!response) {
