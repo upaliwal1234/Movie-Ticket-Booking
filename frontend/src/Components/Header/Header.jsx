@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import profilepic from '../../profile.jpg'
 import axios from 'axios';
 import baseURL from '../../DB';
-import Logo from '../../Logo.png';
+import Logo from '/Logo.svg';
 
 function Header() {
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ function Header() {
   }
 
   return (
-    <div className="w-full bg-white shadow-md sticky top-0 z-30" >
+    <div className="w-full bg-white shadow-md sticky top-0 z-30">
       <div className=" flex items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>

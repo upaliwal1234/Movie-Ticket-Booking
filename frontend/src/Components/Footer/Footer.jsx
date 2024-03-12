@@ -26,8 +26,8 @@ function Footer() {
             href="#!"
             role="button"
             data-mdb-ripple-color="dark"
-          ><i className="fab fa-twitter"></i
-          ></a>
+          ><i className="fab fa-twitter"></i>
+          </a>
 
 
           <a
