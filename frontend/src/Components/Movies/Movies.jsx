@@ -30,18 +30,21 @@ function Movies() {
         }
     }
     return (
-        <div className="flex flex-row flex-wrap gap-8 relative justify-center mt-10 my-6 sm:mx-10 md:mx-20">
+        <div className="flex flex-row flex-wrap gap-8 justify-center mt-10 my-6 sm:mx-10 md:mx-20">
             {data.map((item, index) => (
                 <Link to={`/movies/${item.name}/${item._id}`} key={index}>
+                    <div className="relative">
                     <MovieCard
                         image={item.poster}
                         title={item.name}
                         language={item.language}
                         certificate={item.certificate}
+                        className='relative'
                     />
                     <div className="absolute top-[350px] rounded-md flex text-white text-lg justify-center   bg-blue-gray-900/[0.50] w-[220px] h-[30px]">
                         <img className="p-[4.5px]" src={Star}></img>
                         <div>{item.ratings}/10 Ratings</div>
+                    </div>
                     </div>
                 </Link>
             ))}
