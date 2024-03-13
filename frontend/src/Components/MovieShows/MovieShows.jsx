@@ -48,6 +48,11 @@ function MovieShows() {
         navigate(`/buytickets/${movieName}/${nD}`)
     };
 
+    const handleClick = (show) => {
+        // event.preventDefault();
+        // navigate(`/buytickets/${show.movieName}/${show.date}/show/${show.id}`);
+    }
+
     useEffect(() => {
         fetchDate();
     }, [movieName, date])
@@ -105,8 +110,9 @@ function MovieShows() {
                                     </div>
                                     <div className="flex gap-4">
                                         {shows.map((itm, idx) => {
+                                            console.log(itm);
                                             return (
-                                                <button key={idx} className="border border-gray-500 rounded my-1 px-10 py-1 flex justify-center items-center text-sm font-light text-green-500">
+                                                <button key={idx} onClick={handleClick(itm)} className="border border-gray-500 rounded my-1 px-10 py-1 flex justify-center items-center text-sm font-light text-green-500">
                                                     {itm.timing}
                                                 </button>
                                             )
