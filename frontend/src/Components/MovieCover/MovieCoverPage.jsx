@@ -51,7 +51,7 @@ function MovieCoverPage() {
                 genre={movieData.genre}
                 duration={movieData.duration}
                 ratings={movieData.ratings}
-                poster={movieData.poster}
+                  poster={movieData.poster}
             />
             <div className='my-10 mx-24 pb-8 border-b'>
                 <h1 className='my-3 text-2xl font-bold text-gray-900'>About the movie</h1>

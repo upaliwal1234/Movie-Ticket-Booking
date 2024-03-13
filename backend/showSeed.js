@@ -8,51 +8,51 @@ mongoose.connect('mongodb://127.0.0.1:27017/Movie-Booking-Site')
 let dummyData = [
   {
     timing: '11:00 AM',
-    date: '17-02-2024',
+    date: '13-03-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
-    cinema: '65c3ca582bc86a356c0905c6'
+    cinema: '65d075d2f2876ddf208e0964'
   },
   {
     timing: '03:00 PM',
-    date: '17-02-2024',
+    date: '13-03-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
-    cinema: '65c3ca582bc86a356c0905c6'
+    cinema: '65d075d2f2876ddf208e0964'
   },
   {
     timing: '02:00 PM',
-    date: '14-02-2024',
+    date: '14-03-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
-    cinema: '65c3ca582bc86a356c0905c6'
+    cinema: '65d075d2f2876ddf208e0964'
   },
   {
     timing: '04:00 PM',
-    date: '14-02-2024',
+    date: '14-03-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
-    cinema: '65c3ca582bc86a356c0905c8'
+    cinema: '65d075d2f2876ddf208e0964'
   },
   {
     timing: '11:30 AM',
-    date: '14-02-2024',
+    date: '14-03-2024',
     movieName: 'The Dark Knight',
     price: 220,
     seating: [false, false, false],
-    cinema: '65c3ca582bc86a356c0905c8'
+    cinema: '65d075d2f2876ddf208e0964'
   },
   {
     timing: '06:00 PM',
-    date: '19-02-2024',
+    date: '15-03-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
-    cinema: '65c3ca582bc86a356c0905c8'
+    cinema: '65d075d2f2876ddf208e0964'
   }
 ];
 

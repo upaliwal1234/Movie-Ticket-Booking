@@ -19,7 +19,9 @@ function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     const token = localStorage.getItem('myToken');
-    setIsLoggedIn(!!token);
+    if (token) {
+      setIsLoggedIn(true);
+    }
     const handler = (e) => {
       if (!menuRef.current.contains(e.target)) {
         setOpen(false);
@@ -96,7 +98,6 @@ function Header() {
               className={({ isActive }) => `inline-flex items-center text-sm font-semibold ${isActive ? 'text-black' : 'text-gray-600'}  hover:text-gray-900`}
             >
               Cinema
-
             </NavLink>
           </ul>
         </div>
@@ -171,8 +172,6 @@ function Header() {
         </div>
       </div>
     </div >
-
   )
 }
-
 export default Header
