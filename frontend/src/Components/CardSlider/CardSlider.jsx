@@ -17,17 +17,16 @@ export default function CardSlider({ items }) {
       <div className='relative'>
         <div className="swiper-button-prev rounded-full px-8 py-8 hover:bg-gray-500/25 " style={{ left: '-65px' }}></div>
         <Swiper
-          slidesPerView={0}
           spaceBetween={0}
           keyboard={{
             enabled: true,
           }}
           loop={true}
-          modules={[Keyboard, Navigation]}
+          modules={[ Keyboard, Navigation ]}
           className="mySwiper"
           navigation={{
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: 'swiper-button-next',
+            prevEl: 'swiper-button-prev',
           }}
           breakpoints={{
             // When window width is >= 640px
