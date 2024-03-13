@@ -5,9 +5,9 @@ const Movie = require('../models/Movie.js');
 router.get('/search/movie/:movieName', async (req, res) => {
     try {
         const { movieName } = req.params;
-        console.log("Hello", movieName);
+        // console.log("Hello", movieName);
         const response = await Movie.findOne({ name: movieName });
-        console.log(response);
+        // console.log(response);
         if (!response) {
             return res.status(404).json({ message: "Movie not found" });
         }
