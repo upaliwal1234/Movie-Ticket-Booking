@@ -14,6 +14,7 @@ function Header() {
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
   const [movieName, setMovieName] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
 
   // console.log(open);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -46,17 +47,47 @@ function Header() {
   const handleChange = (e) => {
     setMovieName(e.target.value);
   }
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      handleSearch();
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [movieName]);
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`${baseURL}/search/movie/autoComplete/${movieName}`);
+      setSuggestions(Array.isArray(response.data) ? response.data : []);
+      console.log(suggestions);
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
   const handleClick = async (e) => {
     e.preventDefault();
+    setSuggestions([]);
+    fetchdata();
+  }
+  const fetchdata = async () => {
     try {
       let response = await axios.get(`${baseURL}/search/movie/${movieName}`);
-      navigate(`/movies/${response.data.name}/${response.data._id}`);
-      setMovieName('');
-    } catch (err) {
+      // console.log(response.data);
+      if (response.status === 200) {
+        let data = response.data;
+        setMovieName('');
+        navigate(`/movies/${response.data.name}/${response.data._id}`);
+
+      }
+    }
+    catch (err) {
       console.error('Error in fetching data', err);
     }
   }
-
+  const handleSuggestionClick = (movieName) => {
+    setMovieName(movieName);
+    setSuggestions([]);
+  }
   return (
     <div className="w-full bg-white shadow-md sticky top-0 z-30">
       <div className=" flex items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
@@ -101,75 +132,88 @@ function Header() {
             </NavLink>
           </ul>
         </div>
-        <div className="flex grow justify-end pr-1 ">
-          <form onSubmit={handleClick} className='rounded-md bg-gray-100 px-1 py-1 flex gap-2'>
-            <input
-              className="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-              type="text"
-              value={movieName}
-              onChange={handleChange}
-              placeholder="Search For Movies, Shows.."
-            />
-            <button className='m-1' type='submit' onClick={handleClick}>
-              <svg className='w-5 fill-gray-500 mr-1 hover:fill-black' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
-            </button>
-          </form>
-        </div>
-        <div className="hidden space-x-2 mt-1 ml-3 lg:block">
-          {isLoggedIn ? (
-            <div className='flex'>
-              <div className='relative' ref={menuRef}>
-                <button onClick={() => setOpen(prevOpen => !prevOpen)} >
-                  <img className='rounded-full w-[2.5rem] h-[2.5rem] ' src={profilepic} alt="Profile" />
-                </button>
-                {open &&
-                  <div className='shadow-md z-30 rounded-md bg-white absolute top-[3rem] -right-[1rem] p-2 w-[10rem]'>
-                    <ul>
-                      <Link to='/profile'>
-                        <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Profile</li>
-                      </Link>
-                      <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Setting</li>
-                      <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Booking History</li>
-                      <li onClick={handleLogout} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer border-t-2'>Logout</li>
-                    </ul>
-                  </div>
-                }
+        <div className='flex flex-row'>
+          <div >
+            <form onSubmit={handleClick} className='rounded-md bg-gray-100 px-1 py-1 flex gap-2 relative'>
+              <input
+                className="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                type="text"
+                value={movieName}
+                onChange={handleChange}
+                placeholder="Search For Movies, Shows.."
+              />
+              <button className='m-1' type='submit' onClick={handleClick}>
+                <svg className='w-5 fill-gray-500 mr-1 hover:fill-black' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
+              </button>
+            </form>
+            <ul className="absolute z-10 bg-white border border-gray-200 rounded-md shadow-md w-[250px] mt-2">
+              {suggestions.map((suggestion, index) => (
+                <li key={index} onClick={() => handleSuggestionClick(suggestion.name)} className="pl-8 pr-2 py-1 border-b-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">
+                  <svg className="absolute w-4 h-4 left-2 top-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                  {suggestion.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="hidden space-x-2 mt-1 ml-3 lg:block">
+            {isLoggedIn ? (
+              <div className='flex'>
+                <div className='relative' ref={menuRef}>
+                  <button onClick={() => setOpen(prevOpen => !prevOpen)} >
+                    <img className='rounded-full w-[2.5rem] h-[2.5rem] ' src={profilepic} alt="Profile" />
+                  </button>
+                  {open &&
+                    <div className='shadow-md z-30 rounded-md bg-white absolute top-[3rem] -right-[1rem] p-2 w-[10rem]'>
+                      <ul>
+                        <Link to='/profile'>
+                          <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Profile</li>
+                        </Link>
+                        <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Setting</li>
+                        <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Booking History</li>
+                        <li onClick={handleLogout} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer border-t-2'>Logout</li>
+                      </ul>
+                    </div>
+                  }
+                </div>
               </div>
-            </div>
 
-          ) : (
-            <>
-              <NavLink to="/signup">
-                <button className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
-                  Sign Up
-                </button>
-              </NavLink>
-              <NavLink to="/login">
-                <button className="rounded-md border border-black bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
-                  Login
-                </button>
-              </NavLink>
-            </>
-          )}
+            ) : (
+              <>
+                <NavLink to="/signup">
+                  <button className="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                    Sign Up
+                  </button>
+                </NavLink>
+                <NavLink to="/login">
+                  <button className="rounded-md border border-black bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                    Login
+                  </button>
+                </NavLink>
+              </>
+            )}
+          </div>
+          <div className="ml-2 lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-6 w-6 cursor-pointer"
+            >
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+          </div>
         </div>
-        <div className="ml-2 lg:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-6 w-6 cursor-pointer"
-          >
-            <line x1="4" y1="12" x2="20" y2="12"></line>
-            <line x1="4" y1="6" x2="20" y2="6"></line>
-            <line x1="4" y1="18" x2="20" y2="18"></line>
-          </svg>
-        </div>
+
       </div>
     </div >
   )
