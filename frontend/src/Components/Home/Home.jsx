@@ -77,17 +77,17 @@ export default function CarouselCustomArrows() {
         )}
       >
         <img
-          src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TW92aWV8ZW58MHx8MHx8fDA%3D"
+          src="https://i.ibb.co/R7Hbw4b/banner1.jpg"
           alt="image 1"
           className="h-80 w-full object-cover"
         />
         <img
-          src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2luZW1hfGVufDB8fDB8fHww"
+          src="https://i.ibb.co/sgJ2pfL/banner2.jpg"
           alt="image 2"
           className="h-80 w-full object-cover"
         />
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi7_mbDgSeTEYj3_rFHYE8GFngQa3Uqe7GuQIUc9Rvre6IjfLpZ0GXOpdcvltik_lOGtU&usqp=CAU"
+          src="https://i.ibb.co/FX3bkFb/banner3.jpg"
           alt="image 3"
           className="h-80 w-full object-cover"
         />
