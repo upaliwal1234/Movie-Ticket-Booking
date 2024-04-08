@@ -102,7 +102,7 @@ let dummyData = [
         bgimage: "https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/fighter-et00304730-1704191105.jpg",
         poster: "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/fighter-et00304730-1704191105.jpg",
         reviews: [],
-        cinemas: []
+        cinemas: ["65f080e466b37e863f147a27", "65f080e466b37e863f147a28"]
     },
     {
         name: 'Hanu-Man',
@@ -144,7 +144,7 @@ let dummyData = [
                 role: 'Actor',
                 img: 'https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/getup-srinu-1087874-1649141722.jpg',
             }
-            
+
         ],
         crew: [
             {

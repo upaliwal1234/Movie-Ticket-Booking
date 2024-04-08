@@ -31,7 +31,7 @@ function MovieCoverPage() {
     const fetchMovieData = async () => {
         try {
             const response = await axios.get(`${baseURL}/movie/${id}`);
-            console.log(response.data);
+            // console.log(response.data);
             setMovieData(response.data);
             setCast(response.data.cast);
             setCrew(response.data.crew);

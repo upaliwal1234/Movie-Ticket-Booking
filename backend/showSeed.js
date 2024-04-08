@@ -8,51 +8,283 @@ mongoose.connect('mongodb://127.0.0.1:27017/Movie-Booking-Site')
 let dummyData = [
   {
     timing: '11:00 AM',
-    date: '20-02-2024',
+    date: '13-03-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
-    cinema: '65c3ca582bc86a356c0905c6'
+    cinema: '65f080e466b37e863f147a27'
   },
   {
     timing: '03:00 PM',
-    date: '20-02-2024',
+    date: '13-03-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
-    cinema: '65c3ca582bc86a356c0905c6'
+    cinema: '65f080e466b37e863f147a27'
   },
   {
     timing: '02:00 PM',
-    date: '21-02-2024',
+    date: '13-03-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
-    cinema: '65c3ca582bc86a356c0905c6'
+    cinema: '65f080e466b37e863f147a27'
   },
   {
     timing: '04:00 PM',
-    date: '21-02-2024',
+    date: '13-03-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
-    cinema: '65c3ca582bc86a356c0905c8'
+    cinema: '65f080e466b37e863f147a28'
   },
   {
     timing: '11:30 AM',
-    date: '21-02-2024',
-    movieName: 'The Dark Knight',
+    date: '13-03-2024',
+    movieName: 'Hanu-Man',
     price: 220,
     seating: [false, false, false],
-    cinema: '65c3ca582bc86a356c0905c8'
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '11:30 AM',
+    date: '13-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '11:30 AM',
+    date: '13-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a28'
   },
   {
     timing: '06:00 PM',
-    date: '20-02-2024',
+    date: '13-03-2024',
     movieName: 'Fighter',
     price: 220,
     seating: [false, false, false],
-    cinema: '65c3ca582bc86a356c0905c8'
+    cinema: '65f080e466b37e863f147a28'
+  },
+  {
+    timing: '11:00 AM',
+    date: '14-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '03:00 PM',
+    date: '14-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '02:00 PM',
+    date: '14-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '04:00 PM',
+    date: '14-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a28'
+  },
+  {
+    timing: '11:30 AM',
+    date: '14-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '04:00 AM',
+    date: '14-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '11:30 AM',
+    date: '14-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a28'
+  },
+  {
+    timing: '11:30 AM',
+    date: '14-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a28'
+  },
+  {
+    timing: '06:00 PM',
+    date: '14-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a28'
+  },
+  {
+    timing: '11:00 AM',
+    date: '15-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '03:00 PM',
+    date: '15-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '02:00 PM',
+    date: '15-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '04:00 PM',
+    date: '15-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a28'
+  },
+  {
+    timing: '11:30 AM',
+    date: '15-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '04:00 AM',
+    date: '15-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '11:30 AM',
+    date: '15-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a28'
+  },
+  {
+    timing: '11:30 AM',
+    date: '15-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a28'
+  },
+  {
+    timing: '06:00 PM',
+    date: '15-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a28'
+  },
+  {
+    timing: '11:00 AM',
+    date: '16-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '03:00 PM',
+    date: '16-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '02:00 PM',
+    date: '16-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '04:00 PM',
+    date: '16-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a28'
+  },
+  {
+    timing: '11:30 AM',
+    date: '16-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '04:00 AM',
+    date: '16-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a27'
+  },
+  {
+    timing: '11:30 AM',
+    date: '16-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a28'
+  },
+  {
+    timing: '11:30 AM',
+    date: '16-03-2024',
+    movieName: 'Hanu-Man',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a28'
+  },
+  {
+    timing: '06:00 PM',
+    date: '16-03-2024',
+    movieName: 'Fighter',
+    price: 220,
+    seating: [false, false, false],
+    cinema: '65f080e466b37e863f147a28'
   }
 ];
 
