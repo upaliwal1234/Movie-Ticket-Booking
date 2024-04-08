@@ -10,7 +10,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const searchroutes = require('./routes/searchroutes.js');
 const dotenv = require('dotenv');
-
+const ownerroutes = require('./AdminRoutes/ownerroutes');
 dotenv.config();
 
 const PORT = process.env.PORT || 8888;
@@ -39,3 +39,4 @@ app.use(cinemaroutes);
 app.use(movieroutes);
 app.use(showroutes);
 app.use(searchroutes);
+app.use(ownerroutes);
