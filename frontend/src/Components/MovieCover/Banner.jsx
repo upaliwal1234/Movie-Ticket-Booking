@@ -12,7 +12,7 @@ function Banner({ name, bgImg, language, certificate, releaseDate, genre, durati
     const navigate = useNavigate()
     let date = new Date().toLocaleDateString();
     date = date.split('/').join('-');
-    console.log(date);
+    // console.log(date);
     const handleBookTicket = (e) => {
         e.preventDefault();
         navigate(`/buytickets/${name}/${date}`)
@@ -57,10 +57,7 @@ function Banner({ name, bgImg, language, certificate, releaseDate, genre, durati
 
                     </div>
                 </div>
-
             </div >
-
-
         </div>
     )
 }

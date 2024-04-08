@@ -31,7 +31,7 @@ function MovieCoverPage() {
     const fetchMovieData = async () => {
         try {
             const response = await axios.get(`${baseURL}/movie/${id}`);
-            console.log(response.data);
+            // console.log(response.data);
             setMovieData(response.data);
             setCast(response.data.cast);
             setCrew(response.data.crew);
@@ -51,7 +51,7 @@ function MovieCoverPage() {
                 genre={movieData.genre}
                 duration={movieData.duration}
                 ratings={movieData.ratings}
-                poster={movieData.poster}
+                  poster={movieData.poster}
             />
             <div className='my-10 mx-24 pb-8 border-b'>
                 <h1 className='my-3 text-2xl font-bold text-gray-900'>About the movie</h1>

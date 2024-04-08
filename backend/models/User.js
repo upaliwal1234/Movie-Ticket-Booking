@@ -24,7 +24,6 @@ let userSchema = new mongoose.Schema({
         {
             seatNo: {
                 type: String,
-
             }
         }
     ]
