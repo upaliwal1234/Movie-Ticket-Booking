@@ -1,12 +1,13 @@
-const express = require('express');
+const express = require(express);
 const router = express.Router();
 const CinemaOwner = require('../models/CinemaOwner');
 const jwt = require('jsonwebtoken')
 const secret = process.env.Secret || "hi";
 const bcrypt = require('bcrypt')
 
-router.post('/signup', async (req, res) => {
+router.post('/admin/signup', async (req, res) => {
     // console.log(req.body);
+    const { cinemaName, email, password, confirmPassword, address } = req.body;
     const { cinemaName, email, password, confirmPassword, address } = req.body;
     if (!(cinemaName && email && password && confirmPassword && address)) {
         // console.log("All Fields Are Necessary")
@@ -35,7 +36,7 @@ router.post('/signup', async (req, res) => {
     }
 })
 
-router.post('/login', async (req, res) => {
+router.post('/admin/login', async (req, res) => {
     try {
         const { email, password } = req.body;
         if (!(email && password)) {
@@ -43,7 +44,7 @@ router.post('/login', async (req, res) => {
             return res.status(400).send("All details are necessary")
         }
         const cinemaowner = await CinemaOwner.findOne({ email: email })
-        if (!user) {
+        if (!cinemaowner) {
             // console.log("Not exists")
             return res.status(401).send("User does not exists")
         }
@@ -75,5 +76,8 @@ router.post('/login', async (req, res) => {
     }
 })
 
+router.post('/logout', async (req, res) => {
+
+})
 
 module.exports = router;
