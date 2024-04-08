@@ -2,7 +2,7 @@ const Cinema = require('./models/Cinema');
 const mongoose = require('mongoose');
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/Movie-Booking-Site')
+mongoose.connect('mongodb+srv://sparshgla:sparshgla@cluster0.y6ksh16.mongodb.net/movie-ticket-booking?retryWrites=true&w=majority')
   .then(() => { console.log('DB connected'); })
   .catch((err) => { console.log('Error in connecting to DB', err); });
 
