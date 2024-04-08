@@ -57,10 +57,7 @@ function Banner({ name, bgImg, language, certificate, releaseDate, genre, durati
 
                     </div>
                 </div>
-
             </div >
-
-
         </div>
     )
 }

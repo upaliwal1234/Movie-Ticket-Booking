@@ -18,5 +18,18 @@ router.get('/search/movie/:movieName', async (req, res) => {
     }
 
 })
+router.get('/search/movie/autoComplete/:movieName', async (req, res) => {
+    try {
+        const { movieName } = req.params;
+        console.log("Hello" + movieName);
+        const response = await Movie.find({ name: { $regex: movieName, $options: 'i' } }).sort({ name: 1 }).limit(5);
+        if (!response) {
+            return res.status(404).json({ message: "Movie Not Found" });
+        }
 
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+})
 module.exports = router;

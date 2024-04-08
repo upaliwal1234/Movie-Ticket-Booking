@@ -9,18 +9,18 @@ router.post('/signup', async (req, res) => {
     // console.log(req.body);
     const { name, email, password, confirmPassword } = req.body;
     if (!(name && email && password && confirmPassword)) {
-        console.log("All Fields Are Necessary")
+        // console.log("All Fields Are Necessary")
         return res.status(400).send("All Fields are necessary");
     }
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-        console.log("Already exists")
+        // console.log("Already exists")
         return res.status(401).send("User With This Name Already Exists");
     }
     else if (password == confirmPassword) {
         try {
             const salt = bcrypt.genSaltSync(10);
-            const myEncPassword = bcrypt.hashSync(password, salt);//You are using the bcrypt.hash function to generate a hash of the password. The 10 you provided is the cost factor or the number of rounds for generating the salt. The bcrypt library internally generates a random salt and combines it with the password to produce a secure hash
+            const myEncPassword = bcrypt.hashSync(password, salt);
             const user = await User.create({
                 name: name,
                 email: email,
@@ -38,12 +38,12 @@ router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
         if (!(email && password)) {
-            console.log("All Fields Are Necessary")
+            // console.log("All Fields Are Necessary")
             return res.status(400).send("All details are necessary")
         }
         const user = await User.findOne({ email: email })
         if (!user) {
-            console.log("Not exists")
+            // console.log("Not exists")
             return res.status(401).send("User does not exists")
         }
         if (user && await bcrypt.compare(password, user.password)) {
