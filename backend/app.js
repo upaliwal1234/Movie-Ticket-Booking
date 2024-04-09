@@ -15,7 +15,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 8888;
 
-mongoose.connect("mongodb+srv://sparshgla:sparshgla@cluster0.y6ksh16.mongodb.net/movie-ticket-booking?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("DB Connected");
     })
