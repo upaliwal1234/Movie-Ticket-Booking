@@ -75,12 +75,11 @@ function AddNewMovie() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can submit formData to your backend or handle it as needed
     console.log(formData);
   };
 
   return (
-    <div className="text-red-500 flex justify-center my-10" style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
+    <div className="text-red-500 flex justify-center" style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
       <form className="w-3/4 p-8 bg-gray-100 rounded-lg shadow-lg" onSubmit={handleSubmit}>
         <h2 className="text-2xl mb-4 text-center">Add New Movie</h2>
         <div className="mb-4">
