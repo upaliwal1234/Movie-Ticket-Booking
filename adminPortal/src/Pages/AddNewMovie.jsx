@@ -81,6 +81,8 @@ function AddNewMovie() {
   return (
     <div className="text-red-500 flex justify-center" style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
       <form className="w-3/4 p-8 bg-gray-100 rounded-lg shadow-lg" onSubmit={handleSubmit}>
+    <div className="text-red-500 flex justify-center my-10">
+      <form onSubmit={handleSubmit} className="w-3/4 p-8 bg-gray-100 rounded-lg shadow-lg">
         <h2 className="text-2xl mb-4 text-center">Add New Movie</h2>
         <div className="mb-4">
           <label htmlFor="name" className="block mb-1">
@@ -285,6 +287,10 @@ function AddNewMovie() {
             onChange={handleChange}
           />
         </div>
+        <button
+          type="submit"
+          className="h-12 w-42 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mb-4"
+        >
         {/* Add reviews and cinemas similarly */}
         <button type="submit" className="h-12 w-42 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mb-4">
           Add New Movie

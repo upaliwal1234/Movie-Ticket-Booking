@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 function DashBoard() {
   return (
-    <div className="flex justify-center items-center h-screen w-full" style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
+    <div className="flex justify-center items-center h-screen w-full">
 
       <div className="justify-center">
         {/* First row */}

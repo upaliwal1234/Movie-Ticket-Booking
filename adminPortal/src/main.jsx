@@ -21,6 +21,7 @@ const router = createBrowserRouter(
       <Route path='/moviepage' element={<MoviePage />} />
       <Route path='/addmovie' element={<AddNewMovie />} />
       <Route path='/cinemaprofile' element={<CinemaProfilePage />} />
+      <Route path='/navbar' element={<Navbar />} />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<Signup />} />
       <Route path='/addshow' element={<AddShow />} />

@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function MoviePage(){
-  
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
   const movies = [
     {
       id: 1,
@@ -166,28 +171,30 @@ function MoviePage(){
   ];
 
   return (
-    <div style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
+    <div>
       <h1 className="text-3xl text-red-500 text-center m-2 font-bold">Movies</h1>
-      <div className="flex justify-center items-center">
-  <input
-    className="border w-3/4 p-3 mt-7 mr-2"
-    type="text"
-    placeholder="Search Movie . . ."
-  />
-  <button className="h-12 w-42 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mt-7">Add New Movie</button>
-</div>
+      <form className="flex justify-center items-center">
+        <input
+          className="border w-3/4 p-3 mt-7 mr-2"
+          type="text"
+          placeholder="Search Movie . . ."
+          value={searchQuery}
+          onChange={handleSearchInputChange}
+        />
+          <button className="h-12 w-42 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mt-7">Search</button>
+      </form>
 
       <div className="mt-16 mx-10">
-      <div className="card grid grid-cols-3 gap-10">
-        {movies.map((item) => (
-          <div className="text-center border rounded-md p-4" key={item.id}>
-            <img src={item.imageUrl} alt="" />
-            <h5 className="text-lg font-semibold">{item.title}</h5>
-            <h4 className="text-lg text-gray-500">{item.year}</h4>
-            <h4 className="text-lg text-gray-500">{item.director}</h4>
-          </div>
-        ))}
-      </div>
+        <div className="card grid grid-cols-3 gap-10">
+          {movies.map((item) => (
+            <div className="text-center border rounded-md p-4" key={item.id}>
+              <img src={item.imageUrl} alt="" />
+              <h5 className="text-lg font-semibold">{item.title}</h5>
+              <h4 className="text-lg text-gray-500">{item.year}</h4>
+              <h4 className="text-lg text-gray-500">{item.director}</h4>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
