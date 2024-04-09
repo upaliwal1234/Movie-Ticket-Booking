@@ -10,12 +10,12 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const searchroutes = require('./routes/searchroutes.js');
 const dotenv = require('dotenv');
-
+const ownerroutes = require('./AdminRoutes/ownerroutes');
 dotenv.config();
 
 const PORT = process.env.PORT || 8888;
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect("mongodb+srv://sparshgla:sparshgla@cluster0.y6ksh16.mongodb.net/movie-ticket-booking?retryWrites=true&w=majority")
     .then(() => {
         console.log("DB Connected");
     })
@@ -39,3 +39,4 @@ app.use(cinemaroutes);
 app.use(movieroutes);
 app.use(showroutes);
 app.use(searchroutes);
+app.use(ownerroutes);

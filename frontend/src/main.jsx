@@ -11,7 +11,7 @@ import Cinemas from './Components/Cinemas/Cinemas.jsx'
 import CinemaInfo from './Components/CinemaInfo/CinemaInfo.jsx'
 import MovieCoverPage from './Components/MovieCover/MovieCoverPage.jsx'
 import Profile from './Components/Profile/Profile.jsx'
-import MovieCinema from './components/Cinemas/MovieCinema.jsx'
+import MovieCinema from './Components/Cinemas/MovieCinema.jsx'
 import MovieShows from './Components/MovieShows/MovieShows.jsx'
 import BookingChart from './Components/BookingChart/BookingChart.jsx'
 
