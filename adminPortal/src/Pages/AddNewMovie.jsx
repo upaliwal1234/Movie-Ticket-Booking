@@ -25,6 +25,19 @@ function AddNewMovie() {
       [name]: value
     });
   };
+  const handleLanguageChange = (e) => {
+    const { value, checked } = e.target;
+    let updatedLanguages;
+    if (checked) {
+      updatedLanguages = [...formData.language, value];
+    } else {
+      updatedLanguages = formData.language.filter((lang) => lang !== value);
+    }
+    setFormData({
+      ...formData,
+      language: updatedLanguages
+    });
+  };
 
   const handleCastChange = (index, e) => {
     const { name, value } = e.target;
@@ -99,18 +112,30 @@ function AddNewMovie() {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="language" className="block mb-1">
-            Language:
-          </label>
-          <input
-            type="text"
-            id="language"
-            name="language"
-            className="border w-full p-2"
-            placeholder="Enter language..."
-            value={formData.language}
-            onChange={handleChange}
-          />
+          <label className="block mb-1">Language:</label>
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                name="language"
+                value="English"
+                checked={formData.language.includes("English")}
+                onChange={handleLanguageChange}
+              />
+              English
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="language"
+                value="Spanish"
+                checked={formData.language.includes("Spanish")}
+                onChange={handleLanguageChange}
+              />
+              Spanish
+            </label>
+            {/* Add more checkboxes for other languages */}
+          </div>
         </div>
         <div className="mb-4">
           <label htmlFor="duration" className="block mb-1">
