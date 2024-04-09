@@ -17,15 +17,14 @@ import Signup from './Pages/Signup.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
-      <Route path='dashboard' element={<DashBoard />} />
+      <Route path='/' element={<DashBoard />} />
       <Route path='/moviepage' element={<MoviePage />} />
-      <Route path='addmovie' element={<AddNewMovie />} />
+      <Route path='/addmovie' element={<AddNewMovie />} />
       <Route path='/cinemaprofile' element={<CinemaProfilePage />} />
-      <Route path='navbar' element={<Navbar />} />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<Signup />} />
-      <Route path='/addshow' element={<AddShow/>}/>
-      <Route path='/shows' element={<Shows/>}/>
+      <Route path='/addshow' element={<AddShow />} />
+      <Route path='/shows' element={<Shows />} />
     </Route>
 
   )

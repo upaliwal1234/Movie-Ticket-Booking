@@ -76,8 +76,34 @@ router.post('/admin/login', async (req, res) => {
     }
 })
 
-router.post('/logout', async (req, res) => {
+router.get('/admin/profile/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        // console.log(id);
+        const user = await CinemaOwner.findById(id);
+        if (!user) {
+            return res.status(401).send("User does not exist");
+        }
 
+        return res.status(200).json(user);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json("Error");
+    }
+})
+
+router.patch('/admin/profile/:userId', async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const { cinemaName, address } = req.body;
+        const user = await CinemaOwner.findById(userId);
+        user.cinemaName = cinemaName;
+        user.address = address;
+        await user.save();
+        return res.status(200).json(user);
+    } catch (error) {
+        return res.status(500).json({ message: 'Internal Server Error' });
+    }
 })
 
 module.exports = router;
