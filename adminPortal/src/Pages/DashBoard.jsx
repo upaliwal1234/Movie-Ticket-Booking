@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 function DashBoard() {
   return (
-    <div className="flex justify-center items-center h-screen w-full" style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
+    <div className="flex justify-center items-center h-screen w-full">
 
       <div className="justify-center">
         {/* First row */}
@@ -16,7 +16,7 @@ function DashBoard() {
         </div>
         {/* Second row */}
         <div className="flex">
-          <Link to=''>
+          <Link to='/shows'>
           <div className=" rounded-lg text-white bg-opacity-20  text-lg w-60 mx-auto h-60 m-4 mr-14 flex justify-center items-center  transform transition duration-300 ease-in-out hover:scale-105 bg-cover bg-center bg-[url('https://media.istockphoto.com/id/1271522601/photo/pop-corn-and-on-red-armchair-cinema.webp?b=1&s=170667a&w=0&k=20&c=RlxSdPNgiHRnGaGVlkdQyt74tK5gZ1_3Mlgq0ZDhkKI=')]">Shows</div>
           </Link>
           <Link to='/addmovie'>

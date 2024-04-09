@@ -11,7 +11,7 @@ function NavBar() {
             </Link>
           </li>
           <li>
-            <Link to="/" className="text-white hover:text-gray-300">
+            <Link to="/login" className="text-white hover:text-gray-300">
               Login In
             </Link>
           </li>
