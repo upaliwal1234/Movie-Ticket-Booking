@@ -1,4 +1,4 @@
-const express = require(express);
+const express = require('express');
 const router = express.Router();
 const CinemaOwner = require('../models/CinemaOwner');
 const jwt = require('jsonwebtoken')
@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt')
 router.post('/admin/signup', async (req, res) => {
     // console.log(req.body);
     const { cinemaName, email, password, confirmPassword, address } = req.body;
-    const { cinemaName, email, password, confirmPassword, address } = req.body;
+    // const { cinemaName, email, password, confirmPassword, address } = req.body;
     if (!(cinemaName && email && password && confirmPassword && address)) {
         // console.log("All Fields Are Necessary")
         return res.status(400).send("All Fields are necessary");

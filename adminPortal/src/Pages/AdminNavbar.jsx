@@ -16,12 +16,12 @@ function NavBar() {
             </Link>
           </li>
           <li>
-            <Link to="/" className="text-white hover:text-gray-300">
-              Log Out
+            <Link to="/signup" className="text-white hover:text-gray-300">
+              Sign Up
             </Link>
           </li>
           <li>
-            <Link to="#" className="text-white hover:text-gray-300">
+            <Link to="/cinemaprofile" className="text-white hover:text-gray-300">
               Profile
             </Link>
           </li>
