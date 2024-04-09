@@ -4,11 +4,14 @@ import App from './App.jsx'
 import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import Layout from './Layout.jsx'
+import AddShow from './Pages/AddShow.jsx'
+import Shows from './Pages/Shows.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
-      
+      <Route path='/addshow' element={<AddShow/>}/>
+      <Route path='/shows' element={<Shows/>}/>
     </Route>
 
   )
