@@ -21,7 +21,7 @@ router.post('/admin/movie/addshow', async (req, res) => {
     }
     catch (error) {
         console.log(error);
-        res.status(400).json("Cinema not Created");
+        res.status(400).json("Show not created");
     }
 })
 

@@ -75,9 +75,4 @@ router.post('/admin/login', async (req, res) => {
         res.status(400).json("User not found");
     }
 })
-
-router.post('/logout', async (req, res) => {
-
-})
-
 module.exports = router;
