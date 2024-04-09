@@ -10,7 +10,8 @@ import DashBoard from './Pages/DashBoard.jsx'
 import MoviePage from './Pages/MoviePage.jsx'
 import AddNewMovie from './Pages/AddNewMovie.jsx'
 import CinemaProfilePage from './Pages/CinemaProfilePage.jsx'
-import Navbar from './Pages/AdminNavbar.jsx'import Login from './Pages/Login.jsx'
+import Navbar from './Pages/AdminNavbar.jsx'
+import Login from './Pages/Login.jsx'
 import Signup from './Pages/Signup.jsx'
 
 const router = createBrowserRouter(
