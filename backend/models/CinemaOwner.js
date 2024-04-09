@@ -32,5 +32,5 @@ let cinemaOwnerSchema = mongoose.Schema({
     ]
 })
 
-let CinemaOwner = mongoose.model('CinemaOwner', cinemaSchema);
+let CinemaOwner = mongoose.model('CinemaOwner', cinemaOwnerSchema);
 module.exports = CinemaOwner
