@@ -5,7 +5,8 @@ const Movie = require('../models/Movie.js');
 router.post('/admin/addMovie', async (req, res) => {
     try {
         const { name, ratings, language, duration, genre, certificate, releaseDate, desc, cast, crew, bgimage, poster } = req.body;
-        const existingMovie = Movie.findOne({ name });
+        console.log(req.body);
+        const existingMovie = await Movie.findOne({ name:name });
         if (existingMovie) {
             return res.status(401).send("Cinema Already Exists");
         }
@@ -21,7 +22,7 @@ router.post('/admin/addMovie', async (req, res) => {
             cast: cast,
             crew: crew,
             bgimage: bgimage,
-            poster: poster
+            poster: poster,
         });
         res.status(200).json(movie);
     }
