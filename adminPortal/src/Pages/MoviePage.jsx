@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function MoviePage(){
@@ -7,6 +8,7 @@ function MoviePage(){
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
   };
+  // const [movies, setMovies] = useState();
   const movies = [
     {
       id: 1,
@@ -170,6 +172,12 @@ function MoviePage(){
     },
   ];
 
+  // useEffect(() => {
+  //   const response = axios.get("http://localhost:8888/admin/addMovie")
+  
+    
+  // }, [])
+  
   return (
     <div>
       <h1 className="text-3xl text-red-500 text-center m-2 font-bold">Movies</h1>
