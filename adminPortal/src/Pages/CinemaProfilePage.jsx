@@ -49,7 +49,7 @@ function CinemaProfilePage() {
     }
   }
   return (
-    <div className="text-gray-800 container mx-auto mt-8">
+    <div className="text-gray-800 container px-16 mx-auto mt-8">
       <h1 className="text-3xl font-bold mb-4 text-red-500">Cinema Profile Page</h1>
       <div className="flex flex-col mb-4">
         <label htmlFor="cinemaName" className="mb-2 font-bold">Cinema Name</label>
