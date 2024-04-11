@@ -14,7 +14,7 @@ function CinemaProvider({ children }) {
         // console.log(userInfo);
         setUser(userInfo);
         if (!userInfo) {
-            navigate('/');
+            navigate('/login');
         }
     }, [navigate]);
 

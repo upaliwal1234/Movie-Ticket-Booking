@@ -31,5 +31,20 @@ router.post('/admin/movie/addshow', async (req, res) => {
     }
 })
 
+router.get('/admin/allShows/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await CinemaOwner.findById(id).populate('shows');
+        if (!user) {
+            return res.status(404).send("User Not Found");
+        }
+        const shows = user.shows;
+        return res.status(200).json(shows);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+})
+
 
 module.exports = router;
