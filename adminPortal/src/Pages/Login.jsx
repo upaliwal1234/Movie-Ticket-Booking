@@ -94,7 +94,7 @@ function Login() {
                             Login
                         </button>
                         <p className="block mt-4 font-sans text-base antialiased font-normal leading-relaxed text-center text-gray-700">
-                            Don't have an account?{' '}
+                            Don&apos;t have an account?{' '}
                             <Link to="/signup" className="font-medium text-red-500">
                                 Signup
                             </Link>

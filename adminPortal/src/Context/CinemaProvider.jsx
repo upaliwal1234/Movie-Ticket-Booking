@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { tokenCheck } from "../HelperToken";
 
 const CinemaContext = createContext();
 
@@ -10,12 +11,8 @@ function CinemaProvider({ children }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const userInfo = JSON.parse(localStorage.getItem("myToken"));
-        // console.log(userInfo);
+        const userInfo = tokenCheck();
         setUser(userInfo);
-        if (!userInfo) {
-            navigate('/login');
-        }
     }, [navigate]);
 
     return (

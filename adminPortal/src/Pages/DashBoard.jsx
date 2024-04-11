@@ -1,7 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { CinemaState } from '../Context/CinemaProvider';
+import { tokenCheck } from '../HelperToken';
 
 function DashBoard() {
+  const { user } = CinemaState();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = tokenCheck();
+    if (!token) {
+      navigate('/login')
+    }
+  }, [])
   return (
     <div className="flex justify-center items-center h-screen w-full">
 
