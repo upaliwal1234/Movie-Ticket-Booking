@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import baseURL from '../DB';
+import { CinemaState } from '../Context/CinemaProvider';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddShow() {
   // State variables for each input field
@@ -7,7 +11,9 @@ export default function AddShow() {
   const [endTime, setEndTime] = useState('');
   const [date, setDate] = useState('');
   const [price, setPrice] = useState('');
+  const { user } = CinemaState();
 
+  const navigate = useNavigate();
   // Event handlers for input changes
   const handleMovieNameChange = (event) => {
     setMovieName(event.target.value);
@@ -29,9 +35,25 @@ export default function AddShow() {
     setPrice(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // Here you can perform the submission logic
+    try {
+      const response = await axios.post(`${baseURL}/admin/movie/addshow`, {
+        timing: startTime,
+        date,
+        movieName,
+        seating: null,
+        price,
+        cinema: user.id
+      })
+      if (response) {
+        console.log(response.data);
+        navigate('/shows');
+      }
+    } catch (error) {
+      console.log(error);
+    }
     console.log('Movie Name:', movieName);
     console.log('Start Time:', startTime);
     console.log('End Time:', endTime);

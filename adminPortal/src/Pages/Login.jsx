@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios'
+import baseURL from '../DB';
 
 function Login() {
     const navigate = useNavigate();
@@ -26,7 +28,7 @@ function Login() {
 
     const submitData = async () => {
         try {
-            const response = await axios.post('http://localhost:8888/admin/login', {
+            const response = await axios.post(`${baseURL}/admin/login`, {
                 email,
                 password
             });
