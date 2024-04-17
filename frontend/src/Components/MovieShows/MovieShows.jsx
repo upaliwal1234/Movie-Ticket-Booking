@@ -34,7 +34,11 @@ function MovieShows() {
             console.error(err);
         }
     }
-
+    const options = {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      };
     let arr = date.split('-');
     arr.reverse().join('-');
     let dt = new Date(arr);
@@ -45,7 +49,7 @@ function MovieShows() {
         newDate.setHours(0, 0, 0, 0);
         newDate.setDate(selectedDate.getDate() + daysToAdd);
         setSelectedDate(newDate);
-        let nD = newDate.toLocaleDateString().split('/').join('-');
+        let nD = newDate.toLocaleDateString("en-IN",options).split('/').join('-');
         navigate(`/buytickets/${movieName}/${nD}`)
     };
 
@@ -53,7 +57,7 @@ function MovieShows() {
         // event.preventDefault();
         // navigate(`/buytickets/${show.movieName}/${show.date}/show/${show.id}`);
     }
-    console.log(map1);
+
     useEffect(() => {
         fetchDate();
     }, [movieName, date])
