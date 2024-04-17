@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Movie = require('../models/Movie.js');
+const CinemaOwner = require('../models/CinemaOwner.js');
 
 
 router.get('/movies', async (req, res) => {
@@ -18,10 +19,14 @@ router.get('/movies', async (req, res) => {
 
 router.post('/admin/addMovie', async (req, res) => {
     try {
-        const { name, ratings, language, duration, genre, certificate, releaseDate, desc, cast, crew, bgimage, poster } = req.body;
-        const existingMovie = await Movie.findOne({ name:name });
+        const { userId, name, ratings, language, duration, genre, certificate, releaseDate, desc, cast, crew, bgimage, poster } = req.body;
+        const existingMovie = await Movie.findOne({ name: name });
         if (existingMovie) {
             return res.status(401).send("Cinema Already Exists");
+        }
+        const user = await CinemaOwner.findById(userId);
+        if (!user) {
+            return res.status(404).send('Cinema Owner does not exist');
         }
         const movie = await Movie.create({
             name: name,
@@ -37,6 +42,8 @@ router.post('/admin/addMovie', async (req, res) => {
             bgimage: bgimage,
             poster: poster,
         });
+        user.movies.push(movie);
+        await user.save();
         res.status(200).json(movie);
     }
     catch (error) {

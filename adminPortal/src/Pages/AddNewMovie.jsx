@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import { CinemaState } from "../Context/CinemaProvider";
 
 
 function AddNewMovie() {
@@ -18,6 +19,7 @@ function AddNewMovie() {
   const [crew, setCrew] = useState([{ name: "", role: "", img: "" }]);
   const [bgimage, setBgImage] = useState("");
   const [poster, setPoster] = useState("");
+  const { user } = CinemaState();
   const navigate = useNavigate();
 
 
@@ -97,6 +99,7 @@ function AddNewMovie() {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8888/admin/addMovie', {
+        userId: user.id,
         name,
         ratings,
         language,
