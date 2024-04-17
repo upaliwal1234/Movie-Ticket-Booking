@@ -14,7 +14,7 @@ function MovieShows() {
 
     const fetchDate = async () => {
         try {
-            let response = await axios(`${baseURL}/movie/banner/${movieName}/${date}`);
+            let response = await axios.get(`${baseURL}/movie/banner/${movieName}/${date}`);
             console.log(response.data);
             let map = new Map();
             let map1 = new Map();

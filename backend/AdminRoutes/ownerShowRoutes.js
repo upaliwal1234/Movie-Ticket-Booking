@@ -6,9 +6,9 @@ const CinemaOwner = require("../models/CinemaOwner");
 router.post('/admin/movie/addshow', async (req, res) => {
     console.log('addshow');
     try {
-        const { timing, date, movieName, price, seating, cinema } = req.body;
-        console.log(movieName);
-        const existingShow = await Show.findOne({ timing, date });
+        let { timing, date, movieName, price, seating, cinema } = req.body;
+        date = date.split('-').reverse().join('-');
+        const existingShow = await Show.findOne({ movieName, timing, date });
         if (existingShow) {
             return res.status(401).send("Show Already Exists");
         }
