@@ -2,21 +2,20 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import baseURL from '../DB';
 import { toast } from 'react-toastify';
+import { CinemaState } from '../Context/CinemaProvider';
 
 function CinemaProfilePage() {
-  let token = localStorage.getItem('myToken');
-  token = JSON.parse(token);
-  // console.log("Data", token);
   const [address, setAddress] = useState('');
   const [cinemaName, setCinemaName] = useState('');
   const [edit, setEdit] = useState(false);
+  const { user } = CinemaState();
   useEffect(() => {
     getData();
-  }, [edit])
+  }, [edit, user])
   const getData = async () => {
-
+    if (!user) return;
     try {
-      const response = await axios.get(`${baseURL}/admin/profile/${token.id}`);
+      const response = await axios.get(`${baseURL}/admin/profile/${user.id}`);
       if (response) {
         const { cinemaName, address } = response.data;
         setCinemaName(cinemaName);
@@ -34,7 +33,7 @@ function CinemaProfilePage() {
   const handleSave = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.patch(`${baseURL}/admin/profile/${token.id}`, {
+      const response = await axios.patch(`${baseURL}/admin/profile/${user.id}`, {
         cinemaName,
         address
       })
