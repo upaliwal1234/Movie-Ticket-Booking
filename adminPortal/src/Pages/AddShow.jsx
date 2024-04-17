@@ -12,7 +12,11 @@ export default function AddShow() {
   const [date, setDate] = useState('');
   const [price, setPrice] = useState('');
   const { user } = CinemaState();
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([
+    // { 'name': 'kungfu' },
+    // { 'name': 'kungfu' },
+    // { 'name': 'kungfu' },
+  ]);
   const navigate = useNavigate();
   // Event handlers for input changes
 
@@ -20,13 +24,17 @@ export default function AddShow() {
     fetchMovies();
   }, [user])
 
+  console.log(movies);
   const fetchMovies = async () => {
     if (!user) {
       return;
     }
     try {
       const { data } = await axios.get(`${baseURL}/admin/profile/${user.id}`);
-      console.log(data);
+      // console.log(data);
+      if (data) {
+        setMovies(data.movies);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -96,9 +104,10 @@ export default function AddShow() {
             placeholder="Enter movie name..."
             required
           >
-            {
-
-            }
+            <option value='' className='' selected disabled hidden>Select a Movie</option>
+            {movies && movies.map((data, index) => (
+              <option key={index} value={data.name} className=''>{data.name}</option>
+            ))}
           </select>
         </div>
         <div className="grid md:grid-cols-2 md:gap-6">
