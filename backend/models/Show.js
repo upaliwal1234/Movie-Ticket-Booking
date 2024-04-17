@@ -19,7 +19,7 @@ const showSchema = new mongoose.Schema({
   },
   seating: {
     type: [Boolean],
-    required: true,
+    // required: true,
   },
   cinema: {
     type: mongoose.Schema.Types.ObjectId,

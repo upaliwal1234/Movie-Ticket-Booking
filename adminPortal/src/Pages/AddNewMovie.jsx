@@ -1,82 +1,123 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import baseURL from "../DB";
+import { ToastContainer, toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 function AddNewMovie() {
-  const [formData, setFormData] = useState({
-    name: "",
-    ratings: "",
-    language: [],
-    duration: "",
-    genre: "",
-    certificate: "",
-    releaseDate: "",
-    desc: "",
-    cast: [{ name: "", role: "", img: "" }],
-    crew: [{ name: "", role: "", img: "" }],
-    bgimage: "",
-    poster: "",
-    reviews: [],
-    cinemas: []
-  });
+  const [name, setName] = useState("");
+  const [ratings, setRatings] = useState("");
+  const [language, setLanguage] = useState([]);
+  const [duration, setDuration] = useState("");
+  const [genre, setGenre] = useState("");
+  const [certificate, setCertificate] = useState("");
+  const [releaseDate, setReleaseDate] = useState("");
+  const [desc, setDesc] = useState("");
+  const [cast, setCast] = useState([{ name: "", role: "", img: "" }]);
+  const [crew, setCrew] = useState([{ name: "", role: "", img: "" }]);
+  const [bgimage, setBgImage] = useState("");
+  const [poster, setPoster] = useState("");
+  const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    switch (name) {
+      case "name":
+        setName(value);
+        break;
+      case "ratings":
+        setRatings(value);
+        break;
+      case "duration":
+        setDuration(value);
+        break;
+      case "genre":
+        setGenre(value);
+        break;
+      case "certificate":
+        setCertificate(value);
+        break;
+      case "releaseDate":
+        setReleaseDate(value);
+        break;
+      case "desc":
+        setDesc(value);
+        break;
+      case "bgimage":
+        setBgImage(value);
+        break;
+      case "poster":
+        setPoster(value);
+        break;
+      default:
+        break;
+    }
   };
+
   const handleLanguageChange = (e) => {
     const { value, checked } = e.target;
     let updatedLanguages;
     if (checked) {
-      updatedLanguages = [...formData.language, value];
+      updatedLanguages = [...language, value];
     } else {
-      updatedLanguages = formData.language.filter((lang) => lang !== value);
+      updatedLanguages = language.filter((lang) => lang !== value);
     }
-    setFormData({
-      ...formData,
-      language: updatedLanguages
-    });
+    setLanguage(updatedLanguages);
   };
 
-  const handleCastChange = (index, e) => {
-    const { name, value } = e.target;
-    const updatedCast = [...formData.cast];
-    updatedCast[index][name] = value;
-    setFormData({
-      ...formData,
-      cast: updatedCast
-    });
+  const handleCastChange = (index, field, value) => {
+    const updatedCast = [...cast];
+    updatedCast[index][field] = value;
+    // console.log(value);
+    // console.log(field);
+    // console.log(index);
+    // console.log(updatedCast);
+    setCast(updatedCast);
   };
+  
 
-  const handleCrewChange = (index, e) => {
-    const { name, value } = e.target;
-    const updatedCrew = [...formData.crew];
-    updatedCrew[index][name] = value;
-    setFormData({
-      ...formData,
-      crew: updatedCrew
-    });
+  const handleCrewChange = (index, field, value) => {
+    const updatedCrew = [...crew];
+    updatedCrew[index][field] = value;
+    setCrew(updatedCrew);
   };
+  
 
   const handleAddCast = () => {
-    setFormData({
-      ...formData,
-      cast: [...formData.cast, { name: "", role: "", img: "" }]
-    });
+    setCast([...cast, { name: "", role: "", img: "" }]);
   };
 
   const handleAddCrew = () => {
-    setFormData({
-      ...formData,
-      crew: [...formData.crew, { name: "", role: "", img: "" }]
-    });
+    setCrew([...crew, { name: "", role: "", img: "" }]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      const response = await axios.post('http://localhost:8888/admin/addMovie', {
+        name,
+        ratings,
+        language,
+        duration,
+        genre,
+        certificate,
+        releaseDate,
+        desc,
+        cast,
+        crew,
+        bgimage,
+        poster
+      });
+      if (response) {
+          console.log("Hello", response);
+          navigate('/moviepage');
+      }
+  } catch (error) {
+      toast.error('Error in adding movie');
+      console.error('Error during adding movie:', error);
+  }
   };
   return (
     <div className="text-red-500 flex justify-center" style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
@@ -92,7 +133,7 @@ function AddNewMovie() {
             name="name"
             className="border w-full p-2"
             placeholder="Enter name..."
-            value={formData.name}
+            value={name}
             onChange={handleChange}
           />
         </div>
@@ -106,7 +147,7 @@ function AddNewMovie() {
             name="ratings"
             className="border w-full p-2"
             placeholder="Enter ratings..."
-            value={formData.ratings}
+            value={ratings}
             onChange={handleChange}
           />
         </div>
@@ -118,7 +159,7 @@ function AddNewMovie() {
                 type="checkbox"
                 name="language"
                 value="English"
-                checked={formData.language.includes("English")}
+                checked={language.includes("English")}
                 onChange={handleLanguageChange}
               />
               English
@@ -128,7 +169,7 @@ function AddNewMovie() {
                 type="checkbox"
                 name="language"
                 value="Spanish"
-                checked={formData.language.includes("Spanish")}
+                checked={language.includes("Spanish")}
                 onChange={handleLanguageChange}
               />
               Spanish
@@ -146,7 +187,7 @@ function AddNewMovie() {
             name="duration"
             className="border w-full p-2"
             placeholder="Enter duration..."
-            value={formData.duration}
+            value={duration}
             onChange={handleChange}
           />
         </div>
@@ -160,7 +201,7 @@ function AddNewMovie() {
             name="genre"
             className="border w-full p-2"
             placeholder="Enter genre..."
-            value={formData.genre}
+            value={genre}
             onChange={handleChange}
           />
         </div>
@@ -174,7 +215,7 @@ function AddNewMovie() {
             name="certificate"
             className="border w-full p-2"
             placeholder="Enter certificate..."
-            value={formData.certificate}
+            value={certificate}
             onChange={handleChange}
           />
         </div>
@@ -188,7 +229,7 @@ function AddNewMovie() {
             name="releaseDate"
             className="border w-full p-2"
             placeholder="Enter release date..."
-            value={formData.releaseDate}
+            value={releaseDate}
             onChange={handleChange}
           />
         </div>
@@ -201,31 +242,31 @@ function AddNewMovie() {
             name="desc"
             className="border w-full p-2"
             placeholder="Enter description..."
-            value={formData.desc}
+            value={desc}
             onChange={handleChange}
           />
         </div>
         <div className="mb-4">
           <label className="block mb-1">Cast:</label>
-          {formData.cast.map((actor, index) => (
+          {cast.map((actor, index) => (
             <div key={index}>
               <input
                 type="text"
                 placeholder="Name"
                 value={actor.name}
-                onChange={(e) => handleCastChange(index, e)}
+                onChange={(e) => handleCastChange(index, 'name', e.target.value)}
               />
               <input
                 type="text"
                 placeholder="Role"
                 value={actor.role}
-                onChange={(e) => handleCastChange(index, e)}
+                onChange={(e) => handleCastChange(index, 'role', e.target.value)}
               />
               <input
                 type="text"
                 placeholder="Image URL"
                 value={actor.img}
-                onChange={(e) => handleCastChange(index, e)}
+                onChange={(e) => handleCastChange(index, 'img', e.target.value)}
               />
             </div>
           ))}
@@ -233,25 +274,25 @@ function AddNewMovie() {
         </div>
         <div className="mb-4">
           <label className="block mb-1">Crew:</label>
-          {formData.crew.map((crewMember, index) => (
+          {crew.map((crewMember, index) => (
             <div key={index}>
               <input
                 type="text"
                 placeholder="Name"
                 value={crewMember.name}
-                onChange={(e) => handleCrewChange(index, e)}
+                onChange={(e) => handleCrewChange(index, 'name', e.target.value)}
               />
               <input
                 type="text"
                 placeholder="Role"
                 value={crewMember.role}
-                onChange={(e) => handleCrewChange(index, e)}
+                onChange={(e) => handleCrewChange(index, 'role', e.target.value)}
               />
               <input
                 type="text"
                 placeholder="Image URL"
                 value={crewMember.img}
-                onChange={(e) => handleCrewChange(index, e)}
+                onChange={(e) => handleCrewChange(index, 'img', e.target.value)}
               />
             </div>
           ))}
@@ -267,7 +308,7 @@ function AddNewMovie() {
             name="bgimage"
             className="border w-full p-2"
             placeholder="Enter background image URL..."
-            value={formData.bgimage}
+            value={bgimage}
             onChange={handleChange}
           />
         </div>
@@ -281,12 +322,12 @@ function AddNewMovie() {
             name="poster"
             className="border w-full p-2"
             placeholder="Enter poster image URL..."
-            value={formData.poster}
+            value={poster}
             onChange={handleChange}
           />
         </div>
         {/* Add reviews and cinemas similarly */}
-        <button type="submit" onClick={handleClick} className="h-12 w-42 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mb-4">
+        <button type="submit" onClick={handleSubmit} className="h-12 w-42 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mb-4">
           Add New Movie
         </button>
       </form>
