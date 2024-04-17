@@ -5,16 +5,14 @@ import baseURL from '../DB';
 import { CinemaState } from '../Context/CinemaProvider';
 
 export default function Shows() {
-  const [searchQuery, setSearchQuery] = useState('');
   const { user } = CinemaState();
   const [shows, setShows] = useState([]);
 
-  const handleSearchInputChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-
-  const fetchShows = async () => {
+  const fetchShows = async (req, res) => {
     try {
+      if (!user) {
+        return res.status(404).json({ message: "Shows Not Found" });
+      }
       const { data } = await axios.get(`${baseURL}/admin/allShows/${user.id}`);
       setShows(data);
     } catch (error) {
@@ -29,19 +27,10 @@ export default function Shows() {
     <div className='mb-10 w-[80%] mx-auto'>
       <h1 className="text-3xl text-red-500 text-center m-2 font-bold">Shows</h1>
       <form className='flex w-full justify-center items-center'>
-        <input
-          className="border w-3/4 p-3 mt-7 mr-2"
-          type="text"
-          placeholder="Search Shows . . ."
-          value={searchQuery}
-          onChange={handleSearchInputChange}
-        />
-        <button className="h-12 w-42 bg-red-500 hover:bg-red-600 text-white px-4 py-2 mr-2 rounded-md mt-7">Search</button>
         <Link to='/addshow'>
           <button className="h-12 w-42 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mt-7">Add New Show</button>
         </Link>
       </form>
-
       <div className="mt-16 mx-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {shows.map((data, index) => (
