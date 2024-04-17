@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CinemaState } from '../Context/CinemaProvider';
-import { tokenCheck } from '../HelperToken';
+import { tokenCheck } from '../helperToken';
 
 function DashBoard() {
   const { user } = CinemaState();

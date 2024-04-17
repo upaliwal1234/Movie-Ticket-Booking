@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { tokenCheck } from "../HelperToken";
+import { tokenCheck } from "../helperToken";
 
 const CinemaContext = createContext();
 

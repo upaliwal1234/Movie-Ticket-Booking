@@ -80,11 +80,11 @@ router.get('/admin/profile/:id', async (req, res) => {
     try {
         const { id } = req.params;
         // console.log(id);
-        const user = await CinemaOwner.findById(id);
+        const user = await CinemaOwner.findById(id).populate('movies').populate('shows');
         if (!user) {
             return res.status(401).send("User does not exist");
         }
-
+        user.password = undefined
         return res.status(200).json(user);
     } catch (error) {
         console.log(error);
