@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { tokenCheck } from '../../../helperToken';
 import axios from 'axios';
+import baseURL from '../../DB';
 
 export default function Cinemas() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function Cinemas() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:8888/cinemas');
+      const response = await axios.get(`${baseURL}/cinemas`);
       if (response.status == 200) {
         setCinemasData(response.data);
       }
@@ -36,7 +37,7 @@ export default function Cinemas() {
   return (
     <div className="flex flex-row flex-wrap gap-8 justify-center mt-10 my-6 sm:mx-10 md:mx-20">
       {cinemasData.map((cinema, index) => (
-        <CinemaCard key={index} cinemaid={cinema._id} cinemaname={cinema.name} movie={cinema.movie} />
+        <CinemaCard key={index} cinemaid={cinema._id} cinemaname={cinema.cinemaName} movie={cinema.movie} />
       ))}
     </div>
   )

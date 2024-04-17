@@ -53,7 +53,7 @@ function MovieShows() {
         // event.preventDefault();
         // navigate(`/buytickets/${show.movieName}/${show.date}/show/${show.id}`);
     }
-
+    console.log(map1);
     useEffect(() => {
         fetchDate();
     }, [movieName, date])
@@ -106,7 +106,7 @@ function MovieShows() {
                             return (
                                 <div key={index} className="border-b min-h-24 py-5 px-12 flex gap-20">
                                     <div>
-                                        <h1 className="text-sm font-bold">{item.name}</h1>
+                                        <h1 className="text-sm font-bold">{item.cinemaName}</h1>
                                         <h2 className="text-sm">{item.address}</h2>
                                     </div>
                                     <div className="flex gap-4">
