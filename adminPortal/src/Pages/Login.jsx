@@ -40,7 +40,7 @@ function Login() {
                     email: decodedToken.email
                 });
                 if (tokenString) {
-                    window.localStorage.setItem('myToken', tokenString);
+                    window.localStorage.setItem('cinemaAdmin', tokenString);
                     navigate('/');
                     window.location.reload(false);
                 }

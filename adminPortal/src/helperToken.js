@@ -1,5 +1,5 @@
 export const tokenCheck = () => {
-    let token = window.localStorage.getItem('myToken');
+    let token = window.localStorage.getItem('cinemaAdmin');
 
     if (token) {
         token = JSON.parse(token);

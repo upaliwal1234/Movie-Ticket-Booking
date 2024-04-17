@@ -1,5 +1,5 @@
 export const tokenCheck = () => {
-    let token = localStorage.getItem('myToken');
+    let token = localStorage.getItem('movieUser');
     if (token) {
         token = JSON.parse(token);
         const id = token.id;
