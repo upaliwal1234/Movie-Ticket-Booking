@@ -3,17 +3,19 @@ const router = express.Router();
 const Movie = require('../models/Movie.js');
 const CinemaOwner = require('../models/CinemaOwner.js');
 
-
-router.get('/movies', async (req, res) => {
+router.get('/admin/movies/:id', async (req, res) => {
     try {
-        const response = await Movie.find();
+        const { id } = req.params;
+        const response = await CinemaOwner.findById(id).populate('movies');
+        // console.log(response);
         if (!response) {
             return res.status(404).json({ message: "Content Not Found" });
         }
-        return res.json(response);
+        const movies = response.movies;
+        return res.json(movies);
     }
     catch {
-        return res.status(500).json({ message: "Internal Server Error" });
+        return res.status(500).json({ message: "Internal Server Error1" });
     }
 })
 
