@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Cinema = require('../models/Cinema');
+const CinemaOwner = require('../models/CinemaOwner');
 
 router.get('/cinemas', async (req, res) => {
     try {
-        let allCinemas = await Cinema.find();
+        let allCinemas = await CinemaOwner.find();
         // console.log(allCinemas);
         return res.json(allCinemas);
     }
@@ -16,7 +17,7 @@ router.get('/cinemas', async (req, res) => {
 router.get('/cinema/:id/', async (req, res) => {
     try {
         const { id } = req.params;
-        const response = await Cinema.findById(id).populate('shows');
+        const response = await CinemaOwner.findById(id).populate('shows');
         // console.log("Response:", response);
 
         if (!response || response.length === 0) {
