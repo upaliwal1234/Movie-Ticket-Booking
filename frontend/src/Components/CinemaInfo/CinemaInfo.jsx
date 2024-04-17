@@ -36,7 +36,7 @@ export default function CinemaInfo() {
   const handleClick = () => {
     navigate('/bookingchart')
   }
-
+  console.log(hashMap);
   const handleDateChange = (daysToAdd) => {
     const newDate = new Date(selectedDate);
     newDate.setHours(0, 0, 0, 0);
