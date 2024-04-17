@@ -122,7 +122,6 @@ function AddNewMovie() {
       console.error('Error during adding movie:', error);
   }
   };
-
   return (
     <div className="text-red-500 flex justify-center" style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
       <form className="w-3/4 p-8 bg-gray-100 rounded-lg shadow-lg" onSubmit={handleSubmit}>

@@ -3,6 +3,20 @@ const router = express.Router();
 const Movie = require('../models/Movie.js');
 const CinemaOwner = require('../models/CinemaOwner.js');
 
+
+router.get('/movies', async (req, res) => {
+    try {
+        const response = await Movie.find();
+        if (!response) {
+            return res.status(404).json({ message: "Content Not Found" });
+        }
+        return res.json(response);
+    }
+    catch {
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+})
+
 router.post('/admin/addMovie', async (req, res) => {
     try {
         const { userId, name, ratings, language, duration, genre, certificate, releaseDate, desc, cast, crew, bgimage, poster } = req.body;
