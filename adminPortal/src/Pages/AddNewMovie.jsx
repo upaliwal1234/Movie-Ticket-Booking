@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import axios from 'axios';
+import baseURL from "../DB";
 function AddNewMovie() {
   const [formData, setFormData] = useState({
     name: "",
@@ -77,7 +78,6 @@ function AddNewMovie() {
     e.preventDefault();
     console.log(formData);
   };
-
   return (
     <div className="text-red-500 flex justify-center" style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
       <form className="w-3/4 p-8 bg-gray-100 rounded-lg shadow-lg" onSubmit={handleSubmit}>
@@ -286,7 +286,7 @@ function AddNewMovie() {
           />
         </div>
         {/* Add reviews and cinemas similarly */}
-        <button type="submit" className="h-12 w-42 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mb-4">
+        <button type="submit" onClick={handleClick} className="h-12 w-42 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mb-4">
           Add New Movie
         </button>
       </form>
