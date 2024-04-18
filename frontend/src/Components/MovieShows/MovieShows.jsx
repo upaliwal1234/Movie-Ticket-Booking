@@ -54,7 +54,7 @@ function MovieShows() {
     };
 
     const handleClick = (show) => {
-        navigate(`/buytickets/${show.movieName}/${show.date}/show/${show.id}`);
+        navigate(`/buytickets/${show.movieName}/${show.date}/show/${show._id}`);
     }
 
     useEffect(() => {

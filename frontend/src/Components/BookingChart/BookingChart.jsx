@@ -26,25 +26,26 @@ function generateRows(row, col) {
     });
 }
 
-const ToggleButton = ({ children, seat }) => {
-    const [isClicked, setIsClicked] = useState(false);
 
-    const handleClick = () => {
-        if (seat.isavailable) {
-            setIsClicked(!isClicked);
-        }
-    };
+    // const ToggleButton = ({ children, seat }) => {
+    //     const [isClicked, setIsClicked] = useState(false);
 
-    return (
-        <button
-            className={`m-[2px] py-[2px] px-[5px] ${isClicked ? 'bg-gray-400' : 'hover:bg-green-100'} border-2 rounded-md`}
-            onClick={handleClick}
-            disabled={!seat.isseat || !seat.isavailable}
-        >
-            {children}
-        </button>
-    );
-};
+    //     const handleClick = () => {
+    //         if (seat.isavailable) {
+    //             setIsClicked(!isClicked);
+    //         }
+    //     };
+
+    //     return (
+    //         <button
+    //             className={`m-[2px] py-[2px] px-[5px] ${isClicked ? 'bg-gray-400' : 'hover:bg-green-100'} border-2 rounded-md`}
+    //             onClick={handleClick}
+    //             disabled={!seat.isseat || !seat.isavailable}
+    //         >
+    //             {children}
+    //         </button>
+    //     );
+    // };
 
 export default function BookingChart() {
     return (
@@ -57,7 +58,8 @@ export default function BookingChart() {
                 <div className='overflow-x-auto'>
                     <table className='border-separate border-spacing-[2px] table-auto mx-auto'>
                         <tbody>
-                            {generateRows(24, 12)}
+                                {/* {generateRows(24, 12)} */}
+                                hello
                         </tbody>
                     </table>
                 </div>
