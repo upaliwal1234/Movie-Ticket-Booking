@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const Cinema = require('../models/Cinema');
 const CinemaOwner = require('../models/CinemaOwner');
 
 router.get('/cinemas', async (req, res) => {

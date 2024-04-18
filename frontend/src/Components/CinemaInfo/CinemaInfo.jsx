@@ -23,6 +23,7 @@ export default function CinemaInfo() {
     }
   }
 
+  // HashMap is initialized to store movie names as keys and an array of corresponding show timings as values.
   const hashMap = new Map();
   for (let i = 0; i < shows.length; i++) {
     date = date.split('/').join('-');
@@ -66,7 +67,7 @@ export default function CinemaInfo() {
   return (
     <div className='container justify-center mx-auto mt-3'>
       <div className="bg-white p-6 rounded-md border-2">
-        <h1 className="text-2xl font-bold mb-2 text-black">{cinemaData.name}</h1>
+        <h1 className="text-2xl font-bold mb-2 text-black">{cinemaData.cinemaName}</h1>
         <p className="text-black">{cinemaData.address}</p>
       </div>
       <div className="bg-white p-6 rounded-md border-2 flex items-center justify-between">
@@ -114,7 +115,7 @@ export default function CinemaInfo() {
           {Array.from(hashMap).map(([key, value]) => (
             <li key={key} className="flex items-center border-2 p-3 space-x-4">
               <div className='min-w-[26rem]'>
-                <Link to='/' className="text-stone-500 hover:underline">
+                <Link to={`/movies/${key}/${key.id}`} className="text-stone-500 hover:underline">
                   {key}
                 </Link>
               </div>
