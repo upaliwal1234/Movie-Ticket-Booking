@@ -54,7 +54,7 @@ function MovieShows() {
     };
 
     const handleClick = (show) => {
-        navigate(`/buytickets/${show.movieName}/${show.date}/show/${show.id}`);
+        navigate(`/buytickets/${show.movieName}/${show.date}/show/${show._id}`);
     }
 
     useEffect(() => {
@@ -118,7 +118,7 @@ function MovieShows() {
                                         {shows.map((itm, idx) => {
                                             // console.log(itm);
                                             return (
-                                                <button key={idx} onClick={(e)=>handleClick(itm)} className="border border-gray-500 rounded my-1 px-10 py-1 flex justify-center items-center text-sm font-light text-green-500">
+                                                <button key={idx} onClick={handleClick(itm)} className="border border-gray-500 rounded my-1 px-10 py-1 flex justify-center items-center text-sm font-light text-green-500">
                                                     {itm.timing}
                                                 </button>
                                             )
