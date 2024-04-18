@@ -16,18 +16,21 @@ router.get('/shows/:date', async (req, res) => {
     }
 })
 
-router.get('/show/:id',async (req,res) =>{
-    try{
+router.get('/show/:id', async (req, res) => {
+    try {
         const { id } = req.params;
-        let response = await Show.find({ _id: id });
+        let response = await Show.findById(id).populate('cinema');
         if (!response) {
             return res.status(404).json({ message: "Show not found" });
         }
+        response.cinema.password = undefined
+        response.movies = undefined
+        response.shows = undefined
         return res.json(response);
     }
-    catch (err){
+    catch (err) {
         return res.status(500).json({ message: 'Internal server error' });
     }
-} )
+})
 
 module.exports = router;
