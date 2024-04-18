@@ -68,7 +68,23 @@ export default function AddShow() {
         timing: startTime,
         date,
         movieName,
-        seating: null,
+        seating: [
+          [
+            { isSeat: true, isAvailable: true, isBooked: false },
+            { isSeat: true, isAvailable: true, isBooked: false },
+            { isSeat: true, isAvailable: true, isBooked: false },
+          ],
+          [
+            { isSeat: true, isAvailable: true, isBooked: false },
+            { isSeat: true, isAvailable: true, isBooked: false },
+            { isSeat: true, isAvailable: true, isBooked: false },
+          ],
+          [
+            { isSeat: true, isAvailable: true, isBooked: false },
+            { isSeat: true, isAvailable: true, isBooked: false },
+            { isSeat: true, isAvailable: true, isBooked: false },
+          ],
+        ],
         price,
         cinema: user.id
       })
