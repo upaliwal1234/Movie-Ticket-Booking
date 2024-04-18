@@ -36,13 +36,17 @@ export default function CinemaInfo() {
   const handleClick = () => {
     navigate('/bookingchart')
   }
-
+  const options = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  };
   const handleDateChange = (daysToAdd) => {
     const newDate = new Date(selectedDate);
     newDate.setHours(0, 0, 0, 0);
     newDate.setDate(selectedDate.getDate() + daysToAdd);
     setSelectedDate(newDate);
-    setDate(newDate.toLocaleDateString());
+    setDate(newDate.toLocaleDateString("en-IN",options));
   };
 
   const handlePriceChange = (priceRange) => {
