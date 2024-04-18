@@ -14,6 +14,7 @@ import Profile from './Components/Profile/Profile.jsx'
 import MovieCinema from './Components/Cinemas/MovieCinema.jsx'
 import MovieShows from './Components/MovieShows/MovieShows.jsx'
 import BookingChart from './Components/BookingChart/BookingChart.jsx'
+import BookingPreview from './Components/Payment/BookingPreview.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route path='/movies/:movieName/:id' element={<MovieCoverPage />} />
       <Route path='/buytickets/:movieName/:date' element={<MovieShows />} />
       <Route path='/buytickets/:movieName/:date/show/:id' element={<BookingChart />} />
+      <Route path='/buytickets/:movieName/:date/show/:id/bookingpreview' element={<BookingPreview />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/MovieCinema' element={<MovieCinema />} />
     </Route>
