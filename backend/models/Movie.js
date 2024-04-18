@@ -63,7 +63,7 @@ let movieSchema = new mongoose.Schema({
     cinemas: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Cinema'
+            ref: 'CinemaOwner'
         }
     ]
 })

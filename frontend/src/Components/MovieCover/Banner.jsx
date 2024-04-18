@@ -8,9 +8,13 @@ function Banner({ name, bgImg, language, certificate, releaseDate, genre, durati
     const handleClick = () => {
         navigate('/MovieCinema');
     }
-
+    const options = {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      };
     const navigate = useNavigate()
-    let date = new Date().toLocaleDateString();
+    let date = new Date().toLocaleDateString("en-IN",options);
     date = date.split('/').join('-');
     // console.log(date);
     const handleBookTicket = (e) => {
