@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import baseURL from "../../DB";
 
 function MovieShows() {
@@ -38,7 +38,7 @@ function MovieShows() {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
-      };
+    };
     let arr = date.split('-');
     arr.reverse().join('-');
     let dt = new Date(arr);
@@ -49,7 +49,7 @@ function MovieShows() {
         newDate.setHours(0, 0, 0, 0);
         newDate.setDate(selectedDate.getDate() + daysToAdd);
         setSelectedDate(newDate);
-        let nD = newDate.toLocaleDateString("en-IN",options).split('/').join('-');
+        let nD = newDate.toLocaleDateString("en-IN", options).split('/').join('-');
         navigate(`/buytickets/${movieName}/${nD}`)
     };
 
@@ -110,8 +110,10 @@ function MovieShows() {
                             return (
                                 <div key={index} className="border-b min-h-24 py-5 px-12 flex gap-20">
                                     <div>
-                                        <h1 className="text-sm font-bold">{item.cinemaName}</h1>
-                                        <h2 className="text-sm">{item.address}</h2>
+                                        <Link className="hover:underline" to={`/cinema/${item._id}`}>
+                                            <h1 className="text-sm font-bold">{item.cinemaName}</h1>
+                                            <h2 className="text-sm">{item.address}</h2>
+                                        </Link>
                                     </div>
                                     <div className="flex gap-4">
                                         {shows.map((itm, idx) => {
