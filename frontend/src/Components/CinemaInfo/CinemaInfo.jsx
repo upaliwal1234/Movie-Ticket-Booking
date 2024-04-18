@@ -9,6 +9,7 @@ export default function CinemaInfo() {
   const { id } = useParams();
   const [cinemaData, setCinemaData] = useState({});
   const [shows, setShows] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date()); // Initialize selectedDate here
   const [selectedPriceRange, setSelectedPriceRange] = useState(0);
   let [date, setDate] = useState(selectedDate.toLocaleDateString());
@@ -16,8 +17,10 @@ export default function CinemaInfo() {
   const fetchCinemaData = async () => {
     try {
       let response = await axios.get(`${baseURL}/cinema/${id}`);
+      console.log(response.data);
       setCinemaData(response.data);
       setShows(response.data.shows);
+      setMovies(response.data.movies);
     } catch (err) {
       console.error('Error in fetching data', err);
     }
@@ -31,12 +34,12 @@ export default function CinemaInfo() {
       if (!hashMap.has(shows[i].movieName)) {
         hashMap.set(shows[i].movieName, []);
       }
-      hashMap.get(shows[i].movieName).push(shows[i].timing);
+      hashMap.get(shows[i].movieName).push(shows[i]);
     }
   }
-  const handleClick = () => {
-    navigate('/bookingchart')
-  }
+  // const handleClick = (movieName, date, id) => {
+  //   navigate(`/buytickets/${movieName}/${date}/show/${id}`)
+  // }
   const options = {
     year: 'numeric',
     month: '2-digit',
@@ -47,7 +50,7 @@ export default function CinemaInfo() {
     newDate.setHours(0, 0, 0, 0);
     newDate.setDate(selectedDate.getDate() + daysToAdd);
     setSelectedDate(newDate);
-    setDate(newDate.toLocaleDateString("en-IN",options));
+    setDate(newDate.toLocaleDateString("en-IN", options));
   };
 
   const handlePriceChange = (priceRange) => {
@@ -63,6 +66,10 @@ export default function CinemaInfo() {
     '500-600',
     '600-700',
   ];
+  const findMovieId = (movieName) => {
+    const movie = movies.find(movie => movie.name === movieName);
+    return movie ? movie._id : null;
+  };
 
   useEffect(() => {
     fetchCinemaData();
@@ -115,23 +122,30 @@ export default function CinemaInfo() {
         </div>
       </div>
       <div>
-        <ul className="list-disc">
-          {Array.from(hashMap).map(([key, value]) => (
-            <li key={key} className="flex items-center border-2 p-3 space-x-4">
-              <div className='min-w-[26rem]'>
-                <Link to={`/movies/${key}/${key.id}`} className="text-stone-500 hover:underline">
-                  {key}
-                </Link>
-              </div>
-              {value.map((item, index) => (
-                <button onClick={handleClick} key={index} className="bg-white-500 min-w-[7rem] text-black py-2 border-slate-700 border-2 rounded-md hover:bg-gray-300 focus:outline-none">
-                  {item}
-                </button>
-              ))}
-            </li>
-          ))}
-        </ul>
+        <div>
+          <ul className="list-disc">
+            {Array.from(hashMap).map(([key, value]) => (
+              <li key={key} className="flex items-center border-2 p-3 space-x-4">
+                <div className='min-w-[26rem]'>
+                  {/* Modify the link to include the movie ID */}
+                  <Link to={`/movies/${key}/${findMovieId(key)}`} className="text-stone-500 hover:underline">
+                    {key}
+                  </Link>
+                </div>
+                {value.map((item, index) => (
+                  <Link to={`/buytickets/${key}/${item.date}/show/${item._id}`} key={index} className="bg-white-500 min-w-[7rem] text-black py-2 border-slate-700 border-2 rounded-md hover:bg-gray-300 focus:outline-none">
+                    {item.timing}
+                  </Link>
+                ))}
+              </li>
+            ))}
+          </ul>
+        </div>
+
       </div>
     </div>
   )
 }
+// const handleClick = (movieName, date, id) => {
+//   navigate(`/buytickets/${movieName}/${date}/show/${id}`)
+// }

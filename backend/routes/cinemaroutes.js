@@ -16,12 +16,14 @@ router.get('/cinemas', async (req, res) => {
 router.get('/cinema/:id/', async (req, res) => {
     try {
         const { id } = req.params;
-        const response = await CinemaOwner.findById(id).populate('shows');
-        // console.log("Response:", response);
+        const response = await CinemaOwner.findById(id)
+            .populate('shows')
+            .populate('movies'); 
 
-        if (!response || response.length === 0) {
-            return res.status(404).json({ message: "Cinema not found" });
+        if (!response) {
+            return res.status(404).json({ message: "Cinema owner not found" });
         }
+
         return res.json(response);
     }
     catch (error) {
