@@ -3,6 +3,7 @@ import axios from 'axios';
 import baseURL from '../DB';
 import { CinemaState } from '../Context/CinemaProvider';
 import { useNavigate } from 'react-router-dom';
+import SeatingChart from '../Components/SeatingChart';
 
 export default function AddShow() {
   // State variables for each input field
@@ -11,6 +12,21 @@ export default function AddShow() {
   const [endTime, setEndTime] = useState('');
   const [date, setDate] = useState('');
   const [price, setPrice] = useState('');
+
+  const arr = [];
+  for (let i = 0; i < 12; i++) {
+    arr[i] = new Array();
+    for (let j = 0; j < 22; j++) {
+      arr[i].push({
+        isSeat: true,
+        isAvailable: true,
+        isBooked: false,
+      });
+    }
+  }
+
+  const [seating, setSeating] = useState(arr);
+
   const { user } = CinemaState();
   const [movies, setMovies] = useState([
     // { 'name': 'kungfu' },
@@ -24,7 +40,6 @@ export default function AddShow() {
     fetchMovies();
   }, [user])
 
-  console.log(movies);
   const fetchMovies = async () => {
     if (!user) {
       return;
@@ -68,23 +83,7 @@ export default function AddShow() {
         timing: startTime,
         date,
         movieName,
-        seating: [
-          [
-            { isSeat: true, isAvailable: true, isBooked: false },
-            { isSeat: true, isAvailable: true, isBooked: false },
-            { isSeat: true, isAvailable: true, isBooked: false },
-          ],
-          [
-            { isSeat: true, isAvailable: true, isBooked: false },
-            { isSeat: true, isAvailable: true, isBooked: false },
-            { isSeat: true, isAvailable: true, isBooked: false },
-          ],
-          [
-            { isSeat: true, isAvailable: true, isBooked: false },
-            { isSeat: true, isAvailable: true, isBooked: false },
-            { isSeat: true, isAvailable: true, isBooked: false },
-          ],
-        ],
+        seating: seating,
         price,
         cinema: user.id
       })
@@ -114,13 +113,13 @@ export default function AddShow() {
             type="text"
             id="movieName"
             name="movieName"
-            value={movieName}
+            defaultValue={movieName}
             onChange={handleMovieNameChange}
             className="border w-full p-2"
             placeholder="Enter movie name..."
             required
           >
-            <option value='' className='' selected disabled hidden>Select a Movie</option>
+            <option value='' className='' disabled hidden>Select a Movie</option>
             {movies && movies.map((data, index) => (
               <option key={index} value={data.name} className=''>{data.name}</option>
             ))}
@@ -190,6 +189,7 @@ export default function AddShow() {
             />
           </div>
         </div>
+        <SeatingChart seating={seating} setSeating={setSeating} />
         <button
           type="submit"
           className="h-12 w-42 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mb-4"
