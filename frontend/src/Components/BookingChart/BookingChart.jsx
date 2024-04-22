@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 function generateRows(row, col) {
     return Array.from({ length: col }, (_, rowIndex) => {
@@ -47,11 +48,12 @@ const ToggleButton = ({ children, seat }) => {
 };
 
 export default function BookingChart() {
+    const {movieName,date}=useParams();
     return (
         <>
             <div className='container mx-auto px-[9.5rem] mb-[3rem] mt-4'>
-                <h1 className='text-3xl font-semibold'>Fighter</h1>
-                <p>Date:14 oct 2020</p>
+                <h1 className='text-3xl font-semibold'>{movieName}</h1>
+                <p>{date}</p>
             </div>
             <div className='container mx-auto'>
                 <div className='overflow-x-auto'>
