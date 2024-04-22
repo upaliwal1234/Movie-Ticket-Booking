@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 import baseURL from '../../DB';
 
@@ -59,6 +59,13 @@ export default function BookingChart() {
         fetchData();
     }, []);
 
+    const navigate = useNavigate();
+
+    const handlePay = (e) => {
+        e.preventDefault();
+        navigate('bookingpreview', { state: { showId: show._id, seats: selectedSeats } })
+    }
+
     return (
         <>
             {show ? (
@@ -104,6 +111,14 @@ export default function BookingChart() {
             <div className='container mx-auto w-[400px] bg-blue-gray-200 flex justify-center border mt-8'>
                 <h1>Screen this Way</h1>
             </div>
+            {
+                selectedSeats.length > 0 ? (
+                    <div className='flex flex-row justify-center z-[100] fixed-bottom  inset-0 h-[40px]'>
+                        <button onClick={handlePay} className='bg-orange-400 text-white w-[400px] hover:bg-opacity-80 h-full py-2 font-semibold rounded-md'>Proceed To Pay Rs. {(selectedSeats.length) * (show.price)}</button>
+                    </div>
+                )
+                    : ('')
+            }
         </>
     );
 }

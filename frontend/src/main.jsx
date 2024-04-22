@@ -15,6 +15,8 @@ import MovieCinema from './Components/Cinemas/MovieCinema.jsx'
 import MovieShows from './Components/MovieShows/MovieShows.jsx'
 import BookingChart from './Components/BookingChart/BookingChart.jsx'
 import BookingPreview from './Components/Payment/BookingPreview.jsx'
+import Success from './Components/Payment/Success.jsx'
+import Failed from './Components/Payment/Failed.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +33,8 @@ const router = createBrowserRouter(
       <Route path='/buytickets/:movieName/:date/show/:id/bookingpreview' element={<BookingPreview />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/MovieCinema' element={<MovieCinema />} />
+      <Route path='/success' element={<Success />} />
+      <Route path='/failed' element={<Failed />} />
     </Route>
 
   )
