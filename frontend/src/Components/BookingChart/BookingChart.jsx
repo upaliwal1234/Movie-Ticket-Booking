@@ -43,7 +43,7 @@ export default function BookingChart() {
     const [isClicked, setIsClicked] = useState(false);
     const [selectedSeats, setSelectedSeats] = useState([]);
 
-    console.log(selectedSeats);
+    // console.log(selectedSeats);
     useEffect(() => {
         const fetchData = async () => {
             try {

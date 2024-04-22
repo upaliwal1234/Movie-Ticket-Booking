@@ -58,7 +58,6 @@ function BookingPreview() {
     const currency = "INR";
 
     const paymentHandler = async (e, amount) => {
-        console.log(amount);
         const response = await fetch(`${baseURL}/booking`, {
             method: "POST",
             body: JSON.stringify({
@@ -156,7 +155,7 @@ function BookingPreview() {
                             <div className='flex flex-row flex-wrap gap-2'>
                                 {seats && seats.map((data, index) => {
                                     let arr = data.split('-');
-                                    console.log(arr);
+                                    // console.log(arr);
                                     let row = Number(arr[0]);
                                     let col = Number(arr[1]);
                                     return (
