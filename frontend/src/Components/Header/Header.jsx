@@ -39,7 +39,7 @@ function Header() {
 
   const handleLogout = () => {
     setOpen(prevOpen => !prevOpen);
-    localStorage.removeItem('myToken');
+    localStorage.removeItem('movieUser');
     setIsLoggedIn(false);
   }
   const handleProfile = () => {
