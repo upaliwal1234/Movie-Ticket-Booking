@@ -9,6 +9,9 @@ export default function CarouselCustomArrows() {
   const [images, setImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const [images, setImages] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -32,10 +35,10 @@ export default function CarouselCustomArrows() {
 
   useEffect(() => {
     const imageUrls = [
+      "https://giffiles.alphacoders.com/222/222045.gif",
       "https://images8.alphacoders.com/100/1003220.png",
       "https://images7.alphacoders.com/104/1045911.jpg",
-      "https://wallpapercave.com/wp/wp8807385.jpg",
-      "https://giffiles.alphacoders.com/222/222045.gif"
+      "https://wallpapercave.com/wp/wp8807385.jpg"
     ];
 
     setImages(imageUrls);
