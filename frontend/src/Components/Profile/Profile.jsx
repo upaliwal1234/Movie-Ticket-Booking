@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import baseURL from '../../DB.js'
+import { tokenCheck } from '../../../helperToken.js';
 
 export default function Profile() {
-  let token = localStorage.getItem('myToken');
-  token = JSON.parse(token);
+  let user = tokenCheck()
   // console.log("Data", token.id);
   const [userData, setUserData] = useState({});
   const [isPhotoExpanded, setPhotoExpanded] = useState(false);
@@ -16,10 +16,10 @@ export default function Profile() {
 
   const getData = async () => {
     try {
-      const response = await axios.get(`${baseURL}/profile/${token.id}`);
+      const response = await axios.get(`${baseURL}/profile/${user.id}`);
       if (response) {
-        const { name, email } = response.data;
-        setUserData({ name, email });
+        const { name, email, phoneNumber, profilePicture } = response.data;
+        setUserData({ name, email, phoneNumber, profilePicture });
       }
       else {
         console.error('No data received from the server');
@@ -60,7 +60,7 @@ export default function Profile() {
               <div>
                 <img
                   id="expanded-image"
-                  src="https://images.unsplash.com/photo-1707063497724-388fcaf5d2d1?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src={userData.profilePicture ? userData.profilePicture : `https://images.unsplash.com/photo-1707063497724-388fcaf5d2d1?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
                   alt="Profile"
                   className={"mx-auto h-24 w-24 rounded-full cursor-pointer"}
                   onClick={handlePhotoClick}
@@ -93,7 +93,7 @@ export default function Profile() {
               </div>
             </div>
             <div className="mt-10 text-center">
-              <NavLink to={`/editProfile/${user.id}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <NavLink to={`/editprofile/${user.id}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Edit Profile
               </NavLink>
             </div>
