@@ -2,11 +2,10 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import baseURL from '../../DB.js'
+import { tokenCheck } from '../../../helperToken.js';
 
 export default function Profile() {
-  let token = localStorage.getItem('myToken');
-  token = JSON.parse(token);
-  // console.log("Data", token.id);
+  const user = tokenCheck();
   const [userData, setUserData] = useState({});
   useEffect(() => {
     getData();
@@ -14,7 +13,7 @@ export default function Profile() {
   const getData = async () => {
 
     try {
-      const response = await axios.get(`${baseURL}/profile/${token.id}`);
+      const response = await axios.get(`${baseURL}/profile/${user.id}`);
       if (response) {
         const { name, email } = response.data;
         setUserData({ name, email });
@@ -50,7 +49,6 @@ export default function Profile() {
   }, [isPhotoExpanded]);
   return (
     <>
-
       <div className="min-h-screen py-6 flex flex-col justify-center sm:py-12">
         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
@@ -75,7 +73,7 @@ export default function Profile() {
                 )}
               </div>
               <div className="text-center mt-5">
-              <h1 className="text-3xl font-extrabold text-gray-900">{userData.name }</h1>
+                <h1 className="text-3xl font-extrabold text-gray-900">{userData.name}</h1>
                 <p className="text-sm text-gray-600">Movie Enthusiast</p>
               </div>
             </div>

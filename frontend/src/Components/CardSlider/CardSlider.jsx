@@ -4,17 +4,18 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/bundle';
+import { register } from 'swiper/element/bundle';
 import { Keyboard, Navigation } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 // import 'swiper/swiper-bundle.min.css';
-
+register();
 
 export default function CardSlider({ items }) {
 
   return (
     <>
       <div className='relative'>
-        <div className="swiper-button-prev rounded-full px-8 py-8 hover:bg-gray-500/25 " style={{ left: '-65px' }}></div>
+        <button className="swiper-button-prev rounded-full px-8 py-8 hover:bg-gray-500/25 " style={{ left: '-65px' }}></button>
         <Swiper
           slidesPerView={0}
           spaceBetween={0}
@@ -64,7 +65,7 @@ export default function CardSlider({ items }) {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="swiper-button-next rounded-full px-8 py-8 hover:bg-gray-500/25 " style={{ right: '-50px' }}></div>
+        <button className="swiper-button-next rounded-full px-8 py-8 hover:bg-gray-500/25 " style={{ right: '-50px' }}></button>
       </div>
     </>
   )
