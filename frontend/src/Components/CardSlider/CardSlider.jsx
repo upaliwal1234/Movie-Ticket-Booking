@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import MovieCard from '../Movies/MovieCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';

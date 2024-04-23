@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import baseURL from '../DB';
 import { CinemaState } from '../Context/CinemaProvider';
+import { useNavigate } from 'react-router-dom';
 
 export default function Shows() {
   const { user } = CinemaState();
+  const navigate = useNavigate();
   const [shows, setShows] = useState([]);
 
   const fetchShows = async (req, res) => {
@@ -15,13 +17,26 @@ export default function Shows() {
       }
       const { data } = await axios.get(`${baseURL}/admin/allShows/${user.id}`);
       setShows(data);
+
     } catch (error) {
       console.log(error);
     }
   }
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${baseURL}/admin/delete/${user.id}/show/${id}`);
+      navigate('/shows');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const handleEdit = (data) => {
+    // console.log("Shows" + data);
+    navigate('/EditShow', { state: { data } });
+  }
   useEffect(() => {
     fetchShows();
-  }, [user]);
+  }, [user, shows]);
 
   return (
     <div className='mb-10 w-[80%] mx-auto'>
@@ -40,9 +55,15 @@ export default function Shows() {
               {/* <p className="mb-1 text-sm font-medium text-gray-700 dark:text-gray-400">End Time: 1:00 PM</p> */}
               <p className="mb-1 text-sm font-medium text-gray-700 dark:text-gray-400">Date: {data.date}</p>
               <p className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-400">Price: {data.price}</p>
-              <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                Edit
-              </a>
+
+              <div className='flex flex-row justify-between'>
+                <button onClick={() => handleEdit(data)} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                  Edit
+                </button>
+                <button onClick={() => handleDelete(data._id)} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                  Delete
+                </button>
+              </div>
             </div>
           ))}
         </div>

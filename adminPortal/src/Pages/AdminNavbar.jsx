@@ -6,7 +6,7 @@ function NavBar() {
   const navigate = useNavigate();
   const [logoutMenu, setLogoutMenu] = useState(false);
   const handleLogout = () => {
-    localStorage.removeItem('myToken');
+    localStorage.removeItem('cinemaAdmin');
     setLogoutMenu(false);
     navigate('/Login')
   }

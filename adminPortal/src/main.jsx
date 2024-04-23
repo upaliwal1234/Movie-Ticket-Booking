@@ -14,6 +14,7 @@ import Navbar from './Pages/AdminNavbar.jsx'
 import Login from './Pages/Login.jsx'
 import Signup from './Pages/Signup.jsx'
 import CinemaProvider from './Context/CinemaProvider.jsx'
+import EditShow from './Pages/EditShow.jsx'
 
 const AppRoutes = () => {
   return (
@@ -28,6 +29,7 @@ const AppRoutes = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/addshow" element={<AddShow />} />
         <Route path="/shows" element={<Shows />} />
+        <Route path="/EditShow" element={<EditShow />} />
       </Route>
     </Routes>
   );
