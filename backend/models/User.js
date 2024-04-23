@@ -1,5 +1,34 @@
 const mongoose = require('mongoose');
 
+let bookingSchema = new mongoose.Schema({
+    timing: {
+        type: String,
+        required: true,
+    },
+    date: {
+        type: String,
+        required: true,
+    },
+    movieName: {
+        type: String,
+        required: true,
+    },
+    price: {
+        type: Number,
+        required: true,
+    },
+    cinemaName: {
+        type: String,
+        required: true,
+    },
+    address: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    seats: [String]
+})
+
 let userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -16,17 +45,7 @@ let userSchema = new mongoose.Schema({
     profilePicture: {
         type: String,
     },
-    bookedTickets: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Show'
-        },
-        {
-            seatNo: {
-                type: String,
-            }
-        }
-    ]
+    bookedTickets: [bookingSchema]
 })
 
 let User = mongoose.model('User', userSchema);
