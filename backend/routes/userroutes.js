@@ -89,5 +89,18 @@ router.get('/profile/:id', async (req, res) => {
     }
 })
 
+router.patch('/editProfile/:id', async (req, res) => {
+    const userId = req.params.id;
+    const updatedUserData = req.body;
+    const updatedUser = await User.findByIdAndUpdate(userId, updatedUserData, { new: true });
+    res.status(200).json(updatedUser);
+});
+
+router.get('/profile/:id', async (req, res) => {
+    const userId = req.params.id;
+    const user = await User.findById(userId);
+    res.status(200).json(user);
+}); 
+
 
 module.exports = router;
