@@ -40,10 +40,7 @@ function Login() {
                     //console.log("Decoded Token ",decodedToken)
                     window.localStorage.setItem('movieUser', tokenString)
                     navigate('/');
-                    window.location.reload(false)//to reload the current web page.
-                    // So, the purpose of window.location.reload(false) in this code is to refresh the page after successful login, ensuring that any changes dependent on the user's authentication status are applied immediately.
-                    // The parameter false passed to reload() indicates that the browser should reload the page from the cache, if possible.
-                    // If you pass true instead, it forces the browser to reload the page from the server, bypassing the cache.
+                    window.location.reload(false)
                 }
             }
         }
