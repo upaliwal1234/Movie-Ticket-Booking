@@ -17,6 +17,7 @@ import BookingChart from './Components/BookingChart/BookingChart.jsx'
 import BookingPreview from './Components/Payment/BookingPreview.jsx'
 import Success from './Components/Payment/Success.jsx'
 import Failed from './Components/Payment/Failed.jsx'
+import Bookings from './Components/Bookings/Bookings.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
       <Route path='/MovieCinema' element={<MovieCinema />} />
       <Route path='/success' element={<Success />} />
       <Route path='/failed' element={<Failed />} />
+      <Route path='/bookings' element={<Bookings />} />
     </Route>
 
   )

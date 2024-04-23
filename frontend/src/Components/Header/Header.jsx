@@ -172,7 +172,9 @@ function Header() {
                           <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Profile</li>
                         </Link>
                         <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Setting</li>
-                        <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Booking History</li>
+                        <Link to='/bookings'>
+                          <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Booking History</li>
+                        </Link>
                         <li onClick={handleLogout} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer border-t-2'>Logout</li>
                       </ul>
                     </div>
