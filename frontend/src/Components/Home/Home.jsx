@@ -6,7 +6,8 @@ import CardSlider from "../CardSlider/CardSlider";
 
 export default function CarouselCustomArrows() {
   const [data, setData] = useState([]);
-
+  const [images, setImages] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     fetchData();
