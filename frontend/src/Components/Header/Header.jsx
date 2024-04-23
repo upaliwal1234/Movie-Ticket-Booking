@@ -8,6 +8,7 @@ import profilepic from '../../profile.jpg'
 import axios from 'axios';
 import baseURL from '../../DB';
 import Logo from '/Logo.svg';
+import { tokenCheck } from '../../../helperToken';
 
 function Header() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function Header() {
   // console.log(open);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    const token = localStorage.getItem('myToken');
+    const token = tokenCheck();
     if (token) {
       setIsLoggedIn(true);
     }
@@ -38,7 +39,7 @@ function Header() {
 
   const handleLogout = () => {
     setOpen(prevOpen => !prevOpen);
-    localStorage.removeItem('myToken');
+    localStorage.removeItem('movieUser');
     setIsLoggedIn(false);
   }
   const handleProfile = () => {

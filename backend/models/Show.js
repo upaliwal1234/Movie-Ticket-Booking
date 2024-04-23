@@ -1,5 +1,23 @@
 const mongoose = require('mongoose');
 
+const seatSchema = new mongoose.Schema({
+  isSeat: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
+  isAvailable: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
+  isBooked: {
+    type: Boolean,
+    required: true,
+    default: false,
+  }
+})
+
 const showSchema = new mongoose.Schema({
   timing: {
     type: String,
@@ -18,12 +36,11 @@ const showSchema = new mongoose.Schema({
     required: true,
   },
   seating: {
-    type: [Boolean],
-    required: true,
+    type: [[seatSchema]]
   },
   cinema: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Cinema'
+    ref: 'CinemaOwner'
   }
 });
 

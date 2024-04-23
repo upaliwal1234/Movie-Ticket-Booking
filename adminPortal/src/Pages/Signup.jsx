@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
@@ -34,15 +34,15 @@ function Signup() {
     const handleNameChange = (event) => {
         setName(event.target.value);
     };
-    
+
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
-    
+
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     };
-    
+
     const handleConfirmPasswordChange = (event) => {
         setConfirmPassword(event.target.value);
     };

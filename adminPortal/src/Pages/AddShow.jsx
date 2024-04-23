@@ -1,4 +1,9 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import baseURL from '../DB';
+import { CinemaState } from '../Context/CinemaProvider';
+import { useNavigate } from 'react-router-dom';
+import SeatingChart from '../Components/SeatingChart';
 
 export default function AddShow() {
   // State variables for each input field
@@ -8,7 +13,48 @@ export default function AddShow() {
   const [date, setDate] = useState('');
   const [price, setPrice] = useState('');
 
+  const arr = [];
+  for (let i = 0; i < 12; i++) {
+    arr[i] = new Array();
+    for (let j = 0; j < 22; j++) {
+      arr[i].push({
+        isSeat: true,
+        isAvailable: true,
+        isBooked: false,
+      });
+    }
+  }
+
+  const [seating, setSeating] = useState(arr);
+
+  const { user } = CinemaState();
+  const [movies, setMovies] = useState([
+    // { 'name': 'kungfu' },
+    // { 'name': 'kungfu' },
+    // { 'name': 'kungfu' },
+  ]);
+  const navigate = useNavigate();
   // Event handlers for input changes
+
+  useEffect(() => {
+    fetchMovies();
+  }, [user])
+
+  const fetchMovies = async () => {
+    if (!user) {
+      return;
+    }
+    try {
+      const { data } = await axios.get(`${baseURL}/admin/profile/${user.id}`);
+      // console.log(data);
+      if (data) {
+        setMovies(data.movies);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const handleMovieNameChange = (event) => {
     setMovieName(event.target.value);
   };
@@ -29,9 +75,25 @@ export default function AddShow() {
     setPrice(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // Here you can perform the submission logic
+    try {
+      const response = await axios.post(`${baseURL}/admin/movie/addshow`, {
+        timing: startTime,
+        date,
+        movieName,
+        seating: seating,
+        price,
+        cinema: user.id
+      })
+      if (response) {
+        console.log(response.data);
+        navigate('/shows');
+      }
+    } catch (error) {
+      console.log(error);
+    }
     console.log('Movie Name:', movieName);
     console.log('Start Time:', startTime);
     console.log('End Time:', endTime);
@@ -47,16 +109,21 @@ export default function AddShow() {
           <label htmlFor="movieName" className="block mb-1">
             Movie Name:
           </label>
-          <input
+          <select
             type="text"
             id="movieName"
             name="movieName"
-            value={movieName}
+            defaultValue={movieName}
             onChange={handleMovieNameChange}
             className="border w-full p-2"
             placeholder="Enter movie name..."
             required
-          />
+          >
+            <option value='' className='' disabled hidden>Select a Movie</option>
+            {movies && movies.map((data, index) => (
+              <option key={index} value={data.name} className=''>{data.name}</option>
+            ))}
+          </select>
         </div>
         <div className="grid md:grid-cols-2 md:gap-6">
           <div className="mb-4 relative z-0 group">
@@ -122,6 +189,7 @@ export default function AddShow() {
             />
           </div>
         </div>
+        <SeatingChart seating={seating} setSeating={setSeating} />
         <button
           type="submit"
           className="h-12 w-42 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mb-4"
