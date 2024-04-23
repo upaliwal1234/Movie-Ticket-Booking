@@ -1,37 +1,36 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
-import baseURL from '../../DB.js'
+import baseURL from '../../DB.js';
+import {tokenCheck} from '..//..//../helperToken.js'
 
 export default function Profile() {
-  let token = localStorage.getItem('myToken');
-  token = JSON.parse(token);
-  // console.log("Data", token.id);
+  let user = tokenCheck()
   const [userData, setUserData] = useState({});
+  const [isPhotoExpanded, setPhotoExpanded] = useState(false);
+
   useEffect(() => {
     getData();
-  }, [])
-  const getData = async () => {
+  }, []);
 
+  const getData = async () => {
     try {
-      const response = await axios.get(`${baseURL}/profile/${token.id}`);
-      if (response) {
-        const { name, email } = response.data;
-        setUserData({ name, email });
+      const response = await axios.get(`${baseURL}/profile/${user.id}`);
+      if (response.data) {
+        const { name, email, phoneNumber } = response.data;
+        setUserData({ name, email, phoneNumber });
+      } else {
+        console.error('No data receive8d from the server');
       }
-      else {
-        console.error('No data received from the server');
-      }
-    }
-    catch (error) {
+    } catch (error) {
       console.error('Error fetching data:', error);
     }
-  }
-  const [isPhotoExpanded, setPhotoExpanded] = useState(false);
+  };
 
   const handlePhotoClick = () => {
     setPhotoExpanded(!isPhotoExpanded);
   };
+
   useEffect(() => {
     const handleOutsideClick = (event) => {
       const expandedImage = document.getElementById('expanded-image');
@@ -48,6 +47,7 @@ export default function Profile() {
       document.removeEventListener('click', handleOutsideClick);
     };
   }, [isPhotoExpanded]);
+
   return (
     <>
       <div className="min-h-screen py-6 flex flex-col justify-center sm:py-12">
@@ -74,7 +74,7 @@ export default function Profile() {
                 )}
               </div>
               <div className="text-center mt-5">
-              <h1 className="text-3xl font-extrabold text-gray-900">{userData.name }</h1>
+                <h1 className="text-3xl font-extrabold text-gray-900">{userData.name}</h1>
                 <p className="text-sm text-gray-600">Movie Enthusiast</p>
               </div>
             </div>
@@ -84,27 +84,20 @@ export default function Profile() {
               </div>
             </div>
             <div className="mt-10">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div className="bg-gray-200 p-4 rounded-md">
-                  <h2 className="text-lg font-semibold text-gray-700">Contact Information</h2>
-                  <p className="mt-2 text-sm text-gray-600">Email:{userData.email} </p>
-                  <p className="text-sm text-gray-600">Phone: +1 (123) 456-7890</p>
-                </div>
-                <div className="bg-gray-200 p-4 rounded-md">
-                  <h2 className="text-lg font-semibold text-gray-700">Favorite Genres</h2>
-                  <ul className="mt-2 space-y-2 text-sm text-gray-600">
-                    <li>Action</li>
-                    <li>Comedy</li>
-                    <li>Drama</li>
-                    <li>Sci-Fi</li>
-                  </ul>
-                </div>
+              <div className="bg-gray-200 p-4 rounded-md">
+                <h2 className="text-lg font-semibold text-gray-700">Name: {userData.name}</h2>
+                <p className="mt-2 text-sm text-gray-600">Email: {userData.email}</p>
+                <p className="mt-2 text-sm text-gray-600">Phone: {userData.phoneNumber}</p>
               </div>
+            </div>
+            <div className="mt-10 text-center">
+              <NavLink to={`/editProfile/${user.id}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Edit Profile
+              </NavLink>
             </div>
           </div>
         </div>
       </div>
     </>
-    // <></>
-  )
+  );
 }
