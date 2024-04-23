@@ -1,19 +1,18 @@
 import { Carousel, IconButton } from "@material-tailwind/react";
-import MovieCard from "../Movies/MovieCard";
-import CardSlider from "../CardSlider/CardSlider";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import baseURL from "../../DB";
-// import CardSlider from "../CardSlider/CardSlider";
-import Star from '/yellowstar.svg';
-
+import CardSlider from "../CardSlider/CardSlider";
 
 export default function CarouselCustomArrows() {
-
   const [data, setData] = useState([]);
+  const [images, setImages] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   useEffect(() => {
     fetchData();
-  }, [])
+  }, []);
+
   const fetchData = async () => {
     try {
       let response = await axios.get(`${baseURL}/movies`);
@@ -21,12 +20,34 @@ export default function CarouselCustomArrows() {
     } catch (err) {
       console.error(err);
     }
-  }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearTimeout(timer);
+  }, [currentIndex, images]);
+
+  useEffect(() => {
+    const imageUrls = [
+      "https://images8.alphacoders.com/100/1003220.png",
+      "https://images7.alphacoders.com/104/1045911.jpg",
+      "https://wallpapercave.com/wp/wp8807385.jpg",
+      "https://giffiles.alphacoders.com/222/222045.gif"
+    ];
+
+    setImages(imageUrls);
+  }, []);
 
   return (
     <>
       <Carousel
         className=""
+        autoplay
+        autoplayInterval={4000}
+        infiniteLoop
         prevArrow={({ handlePrev }) => (
           <IconButton
             variant="text"
@@ -76,32 +97,22 @@ export default function CarouselCustomArrows() {
           </IconButton>
         )}
       >
-        <img
-          src="https://images8.alphacoders.com/100/1003220.png"
-          alt="image 1"
-          className="h-80 w-full object-cover"
-        />
-        <img
-          src="https://images7.alphacoders.com/104/1045911.jpg"
-          alt="image 2"
-          className="h-80 w-full object-cover"
-        />
-        <img
-          src="https://wallpapercave.com/wp/wp8807385.jpg"
-          alt="image 3"
-          className="h-80 w-full object-cover"
-        />
+        {images.map((imageUrl, index) => (
+          <img
+            key={index}
+            src={images[(currentIndex + index) % images.length]} // Dynamically render images based on currentIndex
+            alt={`image ${index + 1}`}
+            className="h-80 w-full object-cover"
+          />
+        ))}
       </Carousel>
-      <br></br>
+
+      <br />
       <h1 className="p-2 text-4xl ml-[8.5rem] font-bold">Recommended Movies</h1>
-      <br></br>
+      <br />
       <div className="w-[80vw] mx-auto">
         <CardSlider items={data} />
       </div>
-      {/* <div className="flex mx-[7rem] justify-center items-center h-screen">
-      <CardSlider items={items} />
-    </div> */}
     </>
-
   );
 }
