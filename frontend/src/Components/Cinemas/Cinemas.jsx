@@ -35,7 +35,7 @@ export default function Cinemas() {
     }
   };
   return (
-    <div className="flex flex-row flex-wrap gap-8 justify-center mt-10 my-6 sm:mx-10 md:mx-20">
+    <div className="min-h-screen flex flex-row flex-wrap gap-8 justify-center mt-10 my-6 sm:mx-10 md:mx-20">
       {cinemasData.map((cinema, index) => (
         <CinemaCard key={index} cinemaid={cinema._id} cinemaname={cinema.cinemaName} movie={cinema.movie} />
       ))}

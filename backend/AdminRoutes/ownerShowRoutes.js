@@ -61,7 +61,8 @@ router.patch('/admin/movie/editShow', async (req, res) => {
             price: price,
             seating: seating
         }, { new: true });
-
+// By default, Mongoose returns the original document before it was updated. However, setting new: true ensures that the updated document 
+// is returned instead
         if (!updatedShow) {
             return res.status(404).json({ message: "Show not found" });
         }
