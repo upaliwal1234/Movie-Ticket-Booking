@@ -73,71 +73,73 @@ export default function CinemaInfo() {
   }, []);
 
   return (
-    <div className='container justify-center mx-auto mt-3'>
-      <div className="bg-white p-6 rounded-md border-2">
-        <h1 className="text-2xl font-bold mb-2 text-black">{cinemaData.cinemaName}</h1>
-        <p className="text-black">{cinemaData.address}</p>
-      </div>
-      <div className="bg-white p-6 rounded-md border-2 flex items-center justify-between">
-        <div className="flex items-center">
+    <div className='min-h-screen'>
+      <div className=''>
+        <div className="bg-white p-6 px-32 rounded-md border-2">
+          <h1 className="text-2xl font-bold mb-2 text-black">{cinemaData.cinemaName}</h1>
+          <p className="text-black">{cinemaData.address}</p>
+        </div>
+        <div className="bg-white p-6 px-32 rounded-md border-1 flex items-center justify-between">
+          <div className="flex items-center">
 
-          <button
-            className={`text-blue-500 p-4 border-gray-400 shadow-md border rounded-md hover:text-blue-700 focus:outline-none ${selectedDate.getDate() == (new Date()).getDate() ? 'bg-blue-gray-300 hover:none' : ''}`}
-            onClick={() => handleDateChange(-1)} disabled={selectedDate.getDate() == (new Date()).getDate() ? true : false}
-          >
-            &lt;
-          </button>
-          <div className="ml-4 w-72">
-            <h1 className="text-lg font-bold mb-2 text-black">
-              {selectedDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-            </h1>
-            <p className="text-black">
-              {selectedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
-            </p>
+            <button
+              className={`text-blue-500 p-4 border-gray-400 shadow-md border rounded-md hover:text-blue-700 focus:outline-none ${selectedDate.getDate() == (new Date()).getDate() ? 'bg-blue-gray-300 hover:none' : ''}`}
+              onClick={() => handleDateChange(-1)} disabled={selectedDate.getDate() == (new Date()).getDate() ? true : false}
+            >
+              &lt;
+            </button>
+            <div className="ml-4 w-72">
+              <h1 className="text-lg font-bold mb-2 text-black">
+                {selectedDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+              </h1>
+              <p className="text-black">
+                {selectedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
+              </p>
+            </div>
+            <button
+              className={`ml-4 border-gray-400 border p-4 shadow-md rounded-md text-blue-500 hover:text-blue-700 focus:outline-none ${selectedDate.getDate() > (new Date()).getDate() + 6 ? 'bg-blue-gray-300 hover:none' : ''}`}
+              onClick={() => handleDateChange(1)} disabled={selectedDate.getDate() > (new Date()).getDate() + 6 ? true : false}
+            >
+              &gt;
+            </button>
           </div>
-          <button
-            className={`ml-4 border-gray-400 border p-4 shadow-md rounded-md text-blue-500 hover:text-blue-700 focus:outline-none ${selectedDate.getDate() > (new Date()).getDate() + 6 ? 'bg-blue-gray-300 hover:none' : ''}`}
-            onClick={() => handleDateChange(1)} disabled={selectedDate.getDate() > (new Date()).getDate() + 6 ? true : false}
-          >
-            &gt;
-          </button>
-        </div>
-
-        <div className="flex items-center">
-          <select
-            value={selectedPriceRange}
-            onChange={(e) => handlePriceChange(e.target.value)}
-            className="bg-gray-100 text-black p-2 rounded-md focus:outline-none"
-          >
-            <option value="">Select Price Range</option>
-            {priceRanges.map((range) => (
-              <option key={range} value={range}>
-                {range}
-              </option>
-            ))}
-          </select>
         </div>
       </div>
-      <div>
-        <div>
-          <ul className="list-disc">
-            {Array.from(hashMap).map(([key, value]) => (
-              <li key={key} className="flex items-center border-2 p-3 space-x-4">
-                <div className='min-w-[26rem]'>
+      <div className="py-2 px-20 bg-gray-200 h-[400px]">
+        <div className="bg-white">
+          <div className="flex text-xs justify-end px-4 py-2 items-center gap-4 font-extralight border-b">
+            <div className="flex items-center gap-2">
+              <div className=" w-2.5 h-2.5 bg-light-green-400 rounded-full" />
+              <h1>Available</h1>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className=" w-2.5 h-2.5 bg-red-400 rounded-full" />
+              <h1>Fast Filling</h1>
+            </div>
+          </div>
+
+          <div>
+            {Array.from(hashMap).map(([key, value], index) => (
+              <div key={index} className="border-b min-h-24 py-5 px-12 flex gap-32">
+                <div className='flex flex-center items-center'>
                   <Link to={`/movies/${key}/${findMovieId(key)}`} className="text-stone-500 hover:underline">
                     {key}
                   </Link>
                 </div>
-                {value.map((item, index) => (
-                  <Link to={`/buytickets/${key}/${item.date}/show/${item._id}`} key={index} className="bg-white-500 min-w-[7rem] text-black py-2 border-slate-700 border-2 rounded-md hover:bg-gray-300 focus:outline-none">
-                    {item.timing}
-                  </Link>
-                ))}
-              </li>
-            ))}
-          </ul>
-        </div>
+                <div className="flex gap-4">
+                  {value.map((item, index) => (
+                    <Link to={`/buytickets/${key}/${item.date}/show/${item._id}`} key={index} className="border border-gray-500 rounded my-1 px-10 py-1 flex justify-center items-center text-sm font-light text-green-500">
+                      {item.timing}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )
+            )}
+          </div>
 
+
+        </div>
       </div>
     </div>
   )
