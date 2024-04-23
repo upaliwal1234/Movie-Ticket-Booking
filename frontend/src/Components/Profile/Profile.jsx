@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
-import baseURL from '../../DB.js';
-import {tokenCheck} from '..//..//../helperToken.js'
+import baseURL from '../../DB.js'
 
 export default function Profile() {
-  let user = tokenCheck()
+  let token = localStorage.getItem('myToken');
+  token = JSON.parse(token);
+  // console.log("Data", token.id);
   const [userData, setUserData] = useState({});
   const [isPhotoExpanded, setPhotoExpanded] = useState(false);
 
@@ -15,12 +16,13 @@ export default function Profile() {
 
   const getData = async () => {
     try {
-      const response = await axios.get(`${baseURL}/profile/${user.id}`);
-      if (response.data) {
-        const { name, email, phoneNumber } = response.data;
-        setUserData({ name, email, phoneNumber });
-      } else {
-        console.error('No data receive8d from the server');
+      const response = await axios.get(`${baseURL}/profile/${token.id}`);
+      if (response) {
+        const { name, email } = response.data;
+        setUserData({ name, email });
+      }
+      else {
+        console.error('No data received from the server');
       }
     } catch (error) {
       console.error('Error fetching data:', error);

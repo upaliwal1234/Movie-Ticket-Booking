@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import profilepic from '../../profile.jpg'
 import axios from 'axios';
 import baseURL from '../../DB';
-import Logo from '/Logo.svg';
+import Logo from '../../icons/Logo.svg';
 import { tokenCheck } from '../../../helperToken';
 
 function Header() {
@@ -171,7 +171,10 @@ function Header() {
                         <Link to='/profile'>
                           <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Profile</li>
                         </Link>
-                        <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Booking History</li>
+                        <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Setting</li>
+                        <Link to='/bookings'>
+                          <li onClick={() => setOpen(prevOpen => !prevOpen)} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer'>Booking History</li>
+                        </Link>
                         <li onClick={handleLogout} className='p-2 hover:bg-gray-300 hover:rounded-md cursor-pointer border-t-2'>Logout</li>
                       </ul>
                     </div>

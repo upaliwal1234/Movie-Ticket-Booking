@@ -3,6 +3,7 @@ import { json, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import baseURL from '../../DB';
 import { useState } from 'react';
+import { tokenCheck } from '../../../helperToken';
 function BookingPreview() {
     const location = useLocation();
     const { showId, seats } = location.state || {}
@@ -11,7 +12,8 @@ function BookingPreview() {
     //     seats: ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10']
     // }
     const navigate = useNavigate();
-
+    const user = tokenCheck();
+    // console.log(user);
     let [showData, setShowData] = useState(null);
     const fetchData = async () => {
         try {
@@ -30,6 +32,7 @@ function BookingPreview() {
     useEffect(() => {
         fetchData()
     }, [])
+    // console.log(showData);
 
     const handleSuccess = async () => {
         try {
@@ -43,7 +46,7 @@ function BookingPreview() {
                 seating[row][col].isBooked = true;
             })
             let { data } = await axios.patch(`${baseURL}/booking/success`, {
-                showId, seating
+                showId, seating, userId: user.id, seats
             })
             if (data) {
                 navigate('/success');
