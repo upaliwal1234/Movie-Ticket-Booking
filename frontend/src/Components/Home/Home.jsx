@@ -26,7 +26,7 @@ export default function CarouselCustomArrows() {
   return (
     <>
       <Carousel
-        className="rounded-xl"
+        className=""
         prevArrow={({ handlePrev }) => (
           <IconButton
             variant="text"
