@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard"
 import { tokenCheck } from '../../../helperToken.js';
 import { useNavigate } from "react-router-dom"; import axios from "axios"
 import baseURL from "../../DB"
-import Star from '/yellowstar.svg';
+import Star from '../../icons/yellowstar.svg';
 import { Link } from "react-router-dom";
 
 function Movies() {
