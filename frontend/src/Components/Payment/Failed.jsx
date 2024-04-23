@@ -1,5 +1,5 @@
 import React from 'react';
-import failed from '../../../public/failed.svg';
+import failed from '../../icons/failed.svg';
 import { Link } from 'react-router-dom';
 
 function Failed() {

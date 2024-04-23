@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import profilepic from '../../profile.jpg'
 import axios from 'axios';
 import baseURL from '../../DB';
-import Logo from '/Logo.svg';
+import Logo from '../../icons/Logo.svg';
 import { tokenCheck } from '../../../helperToken';
 
 function Header() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import success from '../../../public/success.svg';
+import success from '../../icons/success.svg';
 import { Link } from 'react-router-dom';
 
 function Success() {
