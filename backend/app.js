@@ -13,6 +13,8 @@ const dotenv = require('dotenv');
 const ownerroutes = require('./AdminRoutes/ownerroutes');
 const ownerShowRoutes = require('./AdminRoutes/ownerShowRoutes.js')
 const ownerMovieRoutes = require('./AdminRoutes/ownerMovieRoutes.js')
+const paymentroutes = require('./routes/paymentroutes.js')
+
 dotenv.config();
 
 const PORT = process.env.PORT || 8888;
@@ -44,3 +46,4 @@ app.use(searchroutes);
 app.use(ownerroutes);
 app.use(ownerShowRoutes);
 app.use(ownerMovieRoutes);
+app.use(paymentroutes);

@@ -37,9 +37,6 @@ export default function CinemaInfo() {
       hashMap.get(shows[i].movieName).push(shows[i]);
     }
   }
-  // const handleClick = (movieName, date, id) => {
-  //   navigate(`/buytickets/${movieName}/${date}/show/${id}`)
-  // }
   const options = {
     year: 'numeric',
     month: '2-digit',
@@ -127,7 +124,6 @@ export default function CinemaInfo() {
             {Array.from(hashMap).map(([key, value]) => (
               <li key={key} className="flex items-center border-2 p-3 space-x-4">
                 <div className='min-w-[26rem]'>
-                  {/* Modify the link to include the movie ID */}
                   <Link to={`/movies/${key}/${findMovieId(key)}`} className="text-stone-500 hover:underline">
                     {key}
                   </Link>
@@ -146,6 +142,3 @@ export default function CinemaInfo() {
     </div>
   )
 }
-// const handleClick = (movieName, date, id) => {
-//   navigate(`/buytickets/${movieName}/${date}/show/${id}`)
-// }
