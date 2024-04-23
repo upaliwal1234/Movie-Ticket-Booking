@@ -19,6 +19,7 @@ import Success from './Components/Payment/Success.jsx'
 import Failed from './Components/Payment/Failed.jsx'
 import Bookings from './Components/Bookings/Bookings.jsx'
 import Error from './Components/Error/Error.jsx'
+import Ticket from './Components/Bookings/Ticket.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
       <Route path='/success' element={<Success />} />
       <Route path='/failed' element={<Failed />} />
       <Route path='/bookings' element={<Bookings />} />
+      <Route path='/ticket' element={<Ticket />} />
       <Route path='*' element={<Error/>}/>
     </Route>
 
