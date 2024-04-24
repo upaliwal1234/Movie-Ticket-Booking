@@ -76,13 +76,13 @@ function BookingPreview() {
         console.log(order);
 
         var options = {
-            "key": "rzp_test_5gyxFQ3rVGnviW", // Enter the Key ID generated from the Dashboard
-            amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "key": "rzp_test_5gyxFQ3rVGnviW",
+            amount,
             currency,
-            "name": "MOVIEMANIA", //your business name
+            "name": "MOVIEMANIA",
             "description": "Test Transaction",
             "image": "https://i.ibb.co/nmP4kJm/Logo-removebg-preview.png",
-            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "order_id": order.id,
             "handler": async function (response) {
                 const body = {
                     ...response,
@@ -127,13 +127,6 @@ function BookingPreview() {
         };
         var rzp1 = new window.Razorpay(options);
         rzp1.on('payment.failed', function (response) {
-            // alert(response.error.code);
-            // alert(response.error.description);
-            // alert(response.error.source);
-            // alert(response.error.step);
-            // alert(response.error.reason);
-            // alert(response.error.metadata.order_id);
-            // alert(response.error.metadata.payment_id);
             navigate('/failed')
         });
         rzp1.open();

@@ -120,8 +120,8 @@ export default function CinemaInfo() {
 
           <div>
             {Array.from(hashMap).map(([key, value], index) => (
-              <div key={index} className="border-b min-h-24 py-5 px-12 flex gap-32">
-                <div className='flex flex-center items-center'>
+              <div key={index} className="border-b min-h-24 py-5 px-12 flex gap-2">
+                <div className='flex flex-center items-center w-[300px]'>
                   <Link to={`/movies/${key}/${findMovieId(key)}`} className="text-stone-500 hover:underline">
                     {key}
                   </Link>

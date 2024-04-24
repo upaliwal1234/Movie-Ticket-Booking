@@ -107,8 +107,8 @@ function MovieShows() {
                         {map1.map((item, index) => {
                             let shows = map2[index]
                             return (
-                                <div key={index} className="border-b min-h-24 py-5 px-12 flex gap-20">
-                                    <div>
+                                <div key={index} className="border-b min-h-24 py-5 px-12 flex gap-8">
+                                    <div className="w-[350px]">
                                         <Link className="hover:underline" to={`/cinema/${item._id}`}>
                                             <h1 className="text-sm font-bold">{item.cinemaName}</h1>
                                             <h2 className="text-sm">{item.address}</h2>
