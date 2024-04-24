@@ -121,12 +121,12 @@ function AddNewMovie() {
         console.log("Hello", response);
         navigate('/moviepage');
       }
-    } catch (error) {
-    } catch (error) {
+    }
+    catch (error) {
       toast.error('Error in adding movie');
       console.error('Error during adding movie:', error);
     }
-    }
+
   };
   return (
     <div className="text-red-500 flex justify-center" style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
