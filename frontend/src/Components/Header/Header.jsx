@@ -29,9 +29,7 @@ function Header() {
         setOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handler);
-
     return () => {
       document.removeEventListener("mousedown", handler);
     };

@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard"
 import { tokenCheck } from '../../../helperToken.js';
 import { useNavigate } from "react-router-dom"; import axios from "axios"
 import baseURL from "../../DB"
-import Star from '/yellowstar.svg';
+// import Star from '/yellowstar.svg';
 import { Link } from "react-router-dom";
 
 function Movies() {
@@ -42,7 +42,7 @@ function Movies() {
                         className='relative'
                     />
                     <div className="absolute top-[350px] rounded-md flex text-white text-lg justify-center   bg-blue-gray-900/[0.50] w-[220px] h-[30px]">
-                        <img className="p-[4.5px]" src={Star}></img>
+                        <img className="p-[4.5px]" ></img>
                         <div>{item.ratings}/10 Ratings</div>
                     </div>
                     </div>

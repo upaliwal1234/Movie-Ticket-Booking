@@ -78,14 +78,14 @@ function AddNewMovie() {
     // console.log(updatedCast);
     setCast(updatedCast);
   };
-  
+
 
   const handleCrewChange = (index, field, value) => {
     const updatedCrew = [...crew];
     updatedCrew[index][field] = value;
     setCrew(updatedCrew);
   };
-  
+
 
   const handleAddCast = () => {
     setCast([...cast, { name: "", role: "", img: "" }]);
@@ -114,28 +114,19 @@ function AddNewMovie() {
         poster
       });
       if (response) {
-          console.log("Hello", response);
-          navigate('/moviepage');
+        console.log("Hello", response);
+        navigate('/moviepage');
       }
-  } catch (error) {
+    } catch (error) {
       toast.error('Error in adding movie');
       console.error('Error during adding movie:', error);
-  }
+    }
   };
   return (
     <div className="text-red-500 flex justify-center" style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
       <form className="w-3/4 p-8 bg-gray-100 rounded-lg shadow-lg" onSubmit={handleSubmit}>
         <h2 className="text-2xl mb-4 text-center">Add New Movie</h2>
-        <form className="flex justify-center items-center">
-        <input
-          className="border w-3/4 p-3 mt-7 mr-2"
-          type="text"
-          placeholder="Search Movie . . ."
-          value={searchQuery}
-          onChange={handleSearchInputChange}
-        />
-          <button className="h-12 w-42 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mt-7">Search</button>
-      </form>
+
         <div className="mb-4">
           <label htmlFor="name" className="block mb-1">
             Name:

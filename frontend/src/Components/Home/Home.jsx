@@ -9,9 +9,6 @@ export default function CarouselCustomArrows() {
   const [images, setImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const [images, setImages] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
   useEffect(() => {
     fetchData();
   }, []);
