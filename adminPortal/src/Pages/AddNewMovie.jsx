@@ -80,11 +80,13 @@ function AddNewMovie() {
   };
 
 
+
   const handleCrewChange = (index, field, value) => {
     const updatedCrew = [...crew];
     updatedCrew[index][field] = value;
     setCrew(updatedCrew);
   };
+
 
 
   const handleAddCast = () => {
@@ -116,10 +118,14 @@ function AddNewMovie() {
       if (response) {
         console.log("Hello", response);
         navigate('/moviepage');
+        console.log("Hello", response);
+        navigate('/moviepage');
       }
+    } catch (error) {
     } catch (error) {
       toast.error('Error in adding movie');
       console.error('Error during adding movie:', error);
+    }
     }
   };
   return (
