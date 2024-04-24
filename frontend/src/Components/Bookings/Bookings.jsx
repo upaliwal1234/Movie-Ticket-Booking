@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import baseURL from "../../DB";
 import { tokenCheck } from "../../../helperToken";
 import axios from "axios";
+import Ticket from "./Ticket";
 function Bookings() {
 
     const [bookingHistory, setBookingHistory] = useState([]);
+    const [showTicket, setShowTicket] = useState(false);
+    const [ticketData, setTicketData] = useState(null);
     const user = tokenCheck();
-    console.log(user);
+    // console.log(user);
     const fetchBookingHistory = async () => {
         try {
             const { data } = await axios.get(`${baseURL}/bookings/${user.id}`);
@@ -23,13 +26,22 @@ function Bookings() {
         fetchBookingHistory();
     }, []);
 
+    const handleTicketClick = (booking) => {
+        setTicketData(booking);
+        setShowTicket(true);
+    }
+
+    const handleOnClose = () => {
+        setShowTicket(false);
+        setTicketData(null);
+    };
+
     return (
-        <div className="min-h-screen bg-gray-300 ">
+        <div className="min-h-screen bg-gray-300 " >
             <div className=" py-10 flex flex-row justify-center">
                 <div className="bg-white w-8/12 rounded-lg shadow-lg relative overflow-x-auto py-5">
                     <h2 className="text-center font-semibold text-3xl my-3">Booking History</h2>
                     {bookingHistory.length > 0 ? (
-                        // <div className="relative overflow-x-auto">
                         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
@@ -65,7 +77,7 @@ function Bookings() {
                                         <td className="px-6 py-4">
                                             {booking.price}
                                         </td>
-                                        <td className="px-6 py-4 text-blue-800 hover:underline">
+                                        <td onClick={() => handleTicketClick(booking)} className="px-6 py-4 text-blue-800 hover:underline">
                                             Ticket
                                         </td>
                                     </tr>
@@ -77,7 +89,8 @@ function Bookings() {
                     )}
                 </div>
             </div>
-        </div>
+            <Ticket onClose={handleOnClose} visible={showTicket} ticketData={ticketData} />
+        </div >
     )
 }
 

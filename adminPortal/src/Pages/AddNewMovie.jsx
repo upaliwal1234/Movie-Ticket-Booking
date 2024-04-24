@@ -80,11 +80,13 @@ function AddNewMovie() {
   };
 
 
+
   const handleCrewChange = (index, field, value) => {
     const updatedCrew = [...crew];
     updatedCrew[index][field] = value;
     setCrew(updatedCrew);
   };
+
 
 
   const handleAddCast = () => {
@@ -116,17 +118,20 @@ function AddNewMovie() {
       if (response) {
         console.log("Hello", response);
         navigate('/moviepage');
+        console.log("Hello", response);
+        navigate('/moviepage');
       }
+    } catch (error) {
     } catch (error) {
       toast.error('Error in adding movie');
       console.error('Error during adding movie:', error);
+    }
     }
   };
   return (
     <div className="text-red-500 flex justify-center" style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
       <form className="w-3/4 p-8 bg-gray-100 rounded-lg shadow-lg" onSubmit={handleSubmit}>
         <h2 className="text-2xl mb-4 text-center">Add New Movie</h2>
-
         <div className="mb-4">
           <label htmlFor="name" className="block mb-1">
             Name:
