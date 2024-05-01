@@ -4,8 +4,6 @@ const Razorpay = require('razorpay');
 const crypto = require('crypto');
 const Show = require('../models/Show');
 const User = require('../models/User')
-
-
 router.post('/booking', async (req, res) => {
     try {
         const razorpay = new Razorpay({

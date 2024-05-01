@@ -37,12 +37,11 @@ const router = createBrowserRouter(
       <Route path='/buytickets/:movieName/:date/show/:id/bookingpreview' element={<BookingPreview />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/editprofile/:id' element={<EditProfile />} />
-      <Route path='/MovieCinema' element={<MovieCinema />} />
       <Route path='/success' element={<Success />} />
       <Route path='/failed' element={<Failed />} />
       <Route path='/bookings' element={<Bookings />} />
       <Route path='/ticket' element={<Ticket />} />
-      <Route path='*' element={<Error/>}/>
+      <Route path='*' element={<Error />} />
     </Route>
 
   )
